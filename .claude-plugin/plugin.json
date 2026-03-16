@@ -1,0 +1,24 @@
+{
+  "name": "cyberskills-elite",
+  "version": "1.0.0",
+  "description": "155+ elite cybersecurity skills for AI agents — Bug Hunting, Pentesting, Red Teaming, AI Red Teaming",
+  "skills_directory": "../skills",
+  "author": "CyberSkills-Elite",
+  "license": "Apache-2.0",
+  "repository": "https://github.com/cyberskills-elite/cybersecurity-agent-skills",
+  "homepage": "https://github.com/cyberskills-elite/cybersecurity-agent-skills",
+  "categories": [
+    "cybersecurity",
+    "bug-hunting",
+    "penetration-testing",
+    "red-teaming",
+    "ai-red-teaming"
+  ],
+  "compatibility": {
+    "claude-code": true,
+    "github-copilot": true,
+    "cursor": true,
+    "gemini-cli": true,
+    "openai-codex-cli": true
+  }
+}

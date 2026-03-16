@@ -1,0 +1,55 @@
+{
+  "name": "CyberSkills Elite — MITRE ATT&CK Coverage",
+  "version": "1.0",
+  "description": "MITRE ATT&CK technique coverage across all cybersecurity agent skills",
+  "domain": "enterprise-attack",
+  "tactics_covered": [
+    {"id": "TA0043", "name": "Reconnaissance", "skills": 8},
+    {"id": "TA0042", "name": "Resource Development", "skills": 3},
+    {"id": "TA0001", "name": "Initial Access", "skills": 12},
+    {"id": "TA0002", "name": "Execution", "skills": 8},
+    {"id": "TA0003", "name": "Persistence", "skills": 7},
+    {"id": "TA0004", "name": "Privilege Escalation", "skills": 10},
+    {"id": "TA0005", "name": "Defense Evasion", "skills": 12},
+    {"id": "TA0006", "name": "Credential Access", "skills": 8},
+    {"id": "TA0007", "name": "Discovery", "skills": 6},
+    {"id": "TA0008", "name": "Lateral Movement", "skills": 7},
+    {"id": "TA0009", "name": "Collection", "skills": 5},
+    {"id": "TA0010", "name": "Exfiltration", "skills": 4},
+    {"id": "TA0011", "name": "Command and Control", "skills": 8},
+    {"id": "TA0040", "name": "Impact", "skills": 3}
+  ],
+  "atlas_coverage": {
+    "description": "MITRE ATLAS techniques for AI Red Teaming skills",
+    "techniques": [
+      {"id": "AML.T0051", "name": "LLM Prompt Injection", "skills": 12},
+      {"id": "AML.T0051.001", "name": "Indirect Prompt Injection", "skills": 4},
+      {"id": "AML.T0024", "name": "Exfiltration via ML Inference API", "skills": 3},
+      {"id": "AML.T0043", "name": "Adversarial ML Inputs", "skills": 4},
+      {"id": "AML.T0015", "name": "Evade ML Model", "skills": 2},
+      {"id": "AML.T0020", "name": "Poison Training Data", "skills": 2},
+      {"id": "AML.T0010", "name": "ML Supply Chain Compromise", "skills": 2},
+      {"id": "AML.T0034", "name": "Denial of ML Service", "skills": 1},
+      {"id": "AML.T0048", "name": "Synthetic Media", "skills": 3}
+    ]
+  },
+  "skill_to_technique_mapping": {
+    "idor-vulnerability-hunting": ["T1530"],
+    "xss-reflected-stored-dom": ["T1189", "T1059.007"],
+    "ssrf-server-side-request-forgery": ["T1090", "T1552.005"],
+    "sqli-manual-and-automated": ["T1190"],
+    "api-authentication-bypass": ["T1078", "T1550"],
+    "web-application-recon-and-enumeration": ["T1595", "T1592", "T1590"],
+    "nmap-advanced-network-scanning": ["T1046", "T1595.001"],
+    "active-directory-full-attack-chain": ["T1558", "T1003", "T1021", "T1087"],
+    "linux-privilege-escalation": ["T1068", "T1548.001", "T1053.003"],
+    "windows-privilege-escalation": ["T1068", "T1574.001", "T1134"],
+    "cobalt-strike-beacon-operations": ["T1071.001", "T1059.003", "T1055"],
+    "phishing-and-social-engineering-campaigns": ["T1566.001", "T1566.002", "T1598"],
+    "av-edr-evasion-techniques": ["T1027", "T1562.001", "T1055", "T1218"],
+    "llm-direct-prompt-injection": ["AML.T0051"],
+    "rag-poisoning-and-data-exfiltration": ["AML.T0051.001"],
+    "mcp-protocol-exploitation": ["AML.T0051"],
+    "ai-agent-tool-abuse-and-privilege-escalation": ["AML.T0051"]
+  }
+}

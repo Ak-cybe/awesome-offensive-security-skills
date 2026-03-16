@@ -1,0 +1,608 @@
+{
+  "name": "offensive-ai-skills",
+  "version": "1.0.0",
+  "total_skills": 150,
+  "license": "MIT",
+  "skills": [
+    {
+      "name": "account-takeover-chain",
+      "path": "skills/account-takeover-chain/SKILL.md"
+    },
+    {
+      "name": "active-directory-pentest",
+      "path": "skills/active-directory-pentest/SKILL.md"
+    },
+    {
+      "name": "active-threat-hunting",
+      "path": "skills/active-threat-hunting/SKILL.md"
+    },
+    {
+      "name": "agentic-data-minimization",
+      "path": "skills/agentic-data-minimization/SKILL.md"
+    },
+    {
+      "name": "agentic-pipeline-security",
+      "path": "skills/agentic-pipeline-security/SKILL.md"
+    },
+    {
+      "name": "agentic-prompt-chaining-attack",
+      "path": "skills/agentic-prompt-chaining-attack/SKILL.md"
+    },
+    {
+      "name": "ai-agent-data-exfiltration",
+      "path": "skills/ai-agent-data-exfiltration/SKILL.md"
+    },
+    {
+      "name": "ai-agent-privilege-escalation",
+      "path": "skills/ai-agent-privilege-escalation/SKILL.md"
+    },
+    {
+      "name": "ai-firewall-bypass",
+      "path": "skills/ai-firewall-bypass/SKILL.md"
+    },
+    {
+      "name": "ai-governance-audit",
+      "path": "skills/ai-governance-audit/SKILL.md"
+    },
+    {
+      "name": "ai-hallucination-induction",
+      "path": "skills/ai-hallucination-induction/SKILL.md"
+    },
+    {
+      "name": "ai-incident-response-playbook",
+      "path": "skills/ai-incident-response-playbook/SKILL.md"
+    },
+    {
+      "name": "ai-memory-manipulation",
+      "path": "skills/ai-memory-manipulation/SKILL.md"
+    },
+    {
+      "name": "ai-model-security-assessment",
+      "path": "skills/ai-model-security-assessment/SKILL.md"
+    },
+    {
+      "name": "ai-red-team-reporting",
+      "path": "skills/ai-red-team-reporting/SKILL.md"
+    },
+    {
+      "name": "ai-supply-chain-model-poisoning",
+      "path": "skills/ai-supply-chain-model-poisoning/SKILL.md"
+    },
+    {
+      "name": "api-gateway-security",
+      "path": "skills/api-gateway-security/SKILL.md"
+    },
+    {
+      "name": "api-rate-limit-bypass",
+      "path": "skills/api-rate-limit-bypass/SKILL.md"
+    },
+    {
+      "name": "api-security-recon",
+      "path": "skills/api-security-recon/SKILL.md"
+    },
+    {
+      "name": "apk-dynamic-frida",
+      "path": "skills/apk-dynamic-frida/SKILL.md"
+    },
+    {
+      "name": "aws-iam-privilege-escalation",
+      "path": "skills/aws-iam-privilege-escalation/SKILL.md"
+    },
+    {
+      "name": "aws-s3-security-audit",
+      "path": "skills/aws-s3-security-audit/SKILL.md"
+    },
+    {
+      "name": "bluetooth-wireless-security",
+      "path": "skills/bluetooth-wireless-security/SKILL.md"
+    },
+    {
+      "name": "bola-bfla-testing",
+      "path": "skills/bola-bfla-testing/SKILL.md"
+    },
+    {
+      "name": "botnet-analysis",
+      "path": "skills/botnet-analysis/SKILL.md"
+    },
+    {
+      "name": "browser-forensics",
+      "path": "skills/browser-forensics/SKILL.md"
+    },
+    {
+      "name": "bug-bounty-report-writer",
+      "path": "skills/bug-bounty-report-writer/SKILL.md"
+    },
+    {
+      "name": "business-logic-fuzzer",
+      "path": "skills/business-logic-fuzzer/SKILL.md"
+    },
+    {
+      "name": "cache-poisoning",
+      "path": "skills/cache-poisoning/SKILL.md"
+    },
+    {
+      "name": "claude-code-config-hardener",
+      "path": "skills/claude-code-config-hardener/SKILL.md"
+    },
+    {
+      "name": "claude-code-cve-2026-21852",
+      "path": "skills/claude-code-cve-2026-21852/SKILL.md"
+    },
+    {
+      "name": "cloud-aws-pentest",
+      "path": "skills/cloud-aws-pentest/SKILL.md"
+    },
+    {
+      "name": "cloud-azure-pentest",
+      "path": "skills/cloud-azure-pentest/SKILL.md"
+    },
+    {
+      "name": "cloud-container-security",
+      "path": "skills/cloud-container-security/SKILL.md"
+    },
+    {
+      "name": "cloud-incident-response",
+      "path": "skills/cloud-incident-response/SKILL.md"
+    },
+    {
+      "name": "cloud-network-security",
+      "path": "skills/cloud-network-security/SKILL.md"
+    },
+    {
+      "name": "cloud-secret-scanning",
+      "path": "skills/cloud-secret-scanning/SKILL.md"
+    },
+    {
+      "name": "cloud-storage-enumeration",
+      "path": "skills/cloud-storage-enumeration/SKILL.md"
+    },
+    {
+      "name": "cobalt-strike-detection",
+      "path": "skills/cobalt-strike-detection/SKILL.md"
+    },
+    {
+      "name": "compliance-gap-analysis",
+      "path": "skills/compliance-gap-analysis/SKILL.md"
+    },
+    {
+      "name": "cors-misconfiguration",
+      "path": "skills/cors-misconfiguration/SKILL.md"
+    },
+    {
+      "name": "cryptocurrency-forensics",
+      "path": "skills/cryptocurrency-forensics/SKILL.md"
+    },
+    {
+      "name": "csrf-full-exploitation",
+      "path": "skills/csrf-full-exploitation/SKILL.md"
+    },
+    {
+      "name": "cvss-scoring-guide",
+      "path": "skills/cvss-scoring-guide/SKILL.md"
+    },
+    {
+      "name": "devsecops-pipeline-security",
+      "path": "skills/devsecops-pipeline-security/SKILL.md"
+    },
+    {
+      "name": "disk-forensics-acquisition",
+      "path": "skills/disk-forensics-acquisition/SKILL.md"
+    },
+    {
+      "name": "dns-security-audit",
+      "path": "skills/dns-security-audit/SKILL.md"
+    },
+    {
+      "name": "dynamic-malware-analysis",
+      "path": "skills/dynamic-malware-analysis/SKILL.md"
+    },
+    {
+      "name": "edr-bypass-detection",
+      "path": "skills/edr-bypass-detection/SKILL.md"
+    },
+    {
+      "name": "email-forensics",
+      "path": "skills/email-forensics/SKILL.md"
+    },
+    {
+      "name": "eu-ai-act-compliance-report",
+      "path": "skills/eu-ai-act-compliance-report/SKILL.md"
+    },
+    {
+      "name": "exfiltration-techniques",
+      "path": "skills/exfiltration-techniques/SKILL.md"
+    },
+    {
+      "name": "external-pentest-recon",
+      "path": "skills/external-pentest-recon/SKILL.md"
+    },
+    {
+      "name": "file-upload-bypass",
+      "path": "skills/file-upload-bypass/SKILL.md"
+    },
+    {
+      "name": "firewall-rule-audit",
+      "path": "skills/firewall-rule-audit/SKILL.md"
+    },
+    {
+      "name": "forensic-timeline-analysis",
+      "path": "skills/forensic-timeline-analysis/SKILL.md"
+    },
+    {
+      "name": "gcp-security-assessment",
+      "path": "skills/gcp-security-assessment/SKILL.md"
+    },
+    {
+      "name": "graphql-security-assessment",
+      "path": "skills/graphql-security-assessment/SKILL.md"
+    },
+    {
+      "name": "h1-report-hallucination-checker",
+      "path": "skills/h1-report-hallucination-checker/SKILL.md"
+    },
+    {
+      "name": "http-request-smuggling",
+      "path": "skills/http-request-smuggling/SKILL.md"
+    },
+    {
+      "name": "idor-smart-hunter",
+      "path": "skills/idor-smart-hunter/SKILL.md"
+    },
+    {
+      "name": "ids-ips-evasion-testing",
+      "path": "skills/ids-ips-evasion-testing/SKILL.md"
+    },
+    {
+      "name": "insecure-deserialization",
+      "path": "skills/insecure-deserialization/SKILL.md"
+    },
+    {
+      "name": "insider-threat-detection",
+      "path": "skills/insider-threat-detection/SKILL.md"
+    },
+    {
+      "name": "internal-network-pentest",
+      "path": "skills/internal-network-pentest/SKILL.md"
+    },
+    {
+      "name": "iot-security-assessment",
+      "path": "skills/iot-security-assessment/SKILL.md"
+    },
+    {
+      "name": "jwt-attack-suite",
+      "path": "skills/jwt-attack-suite/SKILL.md"
+    },
+    {
+      "name": "kubernetes-pentest",
+      "path": "skills/kubernetes-pentest/SKILL.md"
+    },
+    {
+      "name": "llm-api-fuzzing",
+      "path": "skills/llm-api-fuzzing/SKILL.md"
+    },
+    {
+      "name": "llm-bias-exploitation",
+      "path": "skills/llm-bias-exploitation/SKILL.md"
+    },
+    {
+      "name": "llm-context-window-poisoning",
+      "path": "skills/llm-context-window-poisoning/SKILL.md"
+    },
+    {
+      "name": "llm-dos-resource-exhaustion",
+      "path": "skills/llm-dos-resource-exhaustion/SKILL.md"
+    },
+    {
+      "name": "llm-firewall-assessment",
+      "path": "skills/llm-firewall-assessment/SKILL.md"
+    },
+    {
+      "name": "llm-indirect-injection-rag",
+      "path": "skills/llm-indirect-injection-rag/SKILL.md"
+    },
+    {
+      "name": "llm-jailbreak-multi-turn",
+      "path": "skills/llm-jailbreak-multi-turn/SKILL.md"
+    },
+    {
+      "name": "llm-jailbreak-single-turn",
+      "path": "skills/llm-jailbreak-single-turn/SKILL.md"
+    },
+    {
+      "name": "llm-model-extraction",
+      "path": "skills/llm-model-extraction/SKILL.md"
+    },
+    {
+      "name": "llm-output-injection",
+      "path": "skills/llm-output-injection/SKILL.md"
+    },
+    {
+      "name": "llm-prompt-injection-direct",
+      "path": "skills/llm-prompt-injection-direct/SKILL.md"
+    },
+    {
+      "name": "llm-supply-chain-assessment",
+      "path": "skills/llm-supply-chain-assessment/SKILL.md"
+    },
+    {
+      "name": "llm-system-prompt-extraction",
+      "path": "skills/llm-system-prompt-extraction/SKILL.md"
+    },
+    {
+      "name": "llm-training-data-extraction",
+      "path": "skills/llm-training-data-extraction/SKILL.md"
+    },
+    {
+      "name": "log-analysis-ir",
+      "path": "skills/log-analysis-ir/SKILL.md"
+    },
+    {
+      "name": "malware-deobfuscation",
+      "path": "skills/malware-deobfuscation/SKILL.md"
+    },
+    {
+      "name": "malware-network-traffic-analysis",
+      "path": "skills/malware-network-traffic-analysis/SKILL.md"
+    },
+    {
+      "name": "malware-persistence-forensics",
+      "path": "skills/malware-persistence-forensics/SKILL.md"
+    },
+    {
+      "name": "mass-assignment-exploit",
+      "path": "skills/mass-assignment-exploit/SKILL.md"
+    },
+    {
+      "name": "mcp-server-security-audit",
+      "path": "skills/mcp-server-security-audit/SKILL.md"
+    },
+    {
+      "name": "mcp-tool-poisoning-attack",
+      "path": "skills/mcp-tool-poisoning-attack/SKILL.md"
+    },
+    {
+      "name": "mcp-workspace-escape",
+      "path": "skills/mcp-workspace-escape/SKILL.md"
+    },
+    {
+      "name": "memory-forensics-volatility",
+      "path": "skills/memory-forensics-volatility/SKILL.md"
+    },
+    {
+      "name": "mitre-atlas-coverage-mapper",
+      "path": "skills/mitre-atlas-coverage-mapper/SKILL.md"
+    },
+    {
+      "name": "mitre-attck-report",
+      "path": "skills/mitre-attck-report/SKILL.md"
+    },
+    {
+      "name": "mobile-android-pentest",
+      "path": "skills/mobile-android-pentest/SKILL.md"
+    },
+    {
+      "name": "mobile-forensics",
+      "path": "skills/mobile-forensics/SKILL.md"
+    },
+    {
+      "name": "mobile-ios-pentest",
+      "path": "skills/mobile-ios-pentest/SKILL.md"
+    },
+    {
+      "name": "network-forensics-ir",
+      "path": "skills/network-forensics-ir/SKILL.md"
+    },
+    {
+      "name": "network-segmentation-test",
+      "path": "skills/network-segmentation-test/SKILL.md"
+    },
+    {
+      "name": "network-traffic-analysis",
+      "path": "skills/network-traffic-analysis/SKILL.md"
+    },
+    {
+      "name": "oauth-attack-chain",
+      "path": "skills/oauth-attack-chain/SKILL.md"
+    },
+    {
+      "name": "open-redirect-chain",
+      "path": "skills/open-redirect-chain/SKILL.md"
+    },
+    {
+      "name": "otp-2fa-bypass",
+      "path": "skills/otp-2fa-bypass/SKILL.md"
+    },
+    {
+      "name": "password-reset-flaws",
+      "path": "skills/password-reset-flaws/SKILL.md"
+    },
+    {
+      "name": "password-spraying",
+      "path": "skills/password-spraying/SKILL.md"
+    },
+    {
+      "name": "path-traversal-lfi",
+      "path": "skills/path-traversal-lfi/SKILL.md"
+    },
+    {
+      "name": "pentest-report-generator",
+      "path": "skills/pentest-report-generator/SKILL.md"
+    },
+    {
+      "name": "persistence-techniques",
+      "path": "skills/persistence-techniques/SKILL.md"
+    },
+    {
+      "name": "phishing-defense-analysis",
+      "path": "skills/phishing-defense-analysis/SKILL.md"
+    },
+    {
+      "name": "phishing-simulation",
+      "path": "skills/phishing-simulation/SKILL.md"
+    },
+    {
+      "name": "privilege-escalation-linux",
+      "path": "skills/privilege-escalation-linux/SKILL.md"
+    },
+    {
+      "name": "privilege-escalation-windows",
+      "path": "skills/privilege-escalation-windows/SKILL.md"
+    },
+    {
+      "name": "prototype-pollution",
+      "path": "skills/prototype-pollution/SKILL.md"
+    },
+    {
+      "name": "race-condition-hunter",
+      "path": "skills/race-condition-hunter/SKILL.md"
+    },
+    {
+      "name": "ransomware-analysis",
+      "path": "skills/ransomware-analysis/SKILL.md"
+    },
+    {
+      "name": "ransomware-ir-response",
+      "path": "skills/ransomware-ir-response/SKILL.md"
+    },
+    {
+      "name": "recon-subdomain-enumeration",
+      "path": "skills/recon-subdomain-enumeration/SKILL.md"
+    },
+    {
+      "name": "red-team-c2-setup",
+      "path": "skills/red-team-c2-setup/SKILL.md"
+    },
+    {
+      "name": "red-team-full-engagement",
+      "path": "skills/red-team-full-engagement/SKILL.md"
+    },
+    {
+      "name": "red-team-lateral-movement",
+      "path": "skills/red-team-lateral-movement/SKILL.md"
+    },
+    {
+      "name": "security-baseline-audit",
+      "path": "skills/security-baseline-audit/SKILL.md"
+    },
+    {
+      "name": "security-metrics-dashboard",
+      "path": "skills/security-metrics-dashboard/SKILL.md"
+    },
+    {
+      "name": "security-monitoring-tuning",
+      "path": "skills/security-monitoring-tuning/SKILL.md"
+    },
+    {
+      "name": "serverless-security-test",
+      "path": "skills/serverless-security-test/SKILL.md"
+    },
+    {
+      "name": "shadow-ai-detection",
+      "path": "skills/shadow-ai-detection/SKILL.md"
+    },
+    {
+      "name": "siem-detection-rule-writing",
+      "path": "skills/siem-detection-rule-writing/SKILL.md"
+    },
+    {
+      "name": "skill-supply-chain-scanner",
+      "path": "skills/skill-supply-chain-scanner/SKILL.md"
+    },
+    {
+      "name": "soc-alert-triage",
+      "path": "skills/soc-alert-triage/SKILL.md"
+    },
+    {
+      "name": "social-engineering-recon",
+      "path": "skills/social-engineering-recon/SKILL.md"
+    },
+    {
+      "name": "source-code-review-security",
+      "path": "skills/source-code-review-security/SKILL.md"
+    },
+    {
+      "name": "sqli-full-chain",
+      "path": "skills/sqli-full-chain/SKILL.md"
+    },
+    {
+      "name": "sso-saml-attacks",
+      "path": "skills/sso-saml-attacks/SKILL.md"
+    },
+    {
+      "name": "ssrf-cloud-metadata",
+      "path": "skills/ssrf-cloud-metadata/SKILL.md"
+    },
+    {
+      "name": "ssrf-full-exploitation",
+      "path": "skills/ssrf-full-exploitation/SKILL.md"
+    },
+    {
+      "name": "ssti-exploitation",
+      "path": "skills/ssti-exploitation/SKILL.md"
+    },
+    {
+      "name": "static-malware-analysis",
+      "path": "skills/static-malware-analysis/SKILL.md"
+    },
+    {
+      "name": "subdomain-takeover-full",
+      "path": "skills/subdomain-takeover-full/SKILL.md"
+    },
+    {
+      "name": "threat-hunting-sigma",
+      "path": "skills/threat-hunting-sigma/SKILL.md"
+    },
+    {
+      "name": "threat-intel-integration",
+      "path": "skills/threat-intel-integration/SKILL.md"
+    },
+    {
+      "name": "threat-model-creator",
+      "path": "skills/threat-model-creator/SKILL.md"
+    },
+    {
+      "name": "volatile-evidence-collection",
+      "path": "skills/volatile-evidence-collection/SKILL.md"
+    },
+    {
+      "name": "vpn-security-assessment",
+      "path": "skills/vpn-security-assessment/SKILL.md"
+    },
+    {
+      "name": "vulnerability-management-workflow",
+      "path": "skills/vulnerability-management-workflow/SKILL.md"
+    },
+    {
+      "name": "vulnerability-scanning-workflow",
+      "path": "skills/vulnerability-scanning-workflow/SKILL.md"
+    },
+    {
+      "name": "web-app-pentest-full",
+      "path": "skills/web-app-pentest-full/SKILL.md"
+    },
+    {
+      "name": "websocket-security",
+      "path": "skills/websocket-security/SKILL.md"
+    },
+    {
+      "name": "windows-event-log-analysis",
+      "path": "skills/windows-event-log-analysis/SKILL.md"
+    },
+    {
+      "name": "wireless-pentest",
+      "path": "skills/wireless-pentest/SKILL.md"
+    },
+    {
+      "name": "xss-advanced-exploitation",
+      "path": "skills/xss-advanced-exploitation/SKILL.md"
+    },
+    {
+      "name": "xxe-full-exploitation",
+      "path": "skills/xxe-full-exploitation/SKILL.md"
+    },
+    {
+      "name": "yara-rule-development",
+      "path": "skills/yara-rule-development/SKILL.md"
+    }
+  ]
+}
