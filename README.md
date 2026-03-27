@@ -2,23 +2,25 @@
 
 # 🔥 CyberSkills Elite
 
-### The Ultimate Cybersecurity Agent Skills Collection
+### The World's Most Complete Cybersecurity Agent Skills Collection
 
-**155+ battle-tested offensive security skills for AI coding agents**
+**191 battle-tested offensive security skills for AI coding agents**
 
-[![Skills](https://img.shields.io/badge/Skills-155+-red?style=for-the-badge&logo=target&logoColor=white)](./skills)
-[![Categories](https://img.shields.io/badge/Categories-8-blue?style=for-the-badge&logo=folder&logoColor=white)](./skills)
-[![AI Red Team](https://img.shields.io/badge/AI_Red_Team-30_Skills-purple?style=for-the-badge&logo=robot&logoColor=white)](./skills/ai-red-teaming)
-[![MITRE ATT&CK](https://img.shields.io/badge/MITRE_ATT%26CK-Mapped-orange?style=for-the-badge&logo=shield&logoColor=white)](./mappings)
+[![Skills](https://img.shields.io/badge/Skills-191-red?style=for-the-badge&logo=target&logoColor=white)](./skills)
+[![Domains](https://img.shields.io/badge/Domains-10-blue?style=for-the-badge&logo=folder&logoColor=white)](./skills)
+[![AI Red Team](https://img.shields.io/badge/AI_Red_Team-25_Skills-purple?style=for-the-badge&logo=robot&logoColor=white)](./skills/ai-red-teaming)
+[![PortSwigger Labs](https://img.shields.io/badge/PortSwigger-31_Deep_Dives-orange?style=for-the-badge&logo=firefox&logoColor=white)](./skills/bug-hunting/deep-dive-labs)
+[![MITRE ATT&CK](https://img.shields.io/badge/MITRE_ATT%26CK-Mapped-yellow?style=for-the-badge&logo=shield&logoColor=white)](./mappings)
+[![Eval Score](https://img.shields.io/badge/Eval_Score-191%2F191-brightgreen?style=for-the-badge&logo=checkmarx&logoColor=white)](#-quality-assurance)
 [![License](https://img.shields.io/badge/License-Apache_2.0-green?style=for-the-badge&logo=opensourceinitiative&logoColor=white)](./LICENSE)
 
-*Bug Hunting • Penetration Testing • Red Teaming • AI Red Teaming*
+*Bug Hunting • Penetration Testing • Red Teaming • AI Red Teaming • Incident Response • OSINT • Exploit Dev*
 
-**Compatible with: Claude Code | GitHub Copilot | Cursor | Gemini CLI | Codex CLI**
+**Compatible with: Claude Code | Gemini CLI | GitHub Copilot | Cursor | Windsurf | Codex CLI | Any MCP Agent**
 
 ---
 
-[**Quick Start**](#-quick-start) • [**Skill Catalog**](#-skill-catalog) • [**Why CyberSkills Elite?**](#-why-cyberskills-elite) • [**Contributing**](#-contributing)
+[**Quick Start**](#-quick-start) • [**Full Catalog**](#-full-skill-catalog) • [**Why Us?**](#-why-cyberskills-elite) • [**Quality**](#-quality-assurance) • [**Contributing**](#-contributing)
 
 </div>
 
@@ -26,429 +28,436 @@
 
 ## ⚡ Quick Start
 
-### For Claude Code
+### Install (30 seconds)
 ```bash
-# Clone the repository
-git clone https://github.com/cyberskills-elite/cybersecurity-agent-skills.git
+# Clone
+git clone https://github.com/YOUR_USERNAME/cybersecurity-agent-skills.git
 
-# Install as skills directory
-cd cybersecurity-agent-skills
-# Skills are automatically detected when placed in your project
+# For Claude Code — drop into your project
+cp -r cybersecurity-agent-skills/skills ./.claude/skills/
+
+# For Gemini CLI — point to skills dir
+export GEMINI_SKILLS_PATH="./cybersecurity-agent-skills/skills"
+
+# For any agent — skills follow the universal SKILL.md standard
 ```
 
-### For Gemini CLI / Cursor / Any Agent
-```bash
-# Point your agent to the skills directory
-# Each skill follows the agentskills.io standard format
+### Use (zero config)
 ```
+# Just describe what you want. The agent auto-selects the right skill:
 
-### Use a Skill
-```
-# Simply describe what you want to do. The AI agent will automatically 
-# select and use the relevant skill:
+"I found a Bearer token on target.com — test it for JWT algorithm confusion"
+→ Triggers: jwt-forgery-algorithm-confusion
 
-"Test this application for IDOR vulnerabilities"
-"Perform a Kerberoasting attack on the Active Directory domain"  
-"Test this chatbot for prompt injection vulnerabilities"
-"Set up a Cobalt Strike beacon with malleable C2 profile"
+"Perform Kerberoasting on the AD domain controller at 10.10.10.1"
+→ Triggers: active-directory-kerberoasting
+
+"Test this chatbot for prompt injection bypasses"
+→ Triggers: llm-direct-prompt-injection
+
+"Extract secrets from this JavaScript bundle"
+→ Triggers: source-code-analysis / js-analysis
 ```
 
 ---
 
 ## 🏆 Why CyberSkills Elite?
 
-| Feature | CyberSkills Elite | Anthropic (734 skills) | SecOps CLI | VoltAgent |
-|---------|:-----------------:|:---------------------:|:----------:|:---------:|
-| **Offensive Security Depth** | ✅ 155+ deep skills | ❌ 24 Red Team, 23 Pentest | ⚠️ ~50 skills | ❌ Checklists only |
-| **AI Red Teaming** | ✅ **30 unique skills** | ❌ None | ❌ None | ❌ None |
-| **Working Commands** | ✅ Every phase | ⚠️ Many broken/empty | ✅ | ❌ No commands |
+> **The gap between "knows cybersecurity" and "can execute an attack chain" is what separates a useful agent from a useless one. These skills bridge that gap.**
+
+### Head-to-Head Comparison
+
+| Feature | CyberSkills Elite | Generic Skill Repos | SecOps CLI | VoltAgent |
+|---|:---:|:---:|:---:|:---:|
+| **Total Skills** | **191** | ~50 | ~50 | ~30 |
+| **Offensive Security Depth** | ✅ Full attack chains | ⚠️ Surface-level | ⚠️ Partial | ❌ Checklists |
+| **AI Red Teaming** | ✅ **25 dedicated skills** | ❌ None | ❌ None | ❌ None |
+| **PortSwigger Lab Walkthroughs** | ✅ **31 deep dives** | ❌ None | ❌ None | ❌ None |
+| **Working Payloads & Commands** | ✅ Every phase | ⚠️ Many empty | ⚠️ Some | ❌ None |
 | **Real CVE Case Studies** | ✅ Per skill | ❌ | ❌ | ❌ |
-| **Blue Team Detection** | ✅ Every skill | ❌ | ❌ | ❌ |
+| **🔴 Red + 🔵 Blue Team** | ✅ Every skill | ❌ | ❌ | ❌ |
 | **Decision Flowcharts** | ✅ Mermaid diagrams | ❌ | ❌ | ❌ |
-| **Automation Scripts** | ✅ Python/Bash | ❌ | ⚠️ Some | ❌ |
-| **MITRE ATT&CK Mapping** | ✅ Full mapping | ⚠️ Partial | ❌ | ❌ |
-| **Difficulty Levels** | ✅ Beginner → Expert | ❌ | ❌ | ❌ |
-| **Report Templates** | ✅ Professional | ❌ | ❌ | ❌ |
-| **Multi-Agent Compatible** | ✅ All major agents | ⚠️ Claude only | ⚠️ Claude only | ⚠️ Claude only |
+| **MITRE ATT&CK + ATLAS** | ✅ Full mapping | ⚠️ Partial | ❌ | ❌ |
+| **Difficulty Progression** | ✅ 4 levels | ❌ | ❌ | ❌ |
+| **Binary Eval Framework** | ✅ 10 automated checks | ❌ | ❌ | ❌ |
+| **Elite Chaining Strategies** | ✅ $50K+ report methodology | ❌ | ❌ | ❌ |
+| **Multi-Agent Compatible** | ✅ All platforms | ⚠️ Single agent | ⚠️ Single | ⚠️ Single |
 
-### 🎯 Our Unique Differentiators
+### 🎯 What Makes Us Different
 
-1. **🤖 AI Red Teaming** — The only collection with dedicated LLM/ML/Agent security skills (30+)
-2. **🔗 Attack Chain Playbooks** — Multi-skill sequences that mirror real-world kill chains
-3. **🔀 Decision Flowcharts** — Mermaid diagrams for dynamic decision-making during assessments
-4. **📋 Real CVE Case Studies** — Every skill references actual vulnerabilities with analysis
-5. **🔵 Blue Team Detection** — Every attack skill includes defensive counterpart
-6. **📊 Difficulty Progression** — Structured learning path from Beginner to Expert
-7. **⚙️ Working Automation** — Python/Bash scripts that actually run (not placeholders)
-8. **📝 Professional Reports** — Copy-paste-ready report templates for every finding type
-9. **🔧 Tool Chaining** — Workflows showing how tools connect (Nmap → Nikto → SQLMap → Cobalt Strike)
-10. **🌐 Multi-Platform** — Works with Claude Code, Copilot, Cursor, Gemini CLI, and more
+1. **🔗 Attack Chain Playbooks** — Not just vulnerability lists. Full kill chains from recon to exfiltration with decision trees.
+2. **🤖 AI Red Teaming (25 skills)** — The only collection with LLM jailbreaking, RAG poisoning, MCP exploitation, and agent tool abuse skills.
+3. **🎓 PortSwigger Deep Dives (31 labs)** — Every lab with exact payloads, bypass techniques, and zero-day extensions. BSCP-ready.
+4. **🏆 Elite Hunter Methodology** — Every skill includes "$500 vs $50,000 report" chaining strategies used by top 1% bug bounty hunters.
+5. **🔵 Dual Perspective** — Every offensive skill includes defensive detection and remediation. Red Team + Blue Team in one file.
+6. **📊 Quality Guaranteed** — Every skill passes 10 automated binary evaluations. Zero AI hallucination fluff.
+7. **⚙️ Self-Improving** — Built-in auto-research framework that evaluates, mutates, and perfects skills autonomously.
 
 ---
 
-## 📂 Skill Catalog
+## 📂 Full Skill Catalog
 
-### 🐛 Bug Hunting (32 Skills)
+### Overview
+
+| Domain | Skills | Coverage |
+|---|---|---|
+| 🐛 **Bug Hunting** | 90 | Web vulns, API security, deep-dive labs, methodology |
+| 🔓 **Penetration Testing** | 40 | Network, web app, cloud, infrastructure, wireless |
+| 🤖 **AI Red Teaming** | 25 | LLM attacks, ML security, agent exploitation |
+| 🎯 **Red Teaming** | 21 | C2, initial access, evasion, persistence, priv esc |
+| 🔍 **Incident Response** | 10 | Forensics, threat hunting, malware analysis |
+| 🕵️ **OSINT** | 1 | Reconnaissance methodology |
+| 💀 **Exploit Development** | 1 | Binary exploitation |
+| 🧬 **Malware Analysis** | 1 | Reverse engineering |
+| 🔎 **Forensics** | 1 | Digital forensics |
+| 📡 **Reconnaissance** | 1 | Attack surface mapping |
+| **Total** | **191** | |
+
+---
+
+### 🐛 Bug Hunting (90 Skills)
 
 <details>
-<summary><b>Web Vulnerabilities (15)</b></summary>
+<summary><b>Web Vulnerabilities (28)</b> — IDOR, XSS, SSRF, SQLi, SSTI, XXE, CSRF, and more</summary>
 
-| Skill | Difficulty | MITRE |
-|-------|-----------|-------|
-| [IDOR Vulnerability Hunting](./skills/bug-hunting/web-vulnerabilities/idor-vulnerability-hunting) | Intermediate | T1530 |
-| [XSS — Reflected, Stored, DOM](./skills/bug-hunting/web-vulnerabilities/xss-reflected-stored-dom) | Intermediate | T1189, T1059.007 |
-| [SSRF — Server-Side Request Forgery](./skills/bug-hunting/web-vulnerabilities/ssrf-server-side-request-forgery) | Advanced | T1090, T1552.005 |
-| [SQL Injection — Manual & Automated](./skills/bug-hunting/web-vulnerabilities/sqli-manual-and-automated) | Intermediate | T1190 |
-| CSRF Token Bypass Techniques | Intermediate | T1185 |
-| Race Condition Exploitation | Advanced | T1499.003 |
-| File Upload Vulnerability Testing | Intermediate | T1608 |
-| Template Injection (SSTI) | Advanced | T1059 |
-| XXE — XML External Entity Injection | Intermediate | T1059 |
-| Open Redirect & Header Injection | Beginner | T1036 |
-| Deserialization Attacks | Expert | T1059 |
-| CORS Misconfiguration Exploitation | Intermediate | T1557 |
-| WebSocket Security Testing | Advanced | T1071 |
-| Cache Poisoning Attacks | Advanced | T1557 |
-| HTTP Request Smuggling | Expert | T1071 |
+| Skill | Difficulty | Key Techniques |
+|---|---|---|
+| [IDOR Vulnerability Hunting](./skills/bug-hunting/web-vulnerabilities/idor-vulnerability-hunting) | Intermediate | UUID prediction, parameter tampering, BOLA |
+| [XSS — Reflected, Stored, DOM](./skills/bug-hunting/web-vulnerabilities/xss-reflected-stored-dom) | Intermediate | Polyglot payloads, WAF bypass, CSP evasion |
+| [SSRF — Server-Side Request Forgery](./skills/bug-hunting/web-vulnerabilities/ssrf-server-side-request-forgery) | Advanced | Cloud metadata, DNS rebinding, protocol smuggling |
+| [SQL Injection — Manual & Automated](./skills/bug-hunting/web-vulnerabilities/sqli-manual-and-automated) | Intermediate | Union, blind, time-based, SQLMap mastery |
+| SSTI — Server-Side Template Injection | Advanced | Jinja2, Twig, Freemarker exploitation |
+| XXE — XML External Entity Injection | Intermediate | OOB exfiltration, blind XXE |
+| CSRF Token Bypass Techniques | Intermediate | Double submit, referer validation bypass |
+| Race Condition Exploitation | Advanced | Time-of-check/time-of-use, limit bypass |
+| File Upload Vulnerability Testing | Intermediate | Extension bypass, magic bytes, polyglots |
+| Open Redirect & Header Injection | Beginner | OAuth token theft chaining |
+| Deserialization Attacks | Expert | Java, PHP, .NET gadget chains |
+| CORS Misconfiguration Exploitation | Intermediate | Origin reflection, null origin |
+| WebSocket Security Testing | Advanced | CSWSH, hijacking, injection |
+| Cache Poisoning Attacks | Advanced | Keyed/unkeyed headers, web cache deception |
+| HTTP Request Smuggling | Expert | CL.TE, TE.CL, TE.TE variations |
+| + 13 more specialized web vuln skills | | |
 
 </details>
 
 <details>
-<summary><b>API Security (8)</b></summary>
+<summary><b>API Security (9)</b> — JWT, GraphQL, OAuth, BOLA, mass assignment</summary>
 
-| Skill | Difficulty | MITRE |
-|-------|-----------|-------|
-| [API Authentication Bypass](./skills/bug-hunting/api-security/api-authentication-bypass) | Intermediate | T1078, T1550 |
-| GraphQL Vulnerability Hunting | Intermediate | T1190 |
-| REST API Mass Assignment | Intermediate | T1190 |
-| API Rate Limiting & Business Logic | Intermediate | T1499 |
-| BOLA/BFLA Detection | Intermediate | T1530 |
-| API Versioning Exploitation | Beginner | T1190 |
-| gRPC Security Testing | Advanced | T1190 |
-| Webhook Security Assessment | Intermediate | T1071 |
-
-</details>
-
-<details>
-<summary><b>Recon & Enumeration (5)</b></summary>
-
-| Skill | Difficulty | MITRE |
-|-------|-----------|-------|
-| [Web Application Recon & Enumeration](./skills/bug-hunting/recon-enumeration/web-application-recon-and-enumeration) | Beginner | T1595, T1592 |
-| Bug Bounty Automation Pipeline | Advanced | T1595 |
-| JavaScript Analysis & Secret Extraction | Intermediate | T1552 |
-| GitHub Dorking & Secret Scanning | Beginner | T1552.004 |
-| Cloud Asset Discovery & Enumeration | Intermediate | T1580 |
+| Skill | Difficulty | Key Techniques |
+|---|---|---|
+| [JWT Forgery & Algorithm Confusion](./skills/bug-hunting/api-security/jwt-forgery-algorithm-confusion) | Advanced | RS256→HS256, none algorithm, key cracking |
+| [API Authentication Bypass](./skills/bug-hunting/api-security/api-authentication-bypass) | Intermediate | Token manipulation, auth header abuse |
+| [GraphQL Injection & Introspection](./skills/bug-hunting/api-security/graphql-injection-introspection) | Intermediate | Depth attacks, batching, field fuzzing |
+| [GraphQL Batching Attacks](./skills/bug-hunting/api-security/graphql-batching-attacks) | Intermediate | Rate limit bypass via batched queries |
+| [OAuth Flow Exploitation](./skills/bug-hunting/api-security/oauth-flow-exploitation) | Advanced | Code interception, PKCE bypass |
+| [BOLA/BFLA Detection](./skills/bug-hunting/api-security/broken-object-level-authorization) | Intermediate | Horizontal/vertical access control |
+| [API Mass Assignment](./skills/bug-hunting/api-security/api-mass-assignment-exploitation) | Intermediate | Hidden parameter injection |
+| [API Rate Limit Bypass](./skills/bug-hunting/api-security/api-rate-limit-bypass-techniques) | Intermediate | Header rotation, IP rotation |
+| [API Enumeration & Fuzzing](./skills/bug-hunting/api-security/api-enumeration-fuzzing-discovery) | Intermediate | Wordlist-based endpoint discovery |
 
 </details>
 
 <details>
-<summary><b>Methodology (4)</b></summary>
+<summary><b>PortSwigger Deep-Dive Labs (31)</b> — Every lab variant with exact payloads</summary>
 
-| Skill | Difficulty | MITRE |
-|-------|-----------|-------|
-| Bug Bounty Report Writing | Beginner | — |
-| CVSS Scoring & Severity Assessment | Beginner | — |
-| Vulnerability Disclosure Best Practices | Beginner | — |
-| Attack Surface Mapping Methodology | Intermediate | T1595 |
+Complete walkthroughs for every PortSwigger Web Security Academy category:
+
+| Lab Category | Labs | Levels |
+|---|---|---|
+| Access Control | 13 labs | 🟢🟡🔴 |
+| SQL Injection | All variants | 🟢🟡🔴 |
+| XSS | Reflected, Stored, DOM | 🟢🟡🔴 |
+| SSRF | Basic + Blind | 🟡🔴 |
+| SSTI | All engines | 🟡🔴 |
+| XXE | In-band + OOB | 🟢🟡 |
+| Authentication | Multi-factor bypass | 🟢🟡🔴 |
+| Business Logic | All scenarios | 🟡 |
+| JWT Labs | None alg, confusion | 🟡🔴 |
+| Host Header | Routing attacks | 🟡🔴 |
+| WebSockets | CSWSH, injection | 🟡 |
+| Web Cache Poisoning | Keyed/unkeyed | 🟡🔴 |
+| API Testing | REST + GraphQL | 🟡🔴 |
+
+Each deep-dive includes:
+- ✅ Exact payloads (copy-paste ready)
+- ✅ Zero-day extension techniques
+- ✅ WAF bypass alternatives
+- ✅ 🟢 Apprentice 🟡 Practitioner 🔴 Expert markers
 
 </details>
 
-### 🔓 Penetration Testing (38 Skills)
+<details>
+<summary><b>Methodology (9)</b> — AI pair hunting, report writing, workflow automation</summary>
+
+| Skill | Focus |
+|---|---|
+| AI Pair Hunting with Claude | Agent-assisted vulnerability discovery |
+| Bug Bounty Workflow Funnel | End-to-end hunting process |
+| AI Report Writing Guardrails | Hallucination-free report generation |
+| Zero-Day Research Methodology | Novel vulnerability discovery |
+| HackerOne Brain MCP | Platform integration |
+| Kaido Proxy Integration | Burp alternative workflow |
+| Remote Hunting Workflow | Cloud-based hunting setup |
+| Session Search Tool | Multi-session reconnaissance |
+| Claude Skills for Bug Bounty | Skill-powered hunting |
+
+</details>
 
 <details>
-<summary><b>Network (12)</b></summary>
+<summary><b>Other Bug Hunting Categories</b> — Deserialization, logic flaws, source code, recon</summary>
+
+- **Deserialization (2)** — Java/PHP/Python gadget chains
+- **Logic Flaws (2)** — Business logic bypass, payment manipulation
+- **Source Code Analysis (1)** — Static analysis for vulns
+- **Recon & Enumeration (5)** — Subdomain, JS analysis, cloud asset discovery
+- **APIs (5)** — REST, SOAP, gRPC testing patterns
+
+</details>
+
+---
+
+### 🔓 Penetration Testing (40 Skills)
+
+<details>
+<summary><b>Network (9)</b> — Nmap, AD attacks, SMB, DNS, MitM</summary>
 
 | Skill | Difficulty | MITRE |
-|-------|-----------|-------|
-| [Nmap Advanced Network Scanning](./skills/penetration-testing/network/nmap-advanced-network-scanning) | Beginner | T1046, T1595 |
-| [Active Directory Full Attack Chain](./skills/penetration-testing/network/active-directory-full-attack-chain) | Expert | T1558, T1003 |
+|---|---|---|
+| Nmap Advanced Scanning | Beginner | T1046 |
+| Active Directory Full Chain | Expert | T1558 |
+| AD Kerberoasting | Advanced | T1558.003 |
+| AD AS-REP Roasting | Advanced | T1558.004 |
 | SMB/NetBIOS Exploitation | Intermediate | T1021.002 |
-| SNMP Enumeration & Exploitation | Intermediate | T1602 |
 | DNS Zone Transfer & Poisoning | Intermediate | T1071.004 |
-| LLMNR/NBT-NS Poisoning (Responder) | Intermediate | T1557.001 |
-| Pivoting & Network Tunneling | Advanced | T1572 |
-| VPN Security Assessment | Advanced | T1133 |
-| ARP Spoofing & MitM Attacks | Intermediate | T1557.002 |
-| IPv6 Attack Techniques | Advanced | T1557 |
-| SSH Penetration Testing | Intermediate | T1021.004 |
-| RDP Security Testing | Intermediate | T1021.001 |
+| LLMNR/NBT-NS Poisoning | Intermediate | T1557.001 |
+| Pivoting & Tunneling | Advanced | T1572 |
+| ARP Spoofing & MitM | Intermediate | T1557.002 |
 
 </details>
 
 <details>
-<summary><b>Web Application (10)</b></summary>
+<summary><b>Cloud (10)</b> — AWS, Azure, GCP, Kubernetes, Docker</summary>
 
-| Skill | Difficulty | MITRE |
-|-------|-----------|-------|
-| Burp Suite Advanced Methodology | Intermediate | T1190 |
-| OWASP Testing Guide Execution | Intermediate | T1190 |
-| WordPress Penetration Testing | Intermediate | T1190 |
-| CMS Security Assessment | Intermediate | T1190 |
-| Web Shell Deployment & Management | Advanced | T1505.003 |
-| WAF Bypass Techniques | Advanced | T1190 |
-| Authentication Mechanism Testing | Intermediate | T1078 |
-| Session Management Testing | Intermediate | T1539 |
-| Business Logic Testing | Intermediate | T1190 |
-| File Inclusion (LFI/RFI) Exploitation | Intermediate | T1190 |
-
-</details>
-
-<details>
-<summary><b>Infrastructure (10)</b></summary>
-
-| Skill | Difficulty | MITRE |
-|-------|-----------|-------|
-| Linux Privilege Escalation | Intermediate | T1068 |
-| Windows Privilege Escalation | Intermediate | T1068 |
-| Docker Container Escape | Advanced | T1610 |
-| Kubernetes Cluster Exploitation | Expert | T1609 |
-| AWS Cloud Penetration Testing | Advanced | T1580 |
-| Azure & GCP Cloud Pentesting | Advanced | T1580 |
-| CI/CD Pipeline Exploitation | Advanced | T1195 |
-| Database Penetration Testing | Intermediate | T1190 |
-| Email Server Exploitation | Intermediate | T1114 |
-| Print Server & Printer Hacking | Intermediate | T1200 |
+| Skill | Difficulty |
+|---|---|
+| AWS Penetration Testing | Advanced |
+| Azure Security Assessment | Advanced |
+| GCP Security Testing | Advanced |
+| Kubernetes Cluster Exploitation | Expert |
+| Docker Container Escape | Advanced |
+| Cloud IAM Exploitation | Advanced |
+| S3 Bucket Misconfiguration | Intermediate |
+| Serverless Function Exploitation | Advanced |
+| Cloud Metadata Service Abuse | Intermediate |
+| Multi-Cloud Attack Paths | Expert |
 
 </details>
 
 <details>
-<summary><b>Wireless & IoT (4)</b></summary>
+<summary><b>Active Directory (6)</b> — Full domain takeover chains</summary>
 
-| Skill | Difficulty | MITRE |
-|-------|-----------|-------|
-| WiFi Penetration Testing | Intermediate | T1557 |
-| Bluetooth & BLE Security | Advanced | T1020 |
-| IoT Device Security Assessment | Advanced | T1200 |
-| RFID/NFC Exploitation | Expert | T1200 |
-
-</details>
-
-### 🎯 Red Teaming (35 Skills)
-
-<details>
-<summary><b>C2 Frameworks (6)</b></summary>
-
-| Skill | Difficulty | MITRE |
-|-------|-----------|-------|
-| [Cobalt Strike Beacon Operations](./skills/red-teaming/c2-frameworks/cobalt-strike-beacon-operations) | Expert | T1071, T1055 |
-| Sliver C2 Implant Operations | Advanced | T1071 |
-| Havoc C2 Demon Operations | Advanced | T1071 |
-| Mythic C2 Framework Usage | Advanced | T1071 |
-| Custom C2 Channel Development | Expert | T1071 |
-| C2 Infrastructure Multi-Layer Setup | Expert | T1090 |
+| Skill | Difficulty |
+|---|---|
+| AD Full Attack Chain | Expert |
+| Kerberoasting | Advanced |
+| AS-REP Roasting | Advanced |
+| DCSync Attack | Expert |
+| Golden/Silver Ticket | Expert |
+| BloodHound Enumeration | Intermediate |
 
 </details>
 
 <details>
-<summary><b>Initial Access (6)</b></summary>
+<summary><b>Web App, Mobile, Wireless, Infrastructure</b></summary>
 
-| Skill | Difficulty | MITRE |
-|-------|-----------|-------|
-| [Phishing & Social Engineering](./skills/red-teaming/initial-access/phishing-and-social-engineering-campaigns) | Intermediate | T1566 |
-| Spearphishing Attachment Delivery | Intermediate | T1566.001 |
-| Drive-by Compromise Setup | Advanced | T1189 |
-| Supply Chain Attack Simulation | Expert | T1195 |
-| Physical Social Engineering | Advanced | T1200 |
-| Watering Hole Attack Planning | Advanced | T1189 |
+- **Web Application (4)** — Burp methodology, CMS testing, WAF bypass
+- **Mobile Security (2)** — Android/iOS app testing
+- **Wireless & IoT (2)** — WiFi pentesting, IoT assessment
+- **Infrastructure (4)** — Linux/Windows privesc, CI/CD exploitation
+- **Network Security (3)** — Additional network attack vectors
 
 </details>
 
-<details>
-<summary><b>Post-Exploitation (8)</b></summary>
+---
 
-| Skill | Difficulty | MITRE |
-|-------|-----------|-------|
-| Data Exfiltration Techniques | Advanced | T1048 |
-| Windows Persistence Mechanisms | Advanced | T1547 |
-| Linux Persistence Mechanisms | Advanced | T1053 |
-| Process Injection Techniques | Expert | T1055 |
-| Memory Forensics Evasion | Expert | T1055 |
-| Token Manipulation & Impersonation | Advanced | T1134 |
-| Internal Reconnaissance Automation | Intermediate | T1087 |
-| Situational Awareness Gathering | Intermediate | T1082 |
+### 🤖 AI Red Teaming (25 Skills) — **EXCLUSIVE**
 
-</details>
+> No other skill collection covers AI security. We have 25 dedicated skills across 5 categories.
 
 <details>
-<summary><b>Evasion (8)</b></summary>
-
-| Skill | Difficulty | MITRE |
-|-------|-----------|-------|
-| AV/EDR Evasion Techniques | Expert | T1027 |
-| AMSI Bypass Methods | Advanced | T1562.001 |
-| Custom Shellcode Development | Expert | T1059 |
-| Payload Obfuscation & Encoding | Advanced | T1027 |
-| Living-off-the-Land (LOLBins) | Intermediate | T1218 |
-| AppLocker & WDAC Bypass | Advanced | T1218 |
-| Network Traffic Obfuscation | Advanced | T1573 |
-| Log Evasion & Anti-Forensics | Advanced | T1070 |
-
-</details>
-
-<details>
-<summary><b>Operations (7)</b></summary>
-
-| Skill | Difficulty | MITRE |
-|-------|-----------|-------|
-| Red Team Planning & Scoping | Intermediate | — |
-| OPSEC Principles & Practices | Advanced | T1480 |
-| Threat Actor Emulation (APT) | Expert | — |
-| Purple Team Collaboration | Intermediate | — |
-| Red Team Report Writing | Intermediate | — |
-| Attack Playbook Development | Advanced | — |
-| Deconfliction & Safety Procedures | Intermediate | — |
-
-</details>
-
-### 🤖 AI Red Teaming (30 Skills) — **EXCLUSIVE**
-
-<details>
-<summary><b>LLM Attacks (10)</b></summary>
+<summary><b>Prompt Engineering & LLM Attacks (7)</b></summary>
 
 | Skill | Difficulty | MITRE ATLAS |
-|-------|-----------|-------------|
-| [LLM Direct Prompt Injection](./skills/ai-red-teaming/llm-attacks/llm-direct-prompt-injection) | Intermediate | AML.T0051 |
-| LLM Indirect Prompt Injection | Advanced | AML.T0051.001 |
+|---|---|---|
+| LLM Direct Prompt Injection | Intermediate | AML.T0051 |
+| LLM Jailbreaking Personas | Advanced | AML.T0051 |
 | System Prompt Extraction | Intermediate | AML.T0051 |
-| LLM Jailbreaking Techniques | Intermediate | AML.T0051 |
-| Multi-Turn Manipulation Attacks | Advanced | AML.T0051 |
+| Multi-Turn Manipulation | Advanced | AML.T0051 |
+| Token Smuggling | Advanced | AML.T0051 |
 | LLM Output Manipulation | Advanced | AML.T0051 |
-| Training Data Extraction | Expert | AML.T0024 |
-| Model Inversion Attacks | Expert | AML.T0024 |
-| Token Smuggling & Encoding Bypass | Advanced | AML.T0051 |
 | LLM Denial of Service | Intermediate | AML.T0034 |
 
 </details>
 
 <details>
-<summary><b>ML Security (6)</b></summary>
-
-| Skill | Difficulty | MITRE ATLAS |
-|-------|-----------|-------------|
-| [RAG Poisoning & Data Exfiltration](./skills/ai-red-teaming/ml-security/rag-poisoning-and-data-exfiltration) | Advanced | AML.T0051.001 |
-| Adversarial Input Generation | Advanced | AML.T0043 |
-| Model Evasion Attacks | Advanced | AML.T0015 |
-| Data Poisoning in ML Pipelines | Expert | AML.T0020 |
-| Model Supply Chain Attacks | Expert | AML.T0010 |
-| Embedding Space Manipulation | Expert | AML.T0043 |
-
-</details>
-
-<details>
-<summary><b>Agent Security (8)</b></summary>
-
-| Skill | Difficulty | MITRE ATLAS |
-|-------|-----------|-------------|
-| [MCP Protocol Exploitation](./skills/ai-red-teaming/agent-security/mcp-protocol-exploitation) | Advanced | AML.T0051 |
-| AI Agent Tool Abuse | Advanced | AML.T0051 |
-| Function Calling Exploitation | Intermediate | AML.T0051 |
-| Multi-Agent System Attacks | Expert | AML.T0051 |
-| AutoGPT/CrewAI Security Testing | Advanced | AML.T0051 |
-| AI Plugin Vulnerability Testing | Intermediate | AML.T0051 |
-| AI Workflow Manipulation | Advanced | AML.T0051 |
-| Custom GPT/Gem Security Assessment | Intermediate | AML.T0051 |
-
-</details>
-
-<details>
-<summary><b>GenAI Threats (4)</b></summary>
-
-| Skill | Difficulty | MITRE ATLAS |
-|-------|-----------|-------------|
-| Deepfake Detection & Analysis | Advanced | AML.T0048 |
-| AI-Generated Phishing Analysis | Intermediate | AML.T0048 |
-| Synthetic Media Forensics | Expert | AML.T0048 |
-| AI Content Authentication | Intermediate | AML.T0048 |
-
-</details>
-
-<details>
-<summary><b>Methodology (2)</b></summary>
+<summary><b>Model Exploitation (8)</b></summary>
 
 | Skill | Difficulty |
-|-------|-----------|
-| AI Red Team Planning & Scoping | Intermediate |
-| AI Security Assessment Reporting | Intermediate |
+|---|---|
+| Training Data Extraction | Expert |
+| Model Inversion Attacks | Expert |
+| Adversarial Input Generation | Advanced |
+| Model Evasion Attacks | Advanced |
+| Data Poisoning in ML Pipelines | Expert |
+| Model Supply Chain Attacks | Expert |
+| Embedding Space Manipulation | Expert |
+| AI Data Poisoning & Model Skewing | Advanced |
 
 </details>
 
-### 🧨 Bonus Categories (20 Skills)
-
 <details>
-<summary><b>Exploit Development (5) • OSINT (5) • Forensics/IR (5) • Malware Analysis (5)</b></summary>
+<summary><b>Agent Security (2) + ML Security (2) + GenAI (1) + Supply Chain (1) + Others</b></summary>
 
-#### Exploit Development
-- Buffer Overflow (Stack) | Expert
-- Return-Oriented Programming (ROP) | Expert
-- Heap Exploitation Techniques | Expert
-- Shellcode Development | Expert
-- Exploit Weaponization | Expert
-
-#### OSINT & Reconnaissance
-- Open Source Intelligence Methodology | Beginner
-- Social Media Investigation | Intermediate
-- Dark Web Intelligence Gathering | Advanced
-- Geolocation Intelligence (GEOINT) | Intermediate
-- Corporate Intelligence Gathering | Intermediate
-
-#### Forensics & Incident Response
-- Memory Forensics with Volatility | Advanced
-- Disk Forensics & Data Recovery | Advanced
-- Network Traffic Analysis | Intermediate
-- Malware Triage & Initial Analysis | Intermediate
-- Incident Response Playbook Execution | Intermediate
-
-#### Malware Analysis
-- Static Malware Analysis | Intermediate
-- Dynamic Malware Analysis (Sandboxing) | Advanced
-- Reverse Engineering with Ghidra | Expert
-- Malware Unpacking & Deobfuscation | Expert
-- YARA Rule Development | Intermediate
+| Skill | Focus |
+|---|---|
+| MCP Protocol Exploitation | Model Context Protocol attack vectors |
+| AI Agent Tool Abuse | Function calling & tool manipulation |
+| RAG Poisoning & Data Exfiltration | Retrieval-Augmented Generation attacks |
+| Adversarial ML Attacks | Classical ML evasion |
+| Deepfake Detection & Analysis | Synthetic media forensics |
+| AI Supply Chain Analysis | Model provenance & integrity |
 
 </details>
 
 ---
 
-## 🏗️ Skill Format
+### 🎯 Red Teaming (21 Skills)
 
-Every skill follows our enhanced format with **10 unique sections** that no competitor offers:
+<details>
+<summary><b>Full red team lifecycle: C2, initial access, evasion, persistence, lateral movement, priv esc</b></summary>
+
+| Category | Skills | Highlights |
+|---|---|---|
+| **C2 Frameworks** | 2 | Cobalt Strike, Malleable C2 profiles |
+| **Evasion** | 4 | AMSI bypass, AV/EDR evasion, custom shellcode, LOLBins |
+| **Persistence** | 4 | WMI subscriptions, scheduled tasks, registry, DLL hijack |
+| **Privilege Escalation** | 4 | Token impersonation, UAC bypass, kernel exploits |
+| **Lateral Movement** | 2 | Pass-the-hash, WMI/SMB pivoting |
+| **Credential Access** | 2 | LSASS dump, credential harvesting |
+| **Initial Access** | 2 | Phishing campaigns, payload delivery |
+| **Execution** | 1 | PowerShell/macro execution |
+
+</details>
+
+---
+
+### 🔍 Incident Response & Forensics (10 Skills)
+
+<details>
+<summary><b>Forensics, threat hunting, malware analysis, threat intelligence</b></summary>
+
+| Skill | Focus |
+|---|---|
+| Windows Event Log Analysis | Event ID correlation, lateral movement detection |
+| Memory Forensics with Volatility | Process injection, rootkit detection |
+| Disk Forensics & Recovery | File carving, timeline analysis |
+| Network Traffic Analysis | Wireshark, Zeek, anomaly detection |
+| Malware Triage & Analysis | Static + dynamic analysis |
+| Incident Response Playbooks | Containment, eradication, recovery |
+| Threat Hunting Methodology | Hypothesis-driven hunting |
+| Threat Intelligence Integration | IOC enrichment, STIX/TAXII |
+| YARA Rule Development | Pattern matching for malware |
+| Cloud Forensics | AWS/Azure log analysis |
+
+</details>
+
+---
+
+## 🏗️ Skill Architecture
+
+Every skill passes **10 automated quality checks** and follows this structure:
 
 ```
-📄 SKILL.md
-├── 📋 YAML Frontmatter
-│   ├── name, description, domain, subdomain
-│   ├── difficulty (Beginner → Expert)
-│   ├── estimated_time
-│   ├── mitre_attack (tactics, techniques)
-│   ├── cve_references
-│   ├── owasp_category
-│   ├── platforms, tools, tags
-│   └── version, author, license
-├── 📖 Workflow (Multi-phase with commands)
-│   ├── Phase 1-N with real commands
-│   ├── Decision points (🔀 flowcharts)
-│   └── Expected output examples
-├── 🔵 Blue Team Detection
-├── 📊 Real-World Case Studies (CVEs)
-├── 📚 Key Concepts Table
-├── 🔧 Tools & Systems Table
-├── 💼 Common Scenarios
-├── 📝 Professional Report Template
-├── 🔍 Troubleshooting Guide
-└── 📖 References
+skill-name/
+├── SKILL.md                          # Main skill file
+│   ├── YAML Frontmatter
+│   │   ├── name, description (aggressive trigger)
+│   │   ├── difficulty: beginner|intermediate|advanced|expert
+│   │   ├── mitre_attack: tactics + techniques
+│   │   ├── tags, tools, platforms
+│   │   └── version, author, license
+│   ├── When to Use (trigger conditions)
+│   ├── Prerequisites
+│   ├── Workflow (Phase 1-N with real commands)
+│   │   ├── Decision flowcharts (Mermaid)
+│   │   └── Expected output examples
+│   ├── 🏆 Elite Chaining Strategy (Top 1% methodology)
+│   ├── 🔴 Red Team (offensive operations)
+│   ├── 🔵 Blue Team (detection & defense)
+│   ├── 🛡️ Remediation & Mitigation
+│   ├── Key Concepts Table
+│   ├── Output Format (report template)
+│   ├── Real-World Bounty Examples
+│   └── References (with URLs)
+├── scripts/
+│   └── process.py                    # Automation script
+├── evals/
+│   └── evals.json                    # Test assertions
+└── references/
+    └── standards.md                  # Additional docs
 ```
+
+---
+
+## ✅ Quality Assurance
+
+Every skill is automatically validated using our **binary eval framework** — no subjective scoring, only pass/fail:
+
+| Eval | What It Checks | Score |
+|---|---|---|
+| `yaml_frontmatter` | Has description, difficulty, tags in YAML | 191/191 ✅ |
+| `no_ai_fluff` | Free of "Certainly!", "Delve into", etc. | 191/191 ✅ |
+| `red_team_section` | Has 🔴 Red Team or Offensive section | 191/191 ✅ |
+| `blue_team_section` | Has 🔵 Blue Team or Defensive section | 191/191 ✅ |
+| `poc_payloads` | Includes concrete code blocks | 191/191 ✅ |
+| `mitigation_remediation` | Has remediation/mitigation strategy | 191/191 ✅ |
+| `elite_hunter_methodology` | Includes elite chaining / OPSEC advice | 191/191 ✅ |
+| `step_by_step_repro` | Has step-by-step reproduction | 191/191 ✅ |
+| `cvss_severity` | Mentions CVSS or severity level | 191/191 ✅ |
+| `references` | Ends with References + URLs | 191/191 ✅ |
+
+### Run the evaluator yourself:
+```bash
+# Single skill
+python auto_research/evaluator.py skills/bug-hunting/api-security/jwt-forgery-algorithm-confusion/SKILL.md
+
+# All skills (with auto-fix)
+python auto_research_mutator.py
+```
+
+### Self-Improvement Loop
+
+The repo includes a complete **auto-research framework** that autonomously improves skills:
+
+```
+Select Skill → Evaluate (10 checks) → Mutate (fix failures) → Re-evaluate → Repeat (max 5x)
+```
+
+See [`auto_research/`](./auto_research) for the eval criteria, evaluator, and optimization loop.
 
 ---
 
 ## 🗺️ MITRE ATT&CK Coverage
 
-All skills are mapped to the MITRE ATT&CK framework (and MITRE ATLAS for AI skills):
+| Framework | Coverage |
+|---|---|
+| **MITRE ATT&CK** | 14 tactics, 85+ techniques |
+| **MITRE ATLAS** | AI/ML-specific mappings for all 25 AI red teaming skills |
+| **OWASP Top 10** | Full coverage across web vulnerability skills |
+| **OWASP API Top 10** | Covered in API security skills |
 
-- **14 Tactics** covered across all skills
-- **85+ Techniques** mapped
-- **AI-specific**: MITRE ATLAS mappings for all AI Red Teaming skills
-- Full navigator layer available in `mappings/`
+Full navigator layer available in [`mappings/`](./mappings).
 
 ---
 
@@ -456,36 +465,40 @@ All skills are mapped to the MITRE ATT&CK framework (and MITRE ATLAS for AI skil
 
 We welcome contributions! See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
 
-**Priority areas:**
-- New skills (especially in AI Red Teaming and Exploit Development)
-- Real-world case study additions
-- Tool script contributions
-- Translation to other languages
+**High-priority areas:**
+- 🤖 AI Red Teaming (new attack vectors emerge weekly)
+- 🔓 Cloud Security (multi-cloud attack paths)
+- 🧬 Exploit Development (modern binary exploitation)
+- 📡 IoT/Hardware Security
+- 🌍 Translations
+
+**Quality bar:** All contributions must pass the 10-point binary eval. Run `python auto_research/evaluator.py your-skill/SKILL.md` before submitting.
 
 ---
 
-## ⚠️ Disclaimer
+## ⚠️ Legal Disclaimer
 
-This project is intended for **authorized security testing and educational purposes only**. All skills assume you have **explicit written permission** to test the target systems. Unauthorized access to computer systems is illegal.
+This project is intended for **authorized security testing, education, and research only**.
 
-The authors are not responsible for misuse of these skills. Always follow:
-- Applicable laws and regulations
-- Your organization's security policies
-- Bug bounty program rules and scope
-- Penetration testing rules of engagement
+- All skills assume **explicit written authorization** to test target systems
+- Unauthorized access to computer systems is **illegal** under CFAA, CMA, and equivalent laws
+- Always follow bug bounty program rules, scope definitions, and rules of engagement
+- The authors accept **no liability** for misuse of these materials
 
 ---
 
 ## 📄 License
 
-This project is licensed under the Apache License 2.0 — see [LICENSE](./LICENSE) for details.
+Apache License 2.0 — see [LICENSE](./LICENSE) for details.
 
 ---
 
 <div align="center">
 
-**Built with 💀 for the offensive security community**
+**Built for the offensive security community by hunters, for hunters.**
 
-⭐ Star this repo if it helps your security work ⭐
+**191 skills • 10 domains • 1.54 MB of pure attack knowledge**
+
+⭐ **Star this repo if it makes your security work better** ⭐
 
 </div>
