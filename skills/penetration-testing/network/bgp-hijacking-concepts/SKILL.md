@@ -28,6 +28,13 @@ license: Apache-2.0
 - To demonstrate how an attacker can maliciously reroute entire blocks of IP addresses (subnets) globally by advertising false routing updates to internet backbone routers.
 - *Note: True BGP hijacking requires access to a peered BGP router. This skill primarily focuses on the conceptual understanding, simulation, and defensive modeling of the attack.*
 
+
+## Prerequisites
+- Network access to the target subnet (VPN, pivot, or direct connection)
+- Nmap and relevant network scanning tools installed
+- Understanding of TCP/IP, common protocols, and network segmentation
+- Root/admin access on the attack machine for raw socket operations
+
 ## Workflow
 
 ### Phase 1: Understanding BGP (The Concept)
@@ -76,6 +83,55 @@ flowchart TD
 | BGP | |
 | AS (Autonomous System) | |
 | RPKI | |
+
+
+## Output Format
+```
+Bgp Hijacking Concepts — Assessment Report
+============================================================
+Target: [Target identifier]
+Assessor: [Operator name]
+Date: [Assessment date]
+Scope: [Authorized scope]
+MITRE ATT&CK: [Relevant technique IDs]
+
+Findings Summary:
+  [Finding 1]: [Severity] — [Brief description]
+  [Finding 2]: [Severity] — [Brief description]
+
+Detailed Results:
+  Phase 1: [Phase name]
+    - Result: [Outcome]
+    - Evidence: [Screenshot/log reference]
+    - Impact: [Business impact assessment]
+
+  Phase 2: [Phase name]
+    - Result: [Outcome]
+    - Evidence: [Screenshot/log reference]
+    - Impact: [Business impact assessment]
+
+Risk Rating: [Critical/High/Medium/Low/Informational]
+Recommendations:
+  1. [Immediate remediation step]
+  2. [Long-term hardening measure]
+  3. [Monitoring/detection improvement]
+```
+
+## 🔴 Red Team
+- Extract assets and enumerate endpoints.
+- Execute initial payloads leveraging documented vulnerabilities.
+
+## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
+> The Architect Mindset identifies misconfigurations spanning multiple domains.
+- Chain info-leaks with SSRF/RCE.
+- Maintain absolute OPSEC during active engagement.
+
+## 🏁 Execution Phase (Steps to Reproduce)
+1. Perform target reconnaissance.
+2. Formulate payload based on endpoints.
+3. Execute the exploit and capture exfiltrated data.
+
+**Severity Profile:** High (CVSS: 8.5)
 
 ## References
 - Cloudflare: [What is BGP Hijacking?](https://www.cloudflare.com/learning/security/glossary/bgp-hijacking/)

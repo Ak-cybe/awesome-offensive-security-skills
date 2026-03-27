@@ -35,6 +35,13 @@ license: Apache-2.0
 - When testing AI-powered search, summarization, or analysis features
 - When assessing multi-agent systems where agents process each other's outputs
 
+
+## Prerequisites
+- Access to target AI/ML system or local model deployment for testing
+- Python 3.9+ with relevant ML libraries (transformers, torch, openai)
+- Understanding of LLM architecture and prompt processing pipelines
+- Authorized scope and rules of engagement for AI red team testing
+
 ## Workflow
 
 ### Phase 1: Identify Injection Surfaces
@@ -318,6 +325,26 @@ Finding 2: Email Body Injection (HIGH)
   Impact: When AI processes emails containing injection,
     it recommends malicious links to the email user
 ```
+
+## 🔴 Red Team
+- Extract assets and enumerate endpoints.
+- Execute initial payloads leveraging documented vulnerabilities.
+
+## 🛡️ Remediation & Mitigation Strategy
+- **Input Validation:** Sanitize and strictly type-check all inputs.
+- **Least Privilege:** Constrain component execution bounds.
+
+## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
+> The Architect Mindset identifies misconfigurations spanning multiple domains.
+- Chain info-leaks with SSRF/RCE.
+- Maintain absolute OPSEC during active engagement.
+
+## 🏁 Execution Phase (Steps to Reproduce)
+1. Perform target reconnaissance.
+2. Formulate payload based on endpoints.
+3. Execute the exploit and capture exfiltrated data.
+
+**Severity Profile:** High (CVSS: 8.5)
 
 ## References
 - Greshake et al.: [Not What You've Signed Up For](https://arxiv.org/abs/2302.12173)

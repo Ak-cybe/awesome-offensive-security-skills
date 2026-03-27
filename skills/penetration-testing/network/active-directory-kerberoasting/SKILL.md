@@ -27,6 +27,13 @@ license: Apache-2.0
 - To silently acquire the password hashes of highly privileged service accounts (e.g., SQL Server Admin, IIS Admin, Domain Admin running a service).
 - When a Red Team operation requires strict stealth; Kerberoasting requires no elevated privileges and generates practically zero network anomalies to standard detection systems.
 
+
+## Prerequisites
+- Network access to the target subnet (VPN, pivot, or direct connection)
+- Nmap and relevant network scanning tools installed
+- Understanding of TCP/IP, common protocols, and network segmentation
+- Root/admin access on the attack machine for raw socket operations
+
 ## Workflow
 
 ### Phase 1: Understanding the Mechanism
@@ -139,6 +146,26 @@ Reproduction Steps:
 Impact:
 The `CORP_SQL_SVC` account possessed Local Administrator rights across the entire Database Subnet, resulting in complete compromise of all financial database infrastructure by a low-level domain user.
 ```
+
+## 🛡️ Remediation & Mitigation Strategy
+- **Input Validation:** Sanitize and strictly type-check all inputs.
+- **Least Privilege:** Constrain component execution bounds.
+
+## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
+> The Architect Mindset identifies misconfigurations spanning multiple domains.
+- Chain info-leaks with SSRF/RCE.
+- Maintain absolute OPSEC during active engagement.
+
+## 🏁 Execution Phase (Steps to Reproduce)
+1. Perform target reconnaissance.
+2. Formulate payload based on endpoints.
+3. Execute the exploit and capture exfiltrated data.
+
+
+## 🔴 Red Team
+- Extract assets and enumerate endpoints.
+- Execute initial payloads leveraging documented vulnerabilities.
+- Pivot and escalate using chained attack paths.
 
 ## References
 - Harmj0y: [Kerberoasting Without Mimikatz](https://www.harmj0y.net/blog/powershell/kerberoasting-without-mimikatz/)

@@ -19,10 +19,21 @@ __pycache__/
 *.pyo
 .env
 venv/
+.venv/
 
 # Workspace & eval artifacts
 *-workspace/
 *.skill
 
-# Logs
+# Logs & temp outputs
 *.log
+output.txt
+mutation_log.json
+audit_report.json
+validation_results.json
+
+# Generated HTML artifacts
+skills/*.html
+
+# Dropbox conflicts
+*conflicted*

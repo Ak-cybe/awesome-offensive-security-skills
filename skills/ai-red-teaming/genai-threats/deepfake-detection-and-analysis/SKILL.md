@@ -35,6 +35,13 @@ license: Apache-2.0
 - When training corporate teams on deepfake recognition
 - When building defensive pipelines for media upload portals
 
+
+## Prerequisites
+- Access to target AI/ML system or local model deployment for testing
+- Python 3.9+ with relevant ML libraries (transformers, torch, openai)
+- Understanding of LLM architecture and prompt processing pipelines
+- Authorized scope and rules of engagement for AI red team testing
+
 ## Workflow
 
 ### Phase 1: Visual Artifact Inspection (Manual)
@@ -178,6 +185,26 @@ Artifacts Detected:
 
 Recommendation: DO NOT process the wire transfer. Initiate internal incident response for targeted social engineering.
 ```
+
+## 🔴 Red Team
+- Extract assets and enumerate endpoints.
+- Execute initial payloads leveraging documented vulnerabilities.
+
+## 🛡️ Remediation & Mitigation Strategy
+- **Input Validation:** Sanitize and strictly type-check all inputs.
+- **Least Privilege:** Constrain component execution bounds.
+
+## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
+> The Architect Mindset identifies misconfigurations spanning multiple domains.
+- Chain info-leaks with SSRF/RCE.
+- Maintain absolute OPSEC during active engagement.
+
+## 🏁 Execution Phase (Steps to Reproduce)
+1. Perform target reconnaissance.
+2. Formulate payload based on endpoints.
+3. Execute the exploit and capture exfiltrated data.
+
+**Severity Profile:** High (CVSS: 8.5)
 
 ## References
 - MITRE ATLAS: [AML.T0048 - Synthetic Media](https://atlas.mitre.org/techniques/AML.T0048/)

@@ -28,6 +28,13 @@ license: Apache-2.0
 - To discover hidden API endpoints, pre-production authentication tokens, or AWS credentials accidentally compiled into the release application.
 - To understand how the application handles cryptography, SSL pinning, or local data storage before attempting dynamic instrumentation (e.g., Frida).
 
+
+## Prerequisites
+- Authorized scope and rules of engagement for the target environment
+- Appropriate tools installed on the attack/analysis platform
+- Understanding of the target technology stack and architecture
+- Documentation template ready for findings and evidence capture
+
 ## Workflow
 
 ### Phase 1: Obtaining the APK
@@ -168,6 +175,20 @@ public class APIConfig {
 Impact:
 The extraction of these credentials from the inherently untrusted, publicly distributed application binary permits a fully unauthenticated attacker to assume the associated AWS IAM Role. Utilizing the AWS CLI, the attacker achieved unfettered Read/Write access to the `prod-banking-user-receipts` S3 bucket, compromising the financial privacy of all active customers.
 ```
+
+## 🔴 Red Team
+- Extract assets and enumerate endpoints.
+- Execute initial payloads leveraging documented vulnerabilities.
+
+## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
+> The Architect Mindset identifies misconfigurations spanning multiple domains.
+- Chain info-leaks with SSRF/RCE.
+- Maintain absolute OPSEC during active engagement.
+
+## 🏁 Execution Phase (Steps to Reproduce)
+1. Perform target reconnaissance.
+2. Formulate payload based on endpoints.
+3. Execute the exploit and capture exfiltrated data.
 
 ## References
 - OWASP: [Mobile Security Testing Guide (MSTG)](https://owasp.org/www-project-mobile-security-testing-guide/)

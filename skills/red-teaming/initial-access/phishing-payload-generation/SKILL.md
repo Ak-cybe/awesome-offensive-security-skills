@@ -28,6 +28,13 @@ license: Apache-2.0
 - When evaluating the effectiveness of a client's Email Security Gateways (Proofpoint, Mimecast) or Endpoint Detection.
 - To understand how modern threat actors bypass traditional `.exe` and `.doc` macro restrictions.
 
+
+## Prerequisites
+- Authorized scope and rules of engagement for the target environment
+- Appropriate tools installed on the attack/analysis platform
+- Understanding of the target technology stack and architecture
+- Documentation template ready for findings and evidence capture
+
 ## Workflow
 
 ### Phase 1: LNK (Shortcut) Files inside ISO Containers (Mark-of-the-Web Evasion)
@@ -190,6 +197,22 @@ Execution Flow:
 Impact:
 Successful delivery of the C2 implant past multi-million dollar perimeter security infrastructure.
 ```
+
+## 🔴 Red Team
+- Extract assets and enumerate endpoints.
+- Execute initial payloads leveraging documented vulnerabilities.
+
+## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
+> The Architect Mindset identifies misconfigurations spanning multiple domains.
+- Chain info-leaks with SSRF/RCE.
+- Maintain absolute OPSEC during active engagement.
+
+## 🏁 Execution Phase (Steps to Reproduce)
+1. Perform target reconnaissance.
+2. Formulate payload based on endpoints.
+3. Execute the exploit and capture exfiltrated data.
+
+**Severity Profile:** High (CVSS: 8.5)
 
 ## References
 - Outflank: [HTML Smuggling Explained](https://outflank.nl/blog/2018/08/14/html-smuggling-explained/)

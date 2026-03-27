@@ -54,6 +54,13 @@ flowchart TD
     A[Locate Target Switch Port ] --> B[Test DTP Negotiation ]
     B --> C{Switch accepts ```
 
+
+## Prerequisites
+- Network access to the target subnet (VPN, pivot, or direct connection)
+- Nmap and relevant network scanning tools installed
+- Understanding of TCP/IP, common protocols, and network segmentation
+- Root/admin access on the attack machine for raw socket operations
+
 ## 🔵 Blue Team Detection & Defense
 - **Explicit Access Ports**: The **VLAN Pruning and Security**: The Key Concepts
 | Concept | Description |
@@ -78,6 +85,24 @@ yersinia dtp -attack 1 -interface eth1
 
 Impact :
 The ```
+
+## 🔴 Red Team
+- Extract assets and enumerate endpoints.
+- Execute initial payloads leveraging documented vulnerabilities.
+
+## 🛡️ Remediation & Mitigation Strategy
+- **Input Validation:** Sanitize and strictly type-check all inputs.
+- **Least Privilege:** Constrain component execution bounds.
+
+## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
+> The Architect Mindset identifies misconfigurations spanning multiple domains.
+- Chain info-leaks with SSRF/RCE.
+- Maintain absolute OPSEC during active engagement.
+
+## 🏁 Execution Phase (Steps to Reproduce)
+1. Perform target reconnaissance.
+2. Formulate payload based on endpoints.
+3. Execute the exploit and capture exfiltrated data.
 
 ## References
 - Cisco: [VLAN Security White Paper](https://www.cisco.com/c/en/us/support/docs/switches/catalyst-6500-series-switches/10558-21.html)

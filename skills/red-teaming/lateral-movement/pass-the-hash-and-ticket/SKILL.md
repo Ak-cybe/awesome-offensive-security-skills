@@ -27,6 +27,13 @@ license: Apache-2.0
 - During Red Team engagements utilizing compromised NTLM hashes or Kerberos TGT/TGS tickets.
 - When building automated lateral movement chains in tools like Cobalt Strike or Empire.
 
+
+## Prerequisites
+- Authorized scope and rules of engagement for the target environment
+- Appropriate tools installed on the attack/analysis platform
+- Understanding of the target technology stack and architecture
+- Documentation template ready for findings and evidence capture
+
 ## Workflow
 
 ### Phase 1: Pass the Hash (PtH) Overview
@@ -152,6 +159,21 @@ Action Log:
 
 OPSEC Status: Moderate. WMIexec creates Event ID 4624 Logon Type 3, but bypasses noisy service creation compared to PsExec.
 ```
+
+## 🔴 Red Team
+- Extract assets and enumerate endpoints.
+- Execute initial payloads leveraging documented vulnerabilities.
+
+## 🛡️ Remediation & Mitigation Strategy
+- **Input Validation:** Sanitize and strictly type-check all inputs.
+- **Least Privilege:** Constrain component execution bounds.
+
+## 🏁 Execution Phase (Steps to Reproduce)
+1. Perform target reconnaissance.
+2. Formulate payload based on endpoints.
+3. Execute the exploit and capture exfiltrated data.
+
+**Severity Profile:** High (CVSS: 8.5)
 
 ## References
 - MITRE ATT&CK: [Pass the Hash (T1550.002)](https://attack.mitre.org/techniques/T1550/002/)

@@ -28,6 +28,13 @@ license: Apache-2.0
 - To detect long-term, stealthy malware persistence using obscure "Run" keys or Service entries hidden deep within the `SOFTWARE` or `SYSTEM` hives.
 - To reconstruct an attacker's lateral movement paths across the domain by parsing their historical RDP connections, MRU (Most Recently Used) jump lists, and typed URLs within `NTUSER.DAT`.
 
+
+## Prerequisites
+- Forensic image or live access to the affected system(s)
+- Forensic workstation with analysis tools (Autopsy, Volatility, Timeline Explorer)
+- Chain of custody documentation initiated for evidence handling
+- Write-blocker for disk forensics or memory acquisition tool (e.g., DumpIt, WinPmem)
+
 ## Workflow
 
 ### Phase 1: Acquiring the Hives (Live Triage)
@@ -148,6 +155,26 @@ Reviewing the `NTUSER.DAT` hive for the compromised user account mapped lateral 
 Conclusion:
 The attacker established initial access via a disguised payload, circumvented local protections, and definitively pivoted to core infrastructure. Immediate containment of the Domain Controller and wide-scale password resets are required. 
 ```
+
+## 🔴 Red Team
+- Extract assets and enumerate endpoints.
+- Execute initial payloads leveraging documented vulnerabilities.
+
+## 🛡️ Remediation & Mitigation Strategy
+- **Input Validation:** Sanitize and strictly type-check all inputs.
+- **Least Privilege:** Constrain component execution bounds.
+
+## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
+> The Architect Mindset identifies misconfigurations spanning multiple domains.
+- Chain info-leaks with SSRF/RCE.
+- Maintain absolute OPSEC during active engagement.
+
+## 🏁 Execution Phase (Steps to Reproduce)
+1. Perform target reconnaissance.
+2. Formulate payload based on endpoints.
+3. Execute the exploit and capture exfiltrated data.
+
+**Severity Profile:** High (CVSS: 8.5)
 
 ## References
 - SANS Institute: [Windows Registry Forensics Cheat Sheet](https://www.sans.org/posters/windows-registry-forensics/)

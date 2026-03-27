@@ -28,6 +28,13 @@ license: Apache-2.0
 - To execute Man-in-the-Middle (MITM) attacks on modern Windows environments (Windows 10/11) that universally enable and prioritize IPv6 traffic by default, even if the enterprise infrastructure routes IPv4.
 - To orchestrate an NTLMv2 Relay attack targeting LDAPS (LDAP over SSL) to automatically create new domain administrators or escalate privileges.
 
+
+## Prerequisites
+- Authorized scope and rules of engagement for the target environment
+- Appropriate tools installed on the attack/analysis platform
+- Understanding of the target technology stack and architecture
+- Documentation template ready for findings and evidence capture
+
 ## Workflow
 
 ### Phase 1: Understanding the Vulnerability (The IPv6 Preference)
@@ -150,6 +157,19 @@ When the IT Administrator launched a web browser, the system silently authentica
 
 The attacker instantaneously relayed this high-privileged authentication over standard IPv4 LDAP directly to the Primary Domain Controller (`10.10.1.200`). Because LDAP Signing was not strictly enforced, the Domain Controller successfully accepted the forwarded credentials. The `ntlmrelayx` script automatically exploited these LDAP rights to create a new, stealthy Domain Administrator account (`Backup_SVC_Account`). Total Active Directory compromise achieved in approximately 4 minutes.
 ```
+
+## 🔴 Red Team
+- Extract assets and enumerate endpoints.
+- Execute initial payloads leveraging documented vulnerabilities.
+
+## 🛡️ Remediation & Mitigation Strategy
+- **Input Validation:** Sanitize and strictly type-check all inputs.
+- **Least Privilege:** Constrain component execution bounds.
+
+## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
+> The Architect Mindset identifies misconfigurations spanning multiple domains.
+- Chain info-leaks with SSRF/RCE.
+- Maintain absolute OPSEC during active engagement.
 
 ## References
 - Dirk-jan Mollema (Fox-IT): [mitm6 - compromising IPv4 networks via IPv6](https://blog.fox-it.com/2018/01/11/mitm6-compromising-ipv4-networks-via-ipv6/)

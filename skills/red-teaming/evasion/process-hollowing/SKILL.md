@@ -27,6 +27,13 @@ license: Apache-2.0
 - When developing custom malware or establishing covert persistence during a red team engagement where standard executable drops are heavily monitored and blocked by AV/EDR.
 - To execute unbacked payloads in memory covertly.
 
+
+## Prerequisites
+- Active engagement with a defended target environment (EDR/AV present)
+- Understanding of the target's security stack (Defender, CrowdStrike, Carbon Black, etc.)
+- Payload development framework (msfvenom, Cobalt Strike, custom tooling)
+- Test environment matching the target OS/EDR for pre-engagement validation
+
 ## Workflow
 
 ### Phase 1: Creation of a Suspended Legitimate Process
@@ -84,6 +91,55 @@ flowchart TD
 | Process Hollowing | |
 | Memory Mapping | |
 | Suspended Process | |
+
+
+## Output Format
+```
+Process Hollowing — Assessment Report
+============================================================
+Target: [Target identifier]
+Assessor: [Operator name]
+Date: [Assessment date]
+Scope: [Authorized scope]
+MITRE ATT&CK: [Relevant technique IDs]
+
+Findings Summary:
+  [Finding 1]: [Severity] — [Brief description]
+  [Finding 2]: [Severity] — [Brief description]
+
+Detailed Results:
+  Phase 1: [Phase name]
+    - Result: [Outcome]
+    - Evidence: [Screenshot/log reference]
+    - Impact: [Business impact assessment]
+
+  Phase 2: [Phase name]
+    - Result: [Outcome]
+    - Evidence: [Screenshot/log reference]
+    - Impact: [Business impact assessment]
+
+Risk Rating: [Critical/High/Medium/Low/Informational]
+Recommendations:
+  1. [Immediate remediation step]
+  2. [Long-term hardening measure]
+  3. [Monitoring/detection improvement]
+```
+
+## 🔴 Red Team
+- Extract assets and enumerate endpoints.
+- Execute initial payloads leveraging documented vulnerabilities.
+
+## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
+> The Architect Mindset identifies misconfigurations spanning multiple domains.
+- Chain info-leaks with SSRF/RCE.
+- Maintain absolute OPSEC during active engagement.
+
+## 🏁 Execution Phase (Steps to Reproduce)
+1. Perform target reconnaissance.
+2. Formulate payload based on endpoints.
+3. Execute the exploit and capture exfiltrated data.
+
+**Severity Profile:** High (CVSS: 8.5)
 
 ## References
 - MITRE ATT&CK: [Process Injection: Process Hollowing](https://attack.mitre.org/techniques/T1055/012/)

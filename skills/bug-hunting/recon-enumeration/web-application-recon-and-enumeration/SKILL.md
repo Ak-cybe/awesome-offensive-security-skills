@@ -30,6 +30,13 @@ license: Apache-2.0
 - When discovering subdomains, hidden endpoints, and technologies
 - When building a target profile before vulnerability testing
 
+
+## Prerequisites
+- Authorized scope and target URLs from bug bounty program
+- Burp Suite Professional (or Community) configured with browser proxy
+- Familiarity with OWASP Top 10 and common web vulnerability classes
+- SecLists wordlists for fuzzing and enumeration
+
 ## Workflow
 
 ### Phase 1: Passive Subdomain Enumeration
@@ -129,6 +136,42 @@ nuclei -l live_hosts.txt -t misconfiguration/ -o misconfig.txt
 nuclei -l live_hosts.txt -t default-logins/ -o default_creds.txt
 ```
 
+
+### ⚡ OPSEC & Anti-Detection for Bug Bounty
+
+> Never get rate-limited or blocked before you find the bug.
+
+- **Request Timing**: Add 200-500ms jitter between automated requests — never burst
+- **User-Agent Rotation**: Use realistic browser UA strings, not tool defaults
+- **IP Rotation**: Use residential proxies for long engagements, not datacenter IPs
+- **Session Preservation**: Test in authenticated context to avoid WAF triggers on unauthenticated rapid probing
+- **Avoid Scanner Signatures**: Strip nuclei/ffuf/sqlmap markers from requests; triagers check for low-effort automation
+- **Incremental Fuzzing**: Start with 50 requests/minute, increase only after confirming no rate limiting
+
+
+### 🌐 Modern Recon Pipeline (8-Phase Cycle — 2026 Standard)
+
+> **Source**: Jason Haddix, NahamSec, and InsiderPHD (Katie Paxton-Fear) methodologies
+
+**Phase 1 — ASN Discovery**: `bgp.he.net` → Find all owned IP ranges via ASN
+**Phase 2 — Apex Domain Discovery**: `tenantdomains.sh` → Microsoft tenant correlation
+**Phase 3 — Acquisition Intel**: Traxon/Pitchbook → Find M&A targets = fresh attack surface
+**Phase 4 — Cloud SSL Recon**: Caduceus/Gungnir → Scan AWS/GCP/Azure IPs for SSL metadata
+**Phase 5 — Port Scanning**: ASNmap → Nabu → Nmap cascade for service enumeration
+**Phase 6 — Passive Shodan Dorking**: Karma → Pre-identified vulns without sending packets
+**Phase 7 — Subdomain Aggregation**: SubFinder + Beebot + Chaos + Amass (parallel, with API keys)
+**Phase 8 — "The One-Liner"**:
+```bash
+cat apexes.txt | subfinder | httpx -sc -title -cl -web-server -asn -l 15 \
+  -ports 80,8080,443,8443,4443,8888 -o output.csv
+```
+
+**Premium Intel Sources (Top 1% Use These):**
+- GitHub CFOR (Cross-Fork Object References) — Find developer personal repos with leaked secrets
+- Cisco Umbrella passive DNS — 10-20% more subdomains than public sources
+- CT Log monitoring via Gungnir — Real-time new certificate alerts
+- Shodan InternetDB API — Instant port+banner data without scanning
+
 ## 🔵 Blue Team Detection
 - **Asset inventory**: Maintain a current inventory of all subdomains and services
 - **Rate limiting**: Detect and block rapid enumeration attempts
@@ -148,6 +191,55 @@ API Endpoints: 45 discovered (/api/v1/*, /api/v2/*)
 Sensitive Files: .env exposed, .git directory accessible
 JavaScript Secrets: 3 API keys found in JS files
 ```
+
+
+### 📝 Elite Report Writing (Top 1% Standard)
+
+> **"The difference between a $500 and $50,000 report is the quality of the writeup."**
+> — Vickie Li, Bug Bounty Bootcamp
+
+**Title Format**: `[VulnType] in [Component] Allows [BusinessImpact]`
+- ❌ "XSS Found" → This tells the triager nothing
+- ✅ "Stored XSS in /admin/comments Allows Session Hijacking of All Moderators"
+
+**Report Structure (HackerOne-Optimized):**
+1. **Summary** (2-4 sentences — triager reads only this first): What broke, how, worst-case.
+2. **CVSS 4.0 Vector** — Must be defensible; wrong CVSS destroys credibility.
+3. **Attack Scenario** — 3-5 sentence narrative from attacker's perspective.
+4. **Impact** — MUST include at least one real number: "Affects 4.2M users" not "affects many users".
+5. **Steps to Reproduce** — Deterministic. A junior dev who has never seen this bug reproduces it exactly.
+6. **PoC** — Copy-paste runnable. No placeholders. Match the exact HTTP method.
+7. **Remediation** — Don't say "sanitize input." Give the exact code fix, before/after.
+8. **CWE + References** — SSRF→CWE-918, IDOR→CWE-639, SQLi→CWE-89, XSS→CWE-79.
+
+**Pre-Report Verification (5 Checks):**
+1. 🔍 **Hallucination Detector** — Verify endpoints, CVEs, and code paths are real
+2. 🤖 **AI Writing Pattern Check** — Remove "Certainly!", "It's worth noting", generic phrasing
+3. 🧪 **PoC Reproducibility** — Payload syntax valid for context? Prerequisites stated?
+4. 📋 **Duplicate Detection** — Is this a scanner-generic finding? Known public disclosure?
+5. 📈 **Impact Plausibility** — Severity matches technical capability? No inflation?
+
+
+
+## 💰 Industry Bounty Payout Statistics (2024-2025)
+
+| Company/Platform | Total Paid | Highest Single | Year |
+|-----------------|------------|---------------|------|
+| **Google VRP** | $17.1M | $250,000 (CVE-2025-4609 Chrome sandbox escape) | 2025 |
+| **Microsoft** | $16.6M | (Not disclosed) | 2024 |
+| **Google VRP** | $11.8M | $100,115 (Chrome MiraclePtr Bypass) | 2024 |
+| **HackerOne (all programs)** | $81M | $100,050 (crypto firm) | 2025 |
+| **Meta/Facebook** | $2.3M | up to $300K (mobile code execution) | 2024 |
+| **Crypto.com (HackerOne)** | $2M program | $2M max | 2024 |
+| **1Password (Bugcrowd)** | $1M max | $1M (highest Bugcrowd ever) | 2024 |
+| **Samsung** | $1M max | $1M (critical mobile flaws) | 2025 |
+
+**Key Takeaway**: Google alone paid $17.1M in 2025 — a 40% increase YoY. Microsoft paid $16.6M.
+The industry is paying more, not less. Average critical bounty on HackerOne: $3,700 (2023).
+
+## 🔴 Red Team
+- Extract assets and enumerate endpoints.
+- Execute initial payloads leveraging documented vulnerabilities.
 
 ## References
 - OWASP: [Web Security Testing Guide — Information Gathering](https://owasp.org/www-project-web-security-testing-guide/)

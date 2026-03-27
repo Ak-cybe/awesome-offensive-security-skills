@@ -29,6 +29,13 @@ license: Apache-2.0
 - To assess the blast radius of a compromised cloud identity.
 - When performing a white-box cloud architecture review or executing a Red Team operation in an AWS environment.
 
+
+## Prerequisites
+- Authorized scope and rules of engagement for the target environment
+- Appropriate tools installed on the attack/analysis platform
+- Understanding of the target technology stack and architecture
+- Documentation template ready for findings and evidence capture
+
 ## Workflow
 
 ### Phase 1: Authentication & Enumeration
@@ -179,6 +186,20 @@ Reproduction Steps:
 Impact:
 Critical failure of cloud compartmentalization. Low-privileged web-app identity completely circumvented restrictions, escalating to an RDS Database Administrator capable of wiping or extracting the entire production database.
 ```
+
+## 🔴 Red Team
+- Extract assets and enumerate endpoints.
+- Execute initial payloads leveraging documented vulnerabilities.
+
+## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
+> The Architect Mindset identifies misconfigurations spanning multiple domains.
+- Chain info-leaks with SSRF/RCE.
+- Maintain absolute OPSEC during active engagement.
+
+## 🏁 Execution Phase (Steps to Reproduce)
+1. Perform target reconnaissance.
+2. Formulate payload based on endpoints.
+3. Execute the exploit and capture exfiltrated data.
 
 ## References
 - Rhino Security Labs: [AWS IAM Privilege Escalation paths](https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/)

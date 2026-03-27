@@ -33,6 +33,13 @@ license: Apache-2.0
 - To demonstrate how an attacker can execute arbitrary code (RCE) on the GPU cluster simply by the victim executing `model.load()`.
 - To establish a silent backdoor in an image classification or NLP model before it is deployed to production.
 
+
+## Prerequisites
+- Access to target AI/ML system or local model deployment for testing
+- Python 3.9+ with relevant ML libraries (transformers, torch, openai)
+- Understanding of LLM architecture and prompt processing pipelines
+- Authorized scope and rules of engagement for AI red team testing
+
 ## Workflow
 
 ### Phase 1: Insecure Deserialization via Pickled Models (Remote Code Execution)
@@ -168,6 +175,24 @@ Reproduction Steps:
 Impact:
 Critical infrastructure compromise originating from the AI supply chain. Attacker achieves lateral movement deep within the restricted GPU environment.
 ```
+
+## 🔴 Red Team
+- Extract assets and enumerate endpoints.
+- Execute initial payloads leveraging documented vulnerabilities.
+
+## 🛡️ Remediation & Mitigation Strategy
+- **Input Validation:** Sanitize and strictly type-check all inputs.
+- **Least Privilege:** Constrain component execution bounds.
+
+## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
+> The Architect Mindset identifies misconfigurations spanning multiple domains.
+- Chain info-leaks with SSRF/RCE.
+- Maintain absolute OPSEC during active engagement.
+
+## 🏁 Execution Phase (Steps to Reproduce)
+1. Perform target reconnaissance.
+2. Formulate payload based on endpoints.
+3. Execute the exploit and capture exfiltrated data.
 
 ## References
 - Hugging Face: [Security capabilities (SafeTensors vs Pickle)](https://huggingface.co/docs/hub/security-malware)

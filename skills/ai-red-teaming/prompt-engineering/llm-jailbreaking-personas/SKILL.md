@@ -30,6 +30,13 @@ license: Apache-2.0
 - When assessing the robustness of an LLM's safety fine-tuning (RLHF) against complex psychological or structural manipulation.
 - To demonstrate how an attacker might extract malicious methodologies (malware writing, exploit generation) from supposedly "safe" corporate models.
 
+
+## Prerequisites
+- Access to target AI/ML system or local model deployment for testing
+- Python 3.9+ with relevant ML libraries (transformers, torch, openai)
+- Understanding of LLM architecture and prompt processing pipelines
+- Authorized scope and rules of engagement for AI red team testing
+
 ## Workflow
 
 ### Phase 1: The "Developer Mode" Authority Attack
@@ -137,6 +144,22 @@ Reproduction Steps:
 Impact:
 Demonstrates a failure in the model's safety alignment, allowing malicious actors to utilize corporate resources to automate and refine social engineering and offensive cyber operations.
 ```
+
+## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
+> The Architect Mindset identifies misconfigurations spanning multiple domains.
+- Chain info-leaks with SSRF/RCE.
+- Maintain absolute OPSEC during active engagement.
+
+## 🏁 Execution Phase (Steps to Reproduce)
+1. Perform target reconnaissance.
+2. Formulate payload based on endpoints.
+3. Execute the exploit and capture exfiltrated data.
+
+
+## 🔴 Red Team
+- Extract assets and enumerate endpoints.
+- Execute initial payloads leveraging documented vulnerabilities.
+- Pivot and escalate using chained attack paths.
 
 ## References
 - JailbreakChat: [Comprehensive Database of Public Jailbreaks](https://www.jailbreakchat.com/)

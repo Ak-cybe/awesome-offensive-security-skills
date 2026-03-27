@@ -29,6 +29,13 @@ license: Apache-2.0
 - To extract the `krbtgt` account hash, which is absolutely mandatory for forging Golden Tickets subsequently establishing ultimate domain persistence.
 - To perform a complete, stealthy domain credential dump without installing malware directly onto the Domain Controller or exporting the physical `NTDS.dit` database file.
 
+
+## Prerequisites
+- Authorized scope and rules of engagement for the target environment
+- Appropriate tools installed on the attack/analysis platform
+- Understanding of the target technology stack and architecture
+- Documentation template ready for findings and evidence capture
+
 ## Workflow
 
 ### Phase 1: Validating Prerequisites
@@ -154,6 +161,19 @@ The `krbtgt` NTLM and AES256 hashes cleanly extracted:
 Impact:
 The adversary natively established comprehensive Golden Ticket generation capability dynamically ensuring uninhibited, invisible administrative access seamlessly surviving standard password resets unequivocally.
 ```
+
+## 🔴 Red Team
+- Extract assets and enumerate endpoints.
+- Execute initial payloads leveraging documented vulnerabilities.
+
+## 🛡️ Remediation & Mitigation Strategy
+- **Input Validation:** Sanitize and strictly type-check all inputs.
+- **Least Privilege:** Constrain component execution bounds.
+
+## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
+> The Architect Mindset identifies misconfigurations spanning multiple domains.
+- Chain info-leaks with SSRF/RCE.
+- Maintain absolute OPSEC during active engagement.
 
 ## References
 - Impacket: [secretsdump.py](https://github.com/fortra/impacket/blob/master/examples/secretsdump.py)

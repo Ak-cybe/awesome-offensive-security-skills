@@ -34,6 +34,13 @@ license: Apache-2.0
 - When testing for unintended capability escalation through tool chaining
 - When assessing the security of AI-powered automation workflows
 
+
+## Prerequisites
+- Access to target AI/ML system or local model deployment for testing
+- Python 3.9+ with relevant ML libraries (transformers, torch, openai)
+- Understanding of LLM architecture and prompt processing pipelines
+- Authorized scope and rules of engagement for AI red team testing
+
 ## Workflow
 
 ### Phase 1: Agent Capability Mapping
@@ -299,6 +306,24 @@ Critical Findings:
 Severity: CRITICAL
 Overall Risk: HIGH — Agent can be manipulated to perform unauthorized actions
 ```
+
+## 🔴 Red Team
+- Extract assets and enumerate endpoints.
+- Execute initial payloads leveraging documented vulnerabilities.
+
+## 🛡️ Remediation & Mitigation Strategy
+- **Input Validation:** Sanitize and strictly type-check all inputs.
+- **Least Privilege:** Constrain component execution bounds.
+
+## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
+> The Architect Mindset identifies misconfigurations spanning multiple domains.
+- Chain info-leaks with SSRF/RCE.
+- Maintain absolute OPSEC during active engagement.
+
+## 🏁 Execution Phase (Steps to Reproduce)
+1. Perform target reconnaissance.
+2. Formulate payload based on endpoints.
+3. Execute the exploit and capture exfiltrated data.
 
 ## References
 - OWASP LLM Top 10: [LLM07 Insecure Plugin Design](https://genai.owasp.org/llmrisk/llm07-insecure-plugin-design/)

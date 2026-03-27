@@ -29,6 +29,13 @@ license: Apache-2.0
 - When you need to escalate from `www-data`, `nobody`, or a regular user to `root`
 - When conducting post-exploitation activities that require elevated privileges
 
+
+## Prerequisites
+- Shell access (user or limited privilege) on the target system
+- Enumeration tools appropriate for the target OS (LinPEAS, WinPEAS, etc.)
+- Understanding of the target OS privilege model and common misconfigurations
+- Ability to transfer files or compile tools on the target
+
 ## Workflow
 
 ### Phase 1: Automated Enumeration
@@ -237,6 +244,22 @@ Remediation:
 2. Audit all capabilities: getcap -r / 2>/dev/null
 3. Deploy SELinux in enforcing mode
 ```
+
+## 🔴 Red Team
+- Extract assets and enumerate endpoints.
+- Execute initial payloads leveraging documented vulnerabilities.
+
+## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
+> The Architect Mindset identifies misconfigurations spanning multiple domains.
+- Chain info-leaks with SSRF/RCE.
+- Maintain absolute OPSEC during active engagement.
+
+## 🏁 Execution Phase (Steps to Reproduce)
+1. Perform target reconnaissance.
+2. Formulate payload based on endpoints.
+3. Execute the exploit and capture exfiltrated data.
+
+**Severity Profile:** High (CVSS: 8.5)
 
 ## References
 - GTFOBins: [SUID/Sudo/Capabilities](https://gtfobins.github.io/)

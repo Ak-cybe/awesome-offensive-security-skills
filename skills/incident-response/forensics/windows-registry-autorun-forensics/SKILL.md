@@ -27,6 +27,13 @@ license: Apache-2.0
 - During triage of a potentially compromised Windows system to identify how malware survives reboots.
 - After extracting the registry hives (SAM, SYSTEM, SOFTWARE, NTUSER.DAT) from a forensic disk image for offline analysis.
 
+
+## Prerequisites
+- Forensic image or live access to the affected system(s)
+- Forensic workstation with analysis tools (Autopsy, Volatility, Timeline Explorer)
+- Chain of custody documentation initiated for evidence handling
+- Write-blocker for disk forensics or memory acquisition tool (e.g., DumpIt, WinPmem)
+
 ## Workflow
 
 ### Phase 1: Identifying Run / RunOnce Keys
@@ -70,6 +77,55 @@ flowchart TD
 |---------|-------------|
 | Windows Registry Hives | |
 | IFEO Backdoors | |
+
+
+## Output Format
+```
+Windows Registry Autorun Forensics — Assessment Report
+============================================================
+Target: [Target identifier]
+Assessor: [Operator name]
+Date: [Assessment date]
+Scope: [Authorized scope]
+MITRE ATT&CK: [Relevant technique IDs]
+
+Findings Summary:
+  [Finding 1]: [Severity] — [Brief description]
+  [Finding 2]: [Severity] — [Brief description]
+
+Detailed Results:
+  Phase 1: [Phase name]
+    - Result: [Outcome]
+    - Evidence: [Screenshot/log reference]
+    - Impact: [Business impact assessment]
+
+  Phase 2: [Phase name]
+    - Result: [Outcome]
+    - Evidence: [Screenshot/log reference]
+    - Impact: [Business impact assessment]
+
+Risk Rating: [Critical/High/Medium/Low/Informational]
+Recommendations:
+  1. [Immediate remediation step]
+  2. [Long-term hardening measure]
+  3. [Monitoring/detection improvement]
+```
+
+## 🔴 Red Team
+- Extract assets and enumerate endpoints.
+- Execute initial payloads leveraging documented vulnerabilities.
+
+## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
+> The Architect Mindset identifies misconfigurations spanning multiple domains.
+- Chain info-leaks with SSRF/RCE.
+- Maintain absolute OPSEC during active engagement.
+
+## 🏁 Execution Phase (Steps to Reproduce)
+1. Perform target reconnaissance.
+2. Formulate payload based on endpoints.
+3. Execute the exploit and capture exfiltrated data.
+
+**Severity Profile:** High (CVSS: 8.5)
 
 ## References
 - SANS: [Windows Registry Forensics](https://www.sans.org/posters/windows-forensic-analysis/)

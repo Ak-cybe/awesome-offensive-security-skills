@@ -28,6 +28,13 @@ license: Apache-2.0
 - During the early phases of an Active Directory penetration test when attempting to gain initial domain user access, or seeking to escalate privileges by cracking passwords of service or admin accounts.
 - This attack does *not* require a valid domain user account to perform, only network access to the Domain Controller and a list of valid usernames. (Alternatively, if you *have* a domain account, you can automatically query LDAP for vulnerable users).
 
+
+## Prerequisites
+- Authorized scope and rules of engagement for the target environment
+- Appropriate tools installed on the attack/analysis platform
+- Understanding of the target technology stack and architecture
+- Documentation template ready for findings and evidence capture
+
 ## Workflow
 
 ### Phase 1: Identifying Vulnerable Accounts (With Domain Access)
@@ -77,6 +84,55 @@ flowchart TD
 |---------|-------------|
 | Kerberos Preauthentication | |
 | AS-REP Roasting | |
+
+
+## Output Format
+```
+Ad Asreproast Attack — Assessment Report
+============================================================
+Target: [Target identifier]
+Assessor: [Operator name]
+Date: [Assessment date]
+Scope: [Authorized scope]
+MITRE ATT&CK: [Relevant technique IDs]
+
+Findings Summary:
+  [Finding 1]: [Severity] — [Brief description]
+  [Finding 2]: [Severity] — [Brief description]
+
+Detailed Results:
+  Phase 1: [Phase name]
+    - Result: [Outcome]
+    - Evidence: [Screenshot/log reference]
+    - Impact: [Business impact assessment]
+
+  Phase 2: [Phase name]
+    - Result: [Outcome]
+    - Evidence: [Screenshot/log reference]
+    - Impact: [Business impact assessment]
+
+Risk Rating: [Critical/High/Medium/Low/Informational]
+Recommendations:
+  1. [Immediate remediation step]
+  2. [Long-term hardening measure]
+  3. [Monitoring/detection improvement]
+```
+
+## 🔴 Red Team
+- Extract assets and enumerate endpoints.
+- Execute initial payloads leveraging documented vulnerabilities.
+
+## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
+> The Architect Mindset identifies misconfigurations spanning multiple domains.
+- Chain info-leaks with SSRF/RCE.
+- Maintain absolute OPSEC during active engagement.
+
+## 🏁 Execution Phase (Steps to Reproduce)
+1. Perform target reconnaissance.
+2. Formulate payload based on endpoints.
+3. Execute the exploit and capture exfiltrated data.
+
+**Severity Profile:** High (CVSS: 8.5)
 
 ## References
 - Impacket Docs: [GetNPUsers.py](https://github.com/fortra/impacket/blob/master/examples/GetNPUsers.py)

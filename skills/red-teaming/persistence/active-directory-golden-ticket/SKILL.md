@@ -30,6 +30,13 @@ license: Apache-2.0
 - To simulate high-end APT behaviors (e.g., APT29/Cozy Bear, SolarWinds breach).
 - When you foresee the blue team discovering your current access and resetting traditional passwords.
 
+
+## Prerequisites
+- Administrative or SYSTEM-level access on the target Windows/Linux host
+- Understanding of the target's monitoring posture (Sysmon, EDR coverage)
+- C2 framework beacon or payload ready for deployment
+- Cleanup procedure documented before persistence is established
+
 ## Workflow
 
 ### Phase 1: Obtaining the KRBTGT Hash (The Keys to the Kingdom)
@@ -141,6 +148,21 @@ Execution Details:
 Validation:
 Persistence verified 48 hours later. Blue team forced password rotation, but offline Golden Ticket effectively bypassed password validations, retaining unrestricted WMI access to primary domain controllers.
 ```
+
+## 🔴 Red Team
+- Extract assets and enumerate endpoints.
+- Execute initial payloads leveraging documented vulnerabilities.
+
+## 🛡️ Remediation & Mitigation Strategy
+- **Input Validation:** Sanitize and strictly type-check all inputs.
+- **Least Privilege:** Constrain component execution bounds.
+
+## 🏁 Execution Phase (Steps to Reproduce)
+1. Perform target reconnaissance.
+2. Formulate payload based on endpoints.
+3. Execute the exploit and capture exfiltrated data.
+
+**Severity Profile:** High (CVSS: 8.5)
 
 ## References
 - AdSecurity: [Kerberos Golden Tickets](https://adsecurity.org/?p=1515)

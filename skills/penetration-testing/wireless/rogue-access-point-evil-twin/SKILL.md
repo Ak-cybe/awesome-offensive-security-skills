@@ -29,6 +29,13 @@ license: Apache-2.0
 - To aggressively intercept wireless network traffic when standard passive sniffing (monitor mode) yields only encrypted WPA2/WPA3 packets, which require offline cracking.
 - To harvest corporate credentials directly from users via sophisticated Captive Portal phishing campaigns mimicking the target organization's authentic login page.
 
+
+## Prerequisites
+- Wireless adapter supporting monitor mode and packet injection (e.g., Alfa AWUS036ACH)
+- Kali Linux or similar distribution with aircrack-ng suite installed
+- Physical proximity to the target wireless network
+- Authorization to test the target wireless infrastructure
+
 ## Workflow
 
 ### Phase 1: Reconnaissance (The Setup)
@@ -95,6 +102,55 @@ flowchart TD
 |---------|-------------|
 | Deauthentication | |
 | Captive Portal | |
+
+
+## Output Format
+```
+Rogue Access Point Evil Twin — Assessment Report
+============================================================
+Target: [Target identifier]
+Assessor: [Operator name]
+Date: [Assessment date]
+Scope: [Authorized scope]
+MITRE ATT&CK: [Relevant technique IDs]
+
+Findings Summary:
+  [Finding 1]: [Severity] — [Brief description]
+  [Finding 2]: [Severity] — [Brief description]
+
+Detailed Results:
+  Phase 1: [Phase name]
+    - Result: [Outcome]
+    - Evidence: [Screenshot/log reference]
+    - Impact: [Business impact assessment]
+
+  Phase 2: [Phase name]
+    - Result: [Outcome]
+    - Evidence: [Screenshot/log reference]
+    - Impact: [Business impact assessment]
+
+Risk Rating: [Critical/High/Medium/Low/Informational]
+Recommendations:
+  1. [Immediate remediation step]
+  2. [Long-term hardening measure]
+  3. [Monitoring/detection improvement]
+```
+
+## 🔴 Red Team
+- Extract assets and enumerate endpoints.
+- Execute initial payloads leveraging documented vulnerabilities.
+
+## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
+> The Architect Mindset identifies misconfigurations spanning multiple domains.
+- Chain info-leaks with SSRF/RCE.
+- Maintain absolute OPSEC during active engagement.
+
+## 🏁 Execution Phase (Steps to Reproduce)
+1. Perform target reconnaissance.
+2. Formulate payload based on endpoints.
+3. Execute the exploit and capture exfiltrated data.
+
+**Severity Profile:** High (CVSS: 8.5)
 
 ## References
 - Wifiphisher: [The Rogue Access Point Framework](https://github.com/wifiphisher/wifiphisher)

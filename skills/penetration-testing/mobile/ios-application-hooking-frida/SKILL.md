@@ -28,6 +28,13 @@ license: Apache-2.0
 - To bypass robust Jailbreak Detection mechanisms that force the target app to crash upon launch.
 - To circumvent complex SSL Certificate Pinning, enabling you to intercept HTTPS traffic in Burp Suite without spending hours reverse-engineering native cryptographic functions.
 
+
+## Prerequisites
+- Authorized scope and rules of engagement for the target environment
+- Appropriate tools installed on the attack/analysis platform
+- Understanding of the target technology stack and architecture
+- Documentation template ready for findings and evidence capture
+
 ## Workflow
 
 ### Phase 1: Environment Setup (Jailbroken iOS)
@@ -174,6 +181,22 @@ Interceptor.attach(Module.findExportByName('Security', 'SecTrustEvaluateWithErro
 Impact:
 The application fundamentally accepted the Burp Suite PortSwigger localized Certificate Authority. All application telemetry, including sensitive Personal Health Information (PHI) and authentication tokens, was successfully captured in plaintext over the encrypted SSL tunnel.
 ```
+
+## 🔴 Red Team
+- Extract assets and enumerate endpoints.
+- Execute initial payloads leveraging documented vulnerabilities.
+
+## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
+> The Architect Mindset identifies misconfigurations spanning multiple domains.
+- Chain info-leaks with SSRF/RCE.
+- Maintain absolute OPSEC during active engagement.
+
+## 🏁 Execution Phase (Steps to Reproduce)
+1. Perform target reconnaissance.
+2. Formulate payload based on endpoints.
+3. Execute the exploit and capture exfiltrated data.
+
+**Severity Profile:** High (CVSS: 8.5)
 
 ## References
 - Frida: [Official JavaScript API Reference](https://frida.re/docs/javascript-api/)

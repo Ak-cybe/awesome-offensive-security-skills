@@ -1,0 +1,55 @@
+{
+  "criteria": [
+    {
+      "id": "yaml_frontmatter",
+      "question": "Is there a complete YAML frontmatter block starting and ending with '---' containing 'description', 'difficulty', and 'tags'?",
+      "regex": "^---(?=[\\s\\S]*?\\bdescription:)(?=[\\s\\S]*?\\bdifficulty:)(?=[\\s\\S]*?\\btags:)[\\s\\S]*?\\r?\\n---"
+    },
+    {
+      "id": "no_ai_fluff",
+      "question": "Does it avoid common AI hallucination/fluff phrases (outside of quoted examples)?",
+      "regex": "(?<!\")(?<!')(?<!Remove )(certainly!|(?:^|\\. )it is worth noting|(?:^|\\. )delve into|(?:^|\\. )however, it is important|(?:^|\\. )it's important to note|(?:^|\\. )in conclusion,|(?:^|\\. )as an ai|(?:^|\\. )it should be noted)(?![\"\u2019'])",
+      "invert": true
+    },
+    {
+      "id": "red_team_section",
+      "question": "Does it have a distinct Red Team or Offensive Operations section?",
+      "regex": "##[^\\n]*?(🔴\\s*Red Team|Offensive Operations|Red Team)"
+    },
+    {
+      "id": "blue_team_section",
+      "question": "Does it have a distinct Blue Team or Defensive Operations section?",
+      "regex": "##[^\\n]*?(🔵\\s*Blue Team|Defensive Operations|Blue Team|Detection & Defense)"
+    },
+    {
+      "id": "poc_payloads",
+      "question": "Does it include concrete code blocks/payloads in markdown (```) format?",
+      "regex": "```[a-z]*\\r?\\n[\\s\\S]*?```"
+    },
+    {
+      "id": "mitigation_remediation",
+      "question": "Does it provide a strict remediation or mitigation strategy?",
+      "regex": "(?i)(remediation|mitigation|preventing|countermeasure|defense strategy)"
+    },
+    {
+      "id": "elite_hunter_methodology",
+      "question": "Does it include Elite / Top 1% Hunter chained strategies or OPSEC advice?",
+      "regex": "(?i)(elite chaining|top 1% hunter|chaining strategy|opsec|architect mindset|chain pattern|elite.{0,30}strategy)"
+    },
+    {
+      "id": "step_by_step_repro",
+      "question": "Is there a step-by-step reproduction methodology?",
+      "regex": "(?i)(steps to reproduce|methodology|execution phase|reproduction|step[- ]by[- ]step|phase \\d)"
+    },
+    {
+      "id": "cvss_severity",
+      "question": "Does it mention the CVSS vector, score, or standard severity level?",
+      "regex": "(?i)(cvss[:\\s]|severity[:\\s]*(low|medium|high|critical)|cvss\\s*\\d)"
+    },
+    {
+      "id": "references",
+      "question": "Does it conclude with a References section with at least one URL?",
+      "regex": "(?i)##[^\\n]*(References|Resources)[\\s\\S]*?https?://"
+    }
+  ]
+}

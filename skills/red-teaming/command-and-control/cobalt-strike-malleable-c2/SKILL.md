@@ -28,6 +28,13 @@ license: Apache-2.0
 - When attempting to blend persistent Beacon traffic into the target environment's native noise (e.g., disguising C2 traffic as continuous Windows Defender telemetry or Google Analytics polling).
 - To actively disable and evade in-memory scanning frameworks (e.g., Hunt-Sleeping-Beacons) by utilizing profile features like `sleep_mask` and `allocator`.
 
+
+## Prerequisites
+- Authorized scope and rules of engagement for the target environment
+- Appropriate tools installed on the attack/analysis platform
+- Understanding of the target technology stack and architecture
+- Documentation template ready for findings and evidence capture
+
 ## Workflow
 
 ### Phase 1: Understanding Malleable C2
@@ -176,6 +183,26 @@ Technical Specifications:
 Impact:
 Extensive evasion of the client's Palo Alto Next-Gen Firewall. Encrypted traffic metrics perfectly match standard corporate communication flows, rendering the implant undetectable by signature-based or volumetric IDS sensors.
 ```
+
+## 🔴 Red Team
+- Extract assets and enumerate endpoints.
+- Execute initial payloads leveraging documented vulnerabilities.
+
+## 🛡️ Remediation & Mitigation Strategy
+- **Input Validation:** Sanitize and strictly type-check all inputs.
+- **Least Privilege:** Constrain component execution bounds.
+
+## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
+> The Architect Mindset identifies misconfigurations spanning multiple domains.
+- Chain info-leaks with SSRF/RCE.
+- Maintain absolute OPSEC during active engagement.
+
+## 🏁 Execution Phase (Steps to Reproduce)
+1. Perform target reconnaissance.
+2. Formulate payload based on endpoints.
+3. Execute the exploit and capture exfiltrated data.
+
+**Severity Profile:** High (CVSS: 8.5)
 
 ## References
 - Cobalt Strike: [Malleable C2 Profiles Guide](https://hstechdocs.helpsystems.com/manuals/cobaltstrike/current/userguide/content/topics/malleable-c2_main.htm)

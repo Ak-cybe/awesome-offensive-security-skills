@@ -32,6 +32,13 @@ license: Apache-2.0
 - To demonstrate how an attacker can hijack an LLM session without ever interacting directly with the user or the prompt interface.
 - To test the contextual boundary controls of an LLM processing untrusted external data.
 
+
+## Prerequisites
+- Access to target AI/ML system or local model deployment for testing
+- Python 3.9+ with relevant ML libraries (transformers, torch, openai)
+- Understanding of LLM architecture and prompt processing pipelines
+- Authorized scope and rules of engagement for AI red team testing
+
 ## Workflow
 
 ### Phase 1: Understanding Indirect Injection (The Concept)
@@ -146,6 +153,24 @@ A malicious customer filed a standard support ticket containing the exact payloa
 
 Result :
 When a human support agent clicked the "Summarize AI" button ```
+
+## 🔴 Red Team
+- Extract assets and enumerate endpoints.
+- Execute initial payloads leveraging documented vulnerabilities.
+
+## 🛡️ Remediation & Mitigation Strategy
+- **Input Validation:** Sanitize and strictly type-check all inputs.
+- **Least Privilege:** Constrain component execution bounds.
+
+## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
+> The Architect Mindset identifies misconfigurations spanning multiple domains.
+- Chain info-leaks with SSRF/RCE.
+- Maintain absolute OPSEC during active engagement.
+
+## 🏁 Execution Phase (Steps to Reproduce)
+1. Perform target reconnaissance.
+2. Formulate payload based on endpoints.
+3. Execute the exploit and capture exfiltrated data.
 
 ## References
 - OWASP Top 10 for LLMs: [LLM01:2023 - Prompt Injection](https://llmtop10.com/llm01/)

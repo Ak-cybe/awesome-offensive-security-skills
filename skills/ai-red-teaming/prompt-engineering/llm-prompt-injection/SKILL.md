@@ -32,6 +32,13 @@ license: Apache-2.0
 - When encountering Chatbots, virtual assistants, automated email summarizers, or AI-driven code completion tools.
 - To prove that an AI model can be manipulated to ignore its system constraints, emit restricted information, or execute unauthorized tool calls.
 
+
+## Prerequisites
+- Access to target AI/ML system or local model deployment for testing
+- Python 3.9+ with relevant ML libraries (transformers, torch, openai)
+- Understanding of LLM architecture and prompt processing pipelines
+- Authorized scope and rules of engagement for AI red team testing
+
 ## Workflow
 
 ### Phase 1: Identifying the System Prompt (Context Discovery)
@@ -152,6 +159,24 @@ Reproduction Steps:
 Impact:
 Critical compromise of internal AI logic allowing for blinded Cross-Site Scripting (XSS) and SSRF-like interactions within the recruiter's authenticated dashboard context.
 ```
+
+## 🔴 Red Team
+- Extract assets and enumerate endpoints.
+- Execute initial payloads leveraging documented vulnerabilities.
+
+## 🛡️ Remediation & Mitigation Strategy
+- **Input Validation:** Sanitize and strictly type-check all inputs.
+- **Least Privilege:** Constrain component execution bounds.
+
+## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
+> The Architect Mindset identifies misconfigurations spanning multiple domains.
+- Chain info-leaks with SSRF/RCE.
+- Maintain absolute OPSEC during active engagement.
+
+## 🏁 Execution Phase (Steps to Reproduce)
+1. Perform target reconnaissance.
+2. Formulate payload based on endpoints.
+3. Execute the exploit and capture exfiltrated data.
 
 ## References
 - OWASP: [Top 10 for LLM Applications (LLM01: Prompt Injection)](https://owasp.org/www-project-top-10-for-large-language-model-applications/)

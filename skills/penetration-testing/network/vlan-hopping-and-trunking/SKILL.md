@@ -29,6 +29,13 @@ license: Apache-2.0
 - Your objective is to reach the internal subnets containing Domain Controllers, sensitive servers, or SCADA equipment.
 - When validating if a client's core networking equipment is securely configured.
 
+
+## Prerequisites
+- Network access to the target subnet (VPN, pivot, or direct connection)
+- Nmap and relevant network scanning tools installed
+- Understanding of TCP/IP, common protocols, and network segmentation
+- Root/admin access on the attack machine for raw socket operations
+
 ## Workflow
 
 ### Phase 1: Passive Reconnaissance (Identifying DTP and Trunking)
@@ -150,6 +157,26 @@ Execution Details:
 Impact: 
 Complete circumvention of physical and logical network segmentation. Attacker achieved unauthenticated network line-of-sight to the main Domain Controllers and vCenter management interfaces.
 ```
+
+## 🔴 Red Team
+- Extract assets and enumerate endpoints.
+- Execute initial payloads leveraging documented vulnerabilities.
+
+## 🛡️ Remediation & Mitigation Strategy
+- **Input Validation:** Sanitize and strictly type-check all inputs.
+- **Least Privilege:** Constrain component execution bounds.
+
+## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
+> The Architect Mindset identifies misconfigurations spanning multiple domains.
+- Chain info-leaks with SSRF/RCE.
+- Maintain absolute OPSEC during active engagement.
+
+## 🏁 Execution Phase (Steps to Reproduce)
+1. Perform target reconnaissance.
+2. Formulate payload based on endpoints.
+3. Execute the exploit and capture exfiltrated data.
+
+**Severity Profile:** High (CVSS: 8.5)
 
 ## References
 - SANS: [VLAN Hopping Tutorial](https://www.sans.org/reading-room/whitepapers/networkdevs/virtual-local-area-network-vlan-security-33363)

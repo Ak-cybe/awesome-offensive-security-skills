@@ -27,6 +27,13 @@ license: Apache-2.0
 - When you have successfully dumped credentials (e.g., from SAM, LSASS, or NTDS.dit) and acquired the NTLM hash of a target user, but the hash resists cracking efforts.
 - To perform lateral movement to other machines where the compromised user has administrative access.
 
+
+## Prerequisites
+- Authorized scope and rules of engagement for the target environment
+- Appropriate tools installed on the attack/analysis platform
+- Understanding of the target technology stack and architecture
+- Documentation template ready for findings and evidence capture
+
 ## Workflow
 
 ### Phase 1: Acquiring the NTLM Hash
@@ -78,6 +85,50 @@ flowchart TD
 |---------|-------------|
 | NTLM Authentication | |
 | Memory Injection (Mimikatz) | |
+
+
+## Output Format
+```
+Ad Pass The Hash — Assessment Report
+============================================================
+Target: [Target identifier]
+Assessor: [Operator name]
+Date: [Assessment date]
+Scope: [Authorized scope]
+MITRE ATT&CK: [Relevant technique IDs]
+
+Findings Summary:
+  [Finding 1]: [Severity] — [Brief description]
+  [Finding 2]: [Severity] — [Brief description]
+
+Detailed Results:
+  Phase 1: [Phase name]
+    - Result: [Outcome]
+    - Evidence: [Screenshot/log reference]
+    - Impact: [Business impact assessment]
+
+  Phase 2: [Phase name]
+    - Result: [Outcome]
+    - Evidence: [Screenshot/log reference]
+    - Impact: [Business impact assessment]
+
+Risk Rating: [Critical/High/Medium/Low/Informational]
+Recommendations:
+  1. [Immediate remediation step]
+  2. [Long-term hardening measure]
+  3. [Monitoring/detection improvement]
+```
+
+## 🔴 Red Team
+- Extract assets and enumerate endpoints.
+- Execute initial payloads leveraging documented vulnerabilities.
+
+## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
+> The Architect Mindset identifies misconfigurations spanning multiple domains.
+- Chain info-leaks with SSRF/RCE.
+- Maintain absolute OPSEC during active engagement.
+
+**Severity Profile:** High (CVSS: 8.5)
 
 ## References
 - Mitre ATT&CK: [Pass the Hash](https://attack.mitre.org/techniques/T1550/002/)

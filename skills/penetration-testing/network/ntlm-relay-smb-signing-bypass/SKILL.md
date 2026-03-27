@@ -30,6 +30,13 @@ license: Apache-2.0
 - When conducting an internal Active Directory network assessment systematically discovering uniquely that while Domain Controllers demand aggressive cryptographic 'SMB Signing', standard user workstations (`Windows 10`) and tertiary file servers (`Windows Server 2019`) seamlessly possess `SMB Signing Enabled: True` intrinsically but natively feature `SMB Signing Required: False`.
 - Rather than merely capturing an authentication hash intrinsically attempting to computationally crack it using Hashcat implicitly (which fails instantly against complex 15-character passwords), systematically relay the identical captured session cryptographically to a secondary target natively achieving comprehensive Remote Code Execution (RCE) instantly without cracking entirely.
 
+
+## Prerequisites
+- Authorized scope and rules of engagement for the target environment
+- Appropriate tools installed on the attack/analysis platform
+- Understanding of the target technology stack and architecture
+- Documentation template ready for findings and evidence capture
+
 ## Workflow
 
 ### Phase 1: Validating the SMB Signing Vulnerability (The Pre-Requisite)
@@ -155,6 +162,20 @@ Because the `ITSupport_Helpdesk` account explicitly retained uniform `Local Admi
 
 NTLMRelayX explicitly established execution context dumping exactly the intrinsic `Administrator` absolute LM:NTLM hash cleanly via the Remote Registry protocol effortlessly. Broad Lateral Movement capabilities achieved bypassing multi-factor identity unconditionally.
 ```
+
+## 🔴 Red Team
+- Extract assets and enumerate endpoints.
+- Execute initial payloads leveraging documented vulnerabilities.
+
+## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
+> The Architect Mindset identifies misconfigurations spanning multiple domains.
+- Chain info-leaks with SSRF/RCE.
+- Maintain absolute OPSEC during active engagement.
+
+## 🏁 Execution Phase (Steps to Reproduce)
+1. Perform target reconnaissance.
+2. Formulate payload based on endpoints.
+3. Execute the exploit and capture exfiltrated data.
 
 ## References
 - SecureAuth Impacket: [NTLMRelayX Tooling](https://github.com/fortra/impacket/blob/master/examples/ntlmrelayx.py)

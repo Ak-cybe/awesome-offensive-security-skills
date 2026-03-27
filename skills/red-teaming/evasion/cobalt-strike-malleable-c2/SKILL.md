@@ -28,6 +28,13 @@ license: Apache-2.0
 - During red team engagements where network egress filters and deep packet inspection (DPI) appliances intercept communication.
 - To bypass threat intelligence feeds that target default Cobalt Strike beacon indicators (e.g., default checksums, empty HTTP headers, known User-Agents).
 
+
+## Prerequisites
+- Active engagement with a defended target environment (EDR/AV present)
+- Understanding of the target's security stack (Defender, CrowdStrike, Carbon Black, etc.)
+- Payload development framework (msfvenom, Cobalt Strike, custom tooling)
+- Test environment matching the target OS/EDR for pre-engagement validation
+
 ## Workflow
 
 ### Phase 1: Designing the Profile
@@ -117,6 +124,50 @@ flowchart TD
 |---------|-------------|
 | Sleep and Jitter | |
 | Beacon Metadata Encoding | |
+
+
+## Output Format
+```
+Cobalt Strike Malleable C2 — Assessment Report
+============================================================
+Target: [Target identifier]
+Assessor: [Operator name]
+Date: [Assessment date]
+Scope: [Authorized scope]
+MITRE ATT&CK: [Relevant technique IDs]
+
+Findings Summary:
+  [Finding 1]: [Severity] — [Brief description]
+  [Finding 2]: [Severity] — [Brief description]
+
+Detailed Results:
+  Phase 1: [Phase name]
+    - Result: [Outcome]
+    - Evidence: [Screenshot/log reference]
+    - Impact: [Business impact assessment]
+
+  Phase 2: [Phase name]
+    - Result: [Outcome]
+    - Evidence: [Screenshot/log reference]
+    - Impact: [Business impact assessment]
+
+Risk Rating: [Critical/High/Medium/Low/Informational]
+Recommendations:
+  1. [Immediate remediation step]
+  2. [Long-term hardening measure]
+  3. [Monitoring/detection improvement]
+```
+
+## 🔴 Red Team
+- Extract assets and enumerate endpoints.
+- Execute initial payloads leveraging documented vulnerabilities.
+
+## 🏁 Execution Phase (Steps to Reproduce)
+1. Perform target reconnaissance.
+2. Formulate payload based on endpoints.
+3. Execute the exploit and capture exfiltrated data.
+
+**Severity Profile:** High (CVSS: 8.5)
 
 ## References
 - Cobalt Strike Documentation: [Malleable C2](https://www.cobaltstrike.com/help-malleable-c2)

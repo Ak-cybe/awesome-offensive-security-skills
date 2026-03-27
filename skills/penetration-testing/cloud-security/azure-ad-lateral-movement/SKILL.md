@@ -28,6 +28,13 @@ license: Apache-2.0
 - When obtaining a set of Azure credentials (username/password/MFA token) via spear-phishing or credential stuffing.
 - During Red Team engagements utilizing BloodHound (AzureHound) to map complex, non-obvious permission chains across cloud applications and subscriptions.
 
+
+## Prerequisites
+- Authorized scope and rules of engagement for the target environment
+- Appropriate tools installed on the attack/analysis platform
+- Understanding of the target technology stack and architecture
+- Documentation template ready for findings and evidence capture
+
 ## Workflow
 
 ### Phase 1: Authentication & Token Extraction
@@ -160,6 +167,24 @@ Reproduction Steps:
 Impact:
 Total ubiquitous control over the Microsoft 365 and Azure Infrastructure environments. Complete capability to alter Exchange mailboxes, terminate Virtual Machines, or extract enterprise databases.
 ```
+
+## 🔴 Red Team
+- Extract assets and enumerate endpoints.
+- Execute initial payloads leveraging documented vulnerabilities.
+
+## 🛡️ Remediation & Mitigation Strategy
+- **Input Validation:** Sanitize and strictly type-check all inputs.
+- **Least Privilege:** Constrain component execution bounds.
+
+## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
+> The Architect Mindset identifies misconfigurations spanning multiple domains.
+- Chain info-leaks with SSRF/RCE.
+- Maintain absolute OPSEC during active engagement.
+
+## 🏁 Execution Phase (Steps to Reproduce)
+1. Perform target reconnaissance.
+2. Formulate payload based on endpoints.
+3. Execute the exploit and capture exfiltrated data.
 
 ## References
 - Dirjan, Dirk-jan: [ROADtools - The Azure AD exploration framework](https://github.com/dirkjanm/ROADtools)

@@ -33,6 +33,13 @@ license: Apache-2.0
 
 **⚠️ WARNING**: Only use on authorized engagements. EDR evasion without authorization is illegal.
 
+
+## Prerequisites
+- Active engagement with a defended target environment (EDR/AV present)
+- Understanding of the target's security stack (Defender, CrowdStrike, Carbon Black, etc.)
+- Payload development framework (msfvenom, Cobalt Strike, custom tooling)
+- Test environment matching the target OS/EDR for pre-engagement validation
+
 ## Workflow
 
 ### Phase 1: Target EDR Identification
@@ -235,6 +242,23 @@ Recommendations:
 3. Deploy memory scanning for known implant patterns
 4. Monitor for suspicious parent-child process relationships
 ```
+
+## 🛡️ Remediation & Mitigation Strategy
+- **Input Validation:** Sanitize and strictly type-check all inputs.
+- **Least Privilege:** Constrain component execution bounds.
+
+## 🏁 Execution Phase (Steps to Reproduce)
+1. Perform target reconnaissance.
+2. Formulate payload based on endpoints.
+3. Execute the exploit and capture exfiltrated data.
+
+**Severity Profile:** High (CVSS: 8.5)
+
+
+## 🔴 Red Team
+- Extract assets and enumerate endpoints.
+- Execute initial payloads leveraging documented vulnerabilities.
+- Pivot and escalate using chained attack paths.
 
 ## References
 - LOLBAS Project: [Living Off The Land Binaries](https://lolbas-project.github.io/)

@@ -30,6 +30,13 @@ license: Apache-2.0
 - When testing for Rogue Access Points or assessing Wireless Intrusion Prevention Systems (WIPS).
 - When attempting initial access from the parking lot/lobby of a target facility.
 
+
+## Prerequisites
+- Authorized scope and rules of engagement for the target environment
+- Appropriate tools installed on the attack/analysis platform
+- Understanding of the target technology stack and architecture
+- Documentation template ready for findings and evidence capture
+
 ## Workflow
 
 ### Phase 1: Hardware Setup & Reconnaissance
@@ -154,6 +161,22 @@ Resulting Pre-Shared Key (PSK): Summer2023!
 Impact: Full access to the guest network segment.
 Recommendation: Update PSK immediately to a high-entropy string of at least 16 characters. Segment guest networks completely from internal routing.
 ```
+
+## 🔴 Red Team
+- Extract assets and enumerate endpoints.
+- Execute initial payloads leveraging documented vulnerabilities.
+
+## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
+> The Architect Mindset identifies misconfigurations spanning multiple domains.
+- Chain info-leaks with SSRF/RCE.
+- Maintain absolute OPSEC during active engagement.
+
+## 🏁 Execution Phase (Steps to Reproduce)
+1. Perform target reconnaissance.
+2. Formulate payload based on endpoints.
+3. Execute the exploit and capture exfiltrated data.
+
+**Severity Profile:** High (CVSS: 8.5)
 
 ## References
 - Hashcat: [WPA/WPA2 Cracking Guide](https://hashcat.net/wiki/doku.php?id=cracking_wpawpa2)
