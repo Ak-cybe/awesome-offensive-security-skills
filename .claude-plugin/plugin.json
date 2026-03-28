@@ -1,24 +1,106 @@
 {
   "name": "cyberskills-elite",
-  "version": "1.0.0",
-  "description": "155+ elite cybersecurity skills for AI agents — Bug Hunting, Pentesting, Red Teaming, AI Red Teaming",
+  "version": "2.0.0",
+  "description": "191 battle-tested offensive security skills for AI agents — Bug Hunting, Pentesting, Red Teaming, AI Red Teaming, Incident Response",
   "skills_directory": "../skills",
   "author": "CyberSkills-Elite",
   "license": "Apache-2.0",
-  "repository": "https://github.com/cyberskills-elite/cybersecurity-agent-skills",
-  "homepage": "https://github.com/cyberskills-elite/cybersecurity-agent-skills",
+  "repository": "https://github.com/Ak-cybe/awesome-offensive-security-skills",
+  "homepage": "https://github.com/Ak-cybe/awesome-offensive-security-skills",
   "categories": [
     "cybersecurity",
     "bug-hunting",
     "penetration-testing",
     "red-teaming",
-    "ai-red-teaming"
+    "ai-red-teaming",
+    "incident-response",
+    "offensive-security"
+  ],
+  "plugins": [
+    {
+      "id": "cyberskills-web",
+      "name": "Web Application Security",
+      "description": "28 skills: XSS, SQLi, SSRF, SSTI, XXE, CSRF, IDOR, request smuggling, and more",
+      "skills": "skills/bug-hunting/web-vulnerabilities/**",
+      "skill_count": 28
+    },
+    {
+      "id": "cyberskills-api",
+      "name": "API Security",
+      "description": "9 skills: JWT forgery, GraphQL injection, OAuth exploitation, BOLA/BFLA",
+      "skills": "skills/bug-hunting/api-security/**",
+      "skill_count": 9
+    },
+    {
+      "id": "cyberskills-ai-redteam",
+      "name": "AI Red Teaming — EXCLUSIVE",
+      "description": "25 skills: LLM jailbreaking, prompt injection, RAG poisoning, MCP exploitation, agent tool abuse",
+      "skills": "skills/ai-red-teaming/**",
+      "skill_count": 25
+    },
+    {
+      "id": "cyberskills-portswigger",
+      "name": "PortSwigger Deep-Dive Labs",
+      "description": "31 skills: Complete lab walkthroughs with exact payloads — BSCP certification ready",
+      "skills": "skills/bug-hunting/deep-dive-labs/**",
+      "skill_count": 31
+    },
+    {
+      "id": "cyberskills-network",
+      "name": "Network Penetration Testing",
+      "description": "9 skills: Nmap, AD attacks, SMB exploitation, DNS poisoning, MitM",
+      "skills": "skills/penetration-testing/network/**",
+      "skill_count": 9
+    },
+    {
+      "id": "cyberskills-ad",
+      "name": "Active Directory Attacks",
+      "description": "6 skills: Kerberoasting, AS-REP Roasting, DCSync, Golden/Silver Ticket, BloodHound",
+      "skills": "skills/penetration-testing/active-directory/**",
+      "skill_count": 6
+    },
+    {
+      "id": "cyberskills-cloud",
+      "name": "Cloud Security",
+      "description": "10 skills: AWS, Azure, GCP, Kubernetes, Docker escape, IAM exploitation",
+      "skills": "skills/penetration-testing/cloud-security/**",
+      "skill_count": 10
+    },
+    {
+      "id": "cyberskills-redteam",
+      "name": "Red Teaming Operations",
+      "description": "21 skills: C2, initial access, evasion, persistence, lateral movement, priv esc",
+      "skills": "skills/red-teaming/**",
+      "skill_count": 21
+    },
+    {
+      "id": "cyberskills-ir",
+      "name": "Incident Response & Forensics",
+      "description": "10 skills: Memory forensics, threat hunting, malware triage, cloud forensics",
+      "skills": "skills/incident-response/**",
+      "skill_count": 10
+    },
+    {
+      "id": "cyberskills-methodology",
+      "name": "Bug Bounty Methodology",
+      "description": "9 skills: AI pair hunting, report writing guardrails, workflow automation",
+      "skills": "skills/bug-hunting/methodology/**",
+      "skill_count": 9
+    }
   ],
   "compatibility": {
     "claude-code": true,
+    "gemini-cli": true,
     "github-copilot": true,
     "cursor": true,
-    "gemini-cli": true,
-    "openai-codex-cli": true
+    "windsurf": true,
+    "openai-codex-cli": true,
+    "any-mcp-agent": true
+  },
+  "total_skills": 191,
+  "total_domains": 10,
+  "eval_framework": {
+    "checks": 10,
+    "pass_rate": "191/191"
   }
 }

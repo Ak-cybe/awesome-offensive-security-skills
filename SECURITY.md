@@ -11,7 +11,7 @@ If you discover a security issue in this project, please report it responsibly.
 
 ### How to Report
 1. **Do NOT** create a public GitHub issue
-2. Email: security@cyberskills-elite.dev
+2. Use [GitHub Security Advisories](https://github.com/Ak-cybe/awesome-offensive-security-skills/security/advisories/new)
 3. Include: description, reproduction steps, and potential impact
 
 ### Response Timeline

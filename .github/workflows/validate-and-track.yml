@@ -1,0 +1,109 @@
+name: Validate Skills & Track Metrics
+
+on:
+  push:
+    branches: [main]
+    paths: ['skills/**']
+  pull_request:
+    branches: [main]
+    paths: ['skills/**']
+  schedule:
+    - cron: '0 0 * * 1'  # Weekly on Monday
+  workflow_dispatch:
+
+jobs:
+  validate:
+    name: Validate Skills Quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Generate index.json
+        run: node generate-index.js
+
+      - name: Validate all skills
+        run: node generate-index.js --validate
+
+      - name: Run binary evaluations
+        run: |
+          PASS=0
+          FAIL=0
+          for skill in $(find skills -name "SKILL.md" -type f); do
+            result=$(python auto_research/evaluator.py "$skill" 2>&1)
+            if echo "$result" | grep -q "FAIL"; then
+              echo "❌ FAIL: $skill"
+              echo "$result"
+              FAIL=$((FAIL + 1))
+            else
+              PASS=$((PASS + 1))
+            fi
+          done
+          echo ""
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "Results: $PASS passed, $FAIL failed"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          if [ $FAIL -gt 0 ]; then
+            exit 1
+          fi
+
+      - name: Verify skill count
+        run: |
+          COUNT=$(find skills -name "SKILL.md" -type f | wc -l)
+          echo "Total skills: $COUNT"
+          if [ "$COUNT" -lt 191 ]; then
+            echo "⚠️ Warning: Expected 191+ skills, found $COUNT"
+          fi
+
+  metrics:
+    name: Track Growth Metrics
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Collect metrics
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "📊 CyberSkills Elite — Weekly Metrics"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo ""
+
+          # Repository metrics
+          STARS=$(gh api repos/${{ github.repository }} --jq '.stargazers_count')
+          FORKS=$(gh api repos/${{ github.repository }} --jq '.forks_count')
+          WATCHERS=$(gh api repos/${{ github.repository }} --jq '.subscribers_count')
+          OPEN_ISSUES=$(gh api repos/${{ github.repository }} --jq '.open_issues_count')
+
+          # Skill count
+          SKILL_COUNT=$(find skills -name "SKILL.md" -type f | wc -l)
+
+          # Contributor count
+          CONTRIBUTORS=$(gh api repos/${{ github.repository }}/contributors --jq 'length')
+
+          echo "⭐ Stars: $STARS"
+          echo "🍴 Forks: $FORKS"
+          echo "👀 Watchers: $WATCHERS"
+          echo "📋 Open Issues: $OPEN_ISSUES"
+          echo "🔧 Skills: $SKILL_COUNT"
+          echo "👥 Contributors: $CONTRIBUTORS"
+          echo ""
+          echo "Date: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+
+      - name: Update badges
+        run: |
+          SKILL_COUNT=$(find skills -name "SKILL.md" -type f | wc -l)
+          echo "Skill count for badges: $SKILL_COUNT"

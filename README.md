@@ -2,116 +2,187 @@
 
 # 🔥 CyberSkills Elite
 
-### The World's Most Complete Cybersecurity Agent Skills Collection
-
-**191 battle-tested offensive security skills for AI coding agents**
+### 191 Battle-Tested Skills to Turn Your AI Agent into a Red Team Co-Pilot
 
 [![Skills](https://img.shields.io/badge/Skills-191-red?style=for-the-badge&logo=target&logoColor=white)](./skills)
-[![Domains](https://img.shields.io/badge/Domains-10-blue?style=for-the-badge&logo=folder&logoColor=white)](./skills)
 [![AI Red Team](https://img.shields.io/badge/AI_Red_Team-25_Skills-purple?style=for-the-badge&logo=robot&logoColor=white)](./skills/ai-red-teaming)
-[![PortSwigger Labs](https://img.shields.io/badge/PortSwigger-31_Deep_Dives-orange?style=for-the-badge&logo=firefox&logoColor=white)](./skills/bug-hunting/deep-dive-labs)
-[![MITRE ATT&CK](https://img.shields.io/badge/MITRE_ATT%26CK-Mapped-yellow?style=for-the-badge&logo=shield&logoColor=white)](./mappings)
-[![Eval Score](https://img.shields.io/badge/Eval_Score-191%2F191-brightgreen?style=for-the-badge&logo=checkmarx&logoColor=white)](#-quality-assurance)
+[![PortSwigger](https://img.shields.io/badge/PortSwigger-31_Deep_Dives-orange?style=for-the-badge&logo=firefox&logoColor=white)](./skills/bug-hunting/deep-dive-labs)
+[![Eval Score](https://img.shields.io/badge/Quality-191%2F191_Passing-brightgreen?style=for-the-badge&logo=checkmarx&logoColor=white)](./LEADERBOARD.md)
+[![MITRE](https://img.shields.io/badge/MITRE_ATT%26CK-Mapped-yellow?style=for-the-badge&logo=shield&logoColor=white)](./mappings)
 [![License](https://img.shields.io/badge/License-Apache_2.0-green?style=for-the-badge&logo=opensourceinitiative&logoColor=white)](./LICENSE)
 
-*Bug Hunting • Penetration Testing • Red Teaming • AI Red Teaming • Incident Response • OSINT • Exploit Dev*
+*Bug Bounty • Pentesting • Red Team • AI Security • Incident Response • Cloud • AD Attacks*
 
-**Compatible with: Claude Code | Gemini CLI | GitHub Copilot | Cursor | Windsurf | Codex CLI | Any MCP Agent**
+**Works with:** Claude Code | Gemini CLI | Cursor | Windsurf | Codex CLI | GitHub Copilot | Any MCP Agent
 
 ---
 
-[**Quick Start**](#-quick-start) • [**Full Catalog**](#-full-skill-catalog) • [**Why Us?**](#-why-cyberskills-elite) • [**Quality**](#-quality-assurance) • [**Contributing**](#-contributing)
+[**⚡ Quick Start**](#-60-second-quick-start) · [**🎯 Why Us?**](#-why-were-different) · [**📂 Skills**](#-full-skill-catalog) · [**🔗 Attack Chains**](#-attack-chain-composer) · [**✅ Quality**](#-quality-assurance) · [**🤝 Contribute**](#-contributing)
 
 </div>
 
 ---
 
-## ⚡ Quick Start
+## ⚡ 60-Second Quick Start
 
-### Install (30 seconds)
+### Linux / macOS
 ```bash
-# Clone
-git clone https://github.com/YOUR_USERNAME/cybersecurity-agent-skills.git
+# One-command install (auto-detects your AI agent)
+curl -sS https://raw.githubusercontent.com/Ak-cybe/awesome-offensive-security-skills/main/install.sh | bash
+```
 
-# For Claude Code — drop into your project
-cp -r cybersecurity-agent-skills/skills ./.claude/skills/
+### Windows (PowerShell)
+```powershell
+# Clone and install
+git clone https://github.com/Ak-cybe/awesome-offensive-security-skills.git
+Copy-Item -Recurse awesome-offensive-security-skills\skills\ $env:USERPROFILE\.gemini\skills\cyberskills-elite\
+```
 
-# For Gemini CLI — point to skills dir
-export GEMINI_SKILLS_PATH="./cybersecurity-agent-skills/skills"
+### Manual (any agent)
+```bash
+git clone https://github.com/Ak-cybe/awesome-offensive-security-skills.git
 
-# For any agent — skills follow the universal SKILL.md standard
+# Claude Code
+cp -r awesome-offensive-security-skills/skills/ ./.claude/skills/
+
+# Gemini CLI
+cp -r awesome-offensive-security-skills/skills/ ~/.gemini/skills/cyberskills-elite/
+
+# Any agent — skills use the universal SKILL.md standard
+```
+
+### Install by category (pick what you need)
+```bash
+./install.sh --category ai        # AI Red Teaming (25 skills)
+./install.sh --category web       # Web App Security (28 skills)
+./install.sh --category labs      # PortSwigger Labs (31 skills)
+./install.sh --list               # See all categories
 ```
 
 ### Use (zero config)
 ```
 # Just describe what you want. The agent auto-selects the right skill:
 
-"I found a Bearer token on target.com — test it for JWT algorithm confusion"
-→ Triggers: jwt-forgery-algorithm-confusion
+"Test this JWT for algorithm confusion attacks"
+→ Loads: jwt-forgery-algorithm-confusion
 
 "Perform Kerberoasting on the AD domain controller at 10.10.10.1"
-→ Triggers: active-directory-kerberoasting
+→ Loads: active-directory-kerberoasting
 
 "Test this chatbot for prompt injection bypasses"
-→ Triggers: llm-direct-prompt-injection
+→ Loads: llm-direct-prompt-injection
 
-"Extract secrets from this JavaScript bundle"
-→ Triggers: source-code-analysis / js-analysis
+"Chain this SSRF into RCE on the cloud backend"
+→ Loads: attack-chain-composer → ssrf + cloud-metadata + iam-exploitation
 ```
+
+**Done.** No configuration. No plugins to enable. Just describe your task.
 
 ---
 
-## 🏆 Why CyberSkills Elite?
+## 🎯 Why We're Different
 
-> **The gap between "knows cybersecurity" and "can execute an attack chain" is what separates a useful agent from a useless one. These skills bridge that gap.**
+> **We're not "another skill collection." We're the only offensive security-first collection built for AI agents.**
 
-### Head-to-Head Comparison
+### Head-to-Head: CyberSkills Elite vs. The Competition
 
-| Feature | CyberSkills Elite | Generic Skill Repos | SecOps CLI | VoltAgent |
-|---|:---:|:---:|:---:|:---:|
-| **Total Skills** | **191** | ~50 | ~50 | ~30 |
-| **Offensive Security Depth** | ✅ Full attack chains | ⚠️ Surface-level | ⚠️ Partial | ❌ Checklists |
-| **AI Red Teaming** | ✅ **25 dedicated skills** | ❌ None | ❌ None | ❌ None |
-| **PortSwigger Lab Walkthroughs** | ✅ **31 deep dives** | ❌ None | ❌ None | ❌ None |
-| **Working Payloads & Commands** | ✅ Every phase | ⚠️ Many empty | ⚠️ Some | ❌ None |
-| **Real CVE Case Studies** | ✅ Per skill | ❌ | ❌ | ❌ |
-| **🔴 Red + 🔵 Blue Team** | ✅ Every skill | ❌ | ❌ | ❌ |
-| **Decision Flowcharts** | ✅ Mermaid diagrams | ❌ | ❌ | ❌ |
-| **MITRE ATT&CK + ATLAS** | ✅ Full mapping | ⚠️ Partial | ❌ | ❌ |
-| **Difficulty Progression** | ✅ 4 levels | ❌ | ❌ | ❌ |
-| **Binary Eval Framework** | ✅ 10 automated checks | ❌ | ❌ | ❌ |
-| **Elite Chaining Strategies** | ✅ $50K+ report methodology | ❌ | ❌ | ❌ |
-| **Multi-Agent Compatible** | ✅ All platforms | ⚠️ Single agent | ⚠️ Single | ⚠️ Single |
+| Feature | **CyberSkills Elite** | VoltAgent (13K⭐) | Other Repos |
+|---|:---:|:---:|:---:|
+| **Total Skills** | **191** | ~5 security | ~50 mixed |
+| **Offensive Security Depth** | ✅ Full kill chains | ❌ Checklists | ⚠️ Surface |
+| **AI Red Teaming** | ✅ **25 dedicated** | ❌ Zero | ❌ Zero |
+| **PortSwigger Lab Walkthroughs** | ✅ **31 deep dives** | ❌ Zero | ❌ Zero |
+| **Working Payloads & Commands** | ✅ Every phase | ❌ None | ⚠️ Some |
+| **Real CVE Case Studies** | ✅ Per skill | ❌ | ❌ |
+| **🔴 Red + 🔵 Blue Team** | ✅ Every skill | ❌ | ❌ |
+| **Decision Flowcharts** | ✅ Mermaid diagrams | ❌ | ❌ |
+| **MITRE ATT&CK Mapping** | ✅ Full coverage | ❌ | ⚠️ Partial |
+| **Attack Chain Composer** | ✅ **EXCLUSIVE** | ❌ | ❌ |
+| **Quality Framework** | ✅ 10 automated checks | ❌ None | ❌ None |
+| **Elite Chaining Strategy** | ✅ $50K report methodology | ❌ | ❌ |
+| **Multi-Agent Compatible** | ✅ All platforms | ⚠️ Single | ⚠️ Single |
 
-### 🎯 What Makes Us Different
+**VoltAgent wins for general development. We own offensive security.** They have ~5 security skills. We have 191, with 38x more coverage and capabilities they can't match.
 
-1. **🔗 Attack Chain Playbooks** — Not just vulnerability lists. Full kill chains from recon to exfiltration with decision trees.
-2. **🤖 AI Red Teaming (25 skills)** — The only collection with LLM jailbreaking, RAG poisoning, MCP exploitation, and agent tool abuse skills.
-3. **🎓 PortSwigger Deep Dives (31 labs)** — Every lab with exact payloads, bypass techniques, and zero-day extensions. BSCP-ready.
-4. **🏆 Elite Hunter Methodology** — Every skill includes "$500 vs $50,000 report" chaining strategies used by top 1% bug bounty hunters.
-5. **🔵 Dual Perspective** — Every offensive skill includes defensive detection and remediation. Red Team + Blue Team in one file.
-6. **📊 Quality Guaranteed** — Every skill passes 10 automated binary evaluations. Zero AI hallucination fluff.
+### 🏆 What Makes Us #1 for Security
+
+1. **🔗 Attack Chain Composer** — Not just vulnerability lists. A dedicated agent that chains skills into multi-step kill chains. Turn an SSRF into RCE. Turn XSS into account takeover. This is the **$500 vs $50,000 report** differentiator. [→ See Attack Chains](#-attack-chain-composer)
+
+2. **🤖 AI Red Teaming (25 skills)** — The *only* collection with LLM jailbreaking, RAG poisoning, MCP exploitation, agent tool abuse, and adversarial ML skills. Nobody else covers this.
+
+3. **🎓 PortSwigger Deep Dives (31 labs)** — Every lab with exact payloads, bypass techniques, and zero-day extensions. BSCP certification ready.
+
+4. **🏆 Elite Hunter Methods** — Every skill includes the "Top 1%" chaining strategies used by hunters earning $50K+ per report.
+
+5. **🔵 Dual Perspective** — Every offensive skill includes detection rules, SIEM queries, and remediation. Red + Blue in one file.
+
+6. **📊 191/191 Quality Score** — Every skill passes 10 automated binary evaluations. Zero AI hallucination. [→ See Leaderboard](./LEADERBOARD.md)
+
 7. **⚙️ Self-Improving** — Built-in auto-research framework that evaluates, mutates, and perfects skills autonomously.
+
+---
+
+## 🔗 Attack Chain Composer
+
+> **Unique to CyberSkills Elite.** No other skill collection offers this.
+
+The Attack Chain Composer takes a single vulnerability finding and maps it to multi-step attack paths for maximum impact:
+
+```
+You: "I found an open redirect on target.com"
+
+Agent (using Attack Chain Composer):
+┌─────────────────────────────────────────────┐
+│ 🔗 Attack Chain: Open Redirect → ATO       │
+│                                             │
+│ Step 1: Craft redirect → OAuth callback     │
+│   └→ Skill: open-redirect-exploitation      │
+│                                             │
+│ Step 2: Steal authorization code            │
+│   └→ Skill: oauth-flow-exploitation         │
+│                                             │
+│ Step 3: Full account takeover               │
+│                                             │
+│ Impact: Low → Critical                      │
+│ Estimated Bounty: $5,000 — $25,000          │
+└─────────────────────────────────────────────┘
+```
+
+**Built-in chains include:**
+- XSS → Session Theft → Account Takeover
+- SSRF → Cloud Metadata → IAM → RCE
+- SQL Injection → Data Dump → Network Pivot
+- JWT Confusion → Admin Token → Full Takeover
+- Kerberoasting → Lateral Movement → Domain Admin → Golden Ticket
+- Prompt Injection → System Prompt Leak → SSRF → Data Exfiltration
+
+[→ Full attack chain documentation](./tools/attack-chain-composer/SKILL.md)
 
 ---
 
 ## 📂 Full Skill Catalog
 
-### Overview
+<table>
+<tr><td>
+
+### Overview — 191 Skills, 10 Domains
 
 | Domain | Skills | Coverage |
 |---|---|---|
 | 🐛 **Bug Hunting** | 90 | Web vulns, API security, deep-dive labs, methodology |
-| 🔓 **Penetration Testing** | 40 | Network, web app, cloud, infrastructure, wireless |
+| 🔓 **Penetration Testing** | 40 | Network, web app, cloud, AD, mobile, wireless |
 | 🤖 **AI Red Teaming** | 25 | LLM attacks, ML security, agent exploitation |
-| 🎯 **Red Teaming** | 21 | C2, initial access, evasion, persistence, priv esc |
+| 🎯 **Red Teaming** | 21 | C2, evasion, persistence, priv esc, lateral movement |
 | 🔍 **Incident Response** | 10 | Forensics, threat hunting, malware analysis |
 | 🕵️ **OSINT** | 1 | Reconnaissance methodology |
-| 💀 **Exploit Development** | 1 | Binary exploitation |
+| 💀 **Exploit Dev** | 1 | Binary exploitation |
 | 🧬 **Malware Analysis** | 1 | Reverse engineering |
 | 🔎 **Forensics** | 1 | Digital forensics |
-| 📡 **Reconnaissance** | 1 | Attack surface mapping |
-| **Total** | **191** | |
+| 📡 **Recon** | 1 | Attack surface mapping |
+| | **191** | |
+
+</td></tr>
+</table>
 
 ---
 
@@ -283,7 +354,7 @@ Each deep-dive includes:
 
 ### 🤖 AI Red Teaming (25 Skills) — **EXCLUSIVE**
 
-> No other skill collection covers AI security. We have 25 dedicated skills across 5 categories.
+> **No other skill collection covers AI security.** We have 25 dedicated skills across 5 categories.
 
 <details>
 <summary><b>Prompt Engineering & LLM Attacks (7)</b></summary>
@@ -376,7 +447,7 @@ Each deep-dive includes:
 
 ## 🏗️ Skill Architecture
 
-Every skill passes **10 automated quality checks** and follows this structure:
+Every skill follows a consistent structure and passes **10 automated quality checks**:
 
 ```
 skill-name/
@@ -410,9 +481,31 @@ skill-name/
 
 ---
 
+## 🔍 Skill Browser
+
+Can't find what you need? Use the **Skill Browser** agent:
+
+```
+"Show me all AI red teaming skills"
+→ Lists all 25 skills with descriptions
+
+"Find a skill for JWT testing"
+→ Returns jwt-forgery-algorithm-confusion and related
+
+"What's your hardest skill?"
+→ Lists all 34 expert-level skills
+
+"Search for cloud exploitation"
+→ Shows AWS, Azure, GCP, K8s, Docker skills
+```
+
+The Skill Browser searches across names, descriptions, tags, and categories. See [`tools/skill-browser/`](./tools/skill-browser/) for details.
+
+---
+
 ## ✅ Quality Assurance
 
-Every skill is automatically validated using our **binary eval framework** — no subjective scoring, only pass/fail:
+Every skill is validated with our **binary eval framework** — no subjective scoring, only pass/fail:
 
 | Eval | What It Checks | Score |
 |---|---|---|
@@ -427,7 +520,9 @@ Every skill is automatically validated using our **binary eval framework** — n
 | `cvss_severity` | Mentions CVSS or severity level | 191/191 ✅ |
 | `references` | Ends with References + URLs | 191/191 ✅ |
 
-### Run the evaluator yourself:
+**[→ View Full Leaderboard](./LEADERBOARD.md)**
+
+### Run evaluations yourself:
 ```bash
 # Single skill
 python auto_research/evaluator.py skills/bug-hunting/api-security/jwt-forgery-algorithm-confusion/SKILL.md
@@ -497,8 +592,10 @@ Apache License 2.0 — see [LICENSE](./LICENSE) for details.
 
 **Built for the offensive security community by hunters, for hunters.**
 
-**191 skills • 10 domains • 1.54 MB of pure attack knowledge**
+**191 skills · 10 domains · 25 AI red team skills · 31 PortSwigger labs · 10-point quality framework**
 
 ⭐ **Star this repo if it makes your security work better** ⭐
+
+[Report Bug](https://github.com/Ak-cybe/awesome-offensive-security-skills/issues) · [Request Skill](https://github.com/Ak-cybe/awesome-offensive-security-skills/issues) · [Contributing](./CONTRIBUTING.md)
 
 </div>

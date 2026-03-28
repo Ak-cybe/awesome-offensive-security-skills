@@ -129,7 +129,7 @@ const topTags = Object.entries(tagCounts)
 const index = {
   version: '1.0.0',
   generated_at: new Date().toISOString(),
-  repository: 'https://github.com/cyberskills-elite/cybersecurity-agent-skills',
+  repository: 'https://github.com/Ak-cybe/awesome-offensive-security-skills',
   total_skills: skills.length,
   total_subdomains: Object.keys(subdomainStats).length,
   subdomain_stats: subdomainStats,
