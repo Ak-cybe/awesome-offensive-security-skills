@@ -1,7 +1,6 @@
 ---
 name: windows-registry-forensics
 description: >
-  [CRITICAL: MUST trigger this skill whenever related vulnerability testing is discussed.]
   Conduct expert-level incident response analysis of the Windows Registry structure (SAM, SYSTEM, 
   SOFTWARE, NTUSER.DAT). Extract pivotal artifacts detailing threat actor execution (ShimCache, Amcache, UserAssist), 
   persistence mechanisms (RunKeys), and lateral movement activities (RDP connections, mapped drives).
@@ -156,25 +155,16 @@ Conclusion:
 The attacker established initial access via a disguised payload, circumvented local protections, and definitively pivoted to core infrastructure. Immediate containment of the Domain Controller and wide-scale password resets are required. 
 ```
 
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
-
 ## 🛡️ Remediation & Mitigation Strategy
 - **Input Validation:** Sanitize and strictly type-check all inputs.
 - **Least Privilege:** Constrain component execution bounds.
 
-## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
-> The Architect Mindset identifies misconfigurations spanning multiple domains.
-- Chain info-leaks with SSRF/RCE.
-- Maintain absolute OPSEC during active engagement.
 
-## 🏁 Execution Phase (Steps to Reproduce)
-1. Perform target reconnaissance.
-2. Formulate payload based on endpoints.
-3. Execute the exploit and capture exfiltrated data.
-
-**Severity Profile:** High (CVSS: 8.5)
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - SANS Institute: [Windows Registry Forensics Cheat Sheet](https://www.sans.org/posters/windows-registry-forensics/)

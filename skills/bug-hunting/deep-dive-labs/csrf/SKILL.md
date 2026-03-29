@@ -122,7 +122,6 @@ Add header: `Referrer-Policy: unsafe-url`
 ---
 
 
-
 ## Blue Team Detection
 - Monitor access logs for anomalous payloads.
 - Implement strict input validation and parameterized queries where applicable.
@@ -154,10 +153,6 @@ Payload Used: [Payload]
 Impact Explanation: [Impact]
 ```
 
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
-
 ## 🔵 Blue Team
 - Deploy robust WAF rules to detect anomalies.
 - Monitor logs for unusual access patterns.
@@ -166,12 +161,12 @@ Impact Explanation: [Impact]
 - **Input Validation:** Sanitize and strictly type-check all inputs.
 - **Least Privilege:** Constrain component execution bounds.
 
-## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
-> The Architect Mindset identifies misconfigurations spanning multiple domains.
-- Chain info-leaks with SSRF/RCE.
-- Maintain absolute OPSEC during active engagement.
 
-**Severity Profile:** High (CVSS: 8.5)
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - [PortSwigger Web Security Academy](https://portswigger.net/web-security)

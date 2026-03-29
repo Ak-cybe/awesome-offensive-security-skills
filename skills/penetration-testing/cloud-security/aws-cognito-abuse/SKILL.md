@@ -1,7 +1,6 @@
 ---
 name: aws-cognito-abuse
 description: >
-  [CRITICAL: MUST trigger this skill whenever related vulnerability testing is discussed.]
   Exploit misconfigurations in AWS Cognito, specifically focusing on unauthorized identity pool access, 
   user pool self-registration issues, and privilege escalation via custom attributes to access broader 
   AWS infrastructure.
@@ -83,10 +82,6 @@ flowchart TD
 - **Disable Unauthenticated Access**: **Attribute Write Permissions**: **Least Privilege IAM**: Key Concepts
 | Concept | Description |
 |---------|-------------|
-| Amazon Cognito | |
-| Identity Pools vs User Pools | |
-
-
 ## Output Format
 ```
 Aws Cognito Abuse — Assessment Report
@@ -119,21 +114,12 @@ Recommendations:
   3. [Monitoring/detection improvement]
 ```
 
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
 
-## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
-> The Architect Mindset identifies misconfigurations spanning multiple domains.
-- Chain info-leaks with SSRF/RCE.
-- Maintain absolute OPSEC during active engagement.
-
-## 🏁 Execution Phase (Steps to Reproduce)
-1. Perform target reconnaissance.
-2. Formulate payload based on endpoints.
-3. Execute the exploit and capture exfiltrated data.
-
-**Severity Profile:** High (CVSS: 8.5)
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - Notion Security: [Cognito Security Misconfigurations](https://notion.so/security)

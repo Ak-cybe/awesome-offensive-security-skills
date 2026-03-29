@@ -1,7 +1,6 @@
 ---
 name: phishing-and-social-engineering-campaigns
 description: >
-  [CRITICAL: MUST trigger this skill whenever related vulnerability testing is discussed.]
   Plan and execute authorized phishing and social engineering campaigns for red team engagements.
   Use this skill when conducting simulated social engineering attacks including email phishing,
   spear phishing, vishing, pretexting, and credential harvesting. Covers GoPhish setup, pretext
@@ -272,21 +271,12 @@ Recommendations:
   3. [Monitoring/detection improvement]
 ```
 
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
 
-## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
-> The Architect Mindset identifies misconfigurations spanning multiple domains.
-- Chain info-leaks with SSRF/RCE.
-- Maintain absolute OPSEC during active engagement.
-
-## 🏁 Execution Phase (Steps to Reproduce)
-1. Perform target reconnaissance.
-2. Formulate payload based on endpoints.
-3. Execute the exploit and capture exfiltrated data.
-
-**Severity Profile:** High (CVSS: 8.5)
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - MITRE ATT&CK: [T1566 — Phishing](https://attack.mitre.org/techniques/T1566/)

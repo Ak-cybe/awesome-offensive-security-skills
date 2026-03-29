@@ -1,7 +1,6 @@
 ---
 name: smtp-open-relay-abuse
 description: >
-  [CRITICAL: MUST trigger this skill whenever related vulnerability testing is discussed.]
   Identify and exploit SMTP Open Relays. This skill teaches how to test mail servers to determine 
   if they process email delivery regardless of the sender or recipient domain, enabling attackers to 
   spoof internal addresses and bypass basic anti-phishing controls.
@@ -89,10 +88,6 @@ flowchart TD
 - **Require Authentication**: **Network Filtering (Firewalls)**: **Domain Verification (SPF/DKIM/DMARC)**: Key Concepts
 | Concept | Description |
 |---------|-------------|
-| SMTP Open Relay | |
-| Email Spoofing | |
-
-
 ## Output Format
 ```
 Smtp Open Relay Abuse — Assessment Report
@@ -125,21 +120,12 @@ Recommendations:
   3. [Monitoring/detection improvement]
 ```
 
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
 
-## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
-> The Architect Mindset identifies misconfigurations spanning multiple domains.
-- Chain info-leaks with SSRF/RCE.
-- Maintain absolute OPSEC during active engagement.
-
-## 🏁 Execution Phase (Steps to Reproduce)
-1. Perform target reconnaissance.
-2. Formulate payload based on endpoints.
-3. Execute the exploit and capture exfiltrated data.
-
-**Severity Profile:** High (CVSS: 8.5)
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - OWASP: [Testing for SMTP Open Relay](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/03-Identity_Management_Testing/01-Test_Role_Definitions)

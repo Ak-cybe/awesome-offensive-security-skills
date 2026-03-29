@@ -1,7 +1,6 @@
 ---
 name: vlan-hopping-and-trunking
 description: >
-  [CRITICAL: MUST trigger this skill whenever related vulnerability testing is discussed.]
   exploit misconfigured network switches to jump from a low-privilege VLAN (e.g., Guest Network) into a
   restricted VLAN (e.g., Corporate or Management Network). Use this skill during internal network penetration
   tests when physical access is achieved or when assessing network segmentation and zero-trust architectures.
@@ -158,25 +157,16 @@ Impact:
 Complete circumvention of physical and logical network segmentation. Attacker achieved unauthenticated network line-of-sight to the main Domain Controllers and vCenter management interfaces.
 ```
 
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
-
 ## 🛡️ Remediation & Mitigation Strategy
 - **Input Validation:** Sanitize and strictly type-check all inputs.
 - **Least Privilege:** Constrain component execution bounds.
 
-## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
-> The Architect Mindset identifies misconfigurations spanning multiple domains.
-- Chain info-leaks with SSRF/RCE.
-- Maintain absolute OPSEC during active engagement.
 
-## 🏁 Execution Phase (Steps to Reproduce)
-1. Perform target reconnaissance.
-2. Formulate payload based on endpoints.
-3. Execute the exploit and capture exfiltrated data.
-
-**Severity Profile:** High (CVSS: 8.5)
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - SANS: [VLAN Hopping Tutorial](https://www.sans.org/reading-room/whitepapers/networkdevs/virtual-local-area-network-vlan-security-33363)

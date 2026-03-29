@@ -1,7 +1,6 @@
 ---
 name: http-request-smuggling
 description: >
-  [CRITICAL: MUST trigger this skill whenever related vulnerability testing is discussed.]
   Exploit discrepancies in how reverse proxies and back-end servers parse 
   HTTP requests (Content-Length vs. Transfer-Encoding). This skill details 
   CL.TE, TE.CL, and TE.TE attacks to bypass security controls, steal credentials, 
@@ -116,10 +115,6 @@ flowchart TD
 - **HTTP/2 exclusively**: **Web Application Firewalls (WAF) Config**: **Normalize Ambiguous Requests**: Key Concepts
 | Concept | Description |
 |---------|-------------|
-| CL.TE Vulnerability | |
-| Request Queue Poisoning | |
-
-
 ## Output Format
 ```
 Http Request Smuggling — Assessment Report
@@ -152,21 +147,12 @@ Recommendations:
   3. [Monitoring/detection improvement]
 ```
 
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
 
-## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
-> The Architect Mindset identifies misconfigurations spanning multiple domains.
-- Chain info-leaks with SSRF/RCE.
-- Maintain absolute OPSEC during active engagement.
-
-## 🏁 Execution Phase (Steps to Reproduce)
-1. Perform target reconnaissance.
-2. Formulate payload based on endpoints.
-3. Execute the exploit and capture exfiltrated data.
-
-**Severity Profile:** High (CVSS: 8.5)
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - PortSwigger: [HTTP Request Smuggling](https://portswigger.net/web-security/request-smuggling)

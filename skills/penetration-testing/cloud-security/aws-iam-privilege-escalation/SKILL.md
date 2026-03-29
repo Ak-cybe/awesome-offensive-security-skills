@@ -1,7 +1,6 @@
 ---
 name: aws-iam-privilege-escalation
 description: >
-  [CRITICAL: MUST trigger this skill whenever related vulnerability testing is discussed.]
   Identify and exploit misconfigured Identity and Access Management (IAM) permissions within 
   Amazon Web Services (AWS) to escalate privileges. Use this skill to move from a low-privileged 
   compromised IAM user/role (e.g., via SSRF) to full AdministratorAccess by abusing 
@@ -187,19 +186,12 @@ Impact:
 Critical failure of cloud compartmentalization. Low-privileged web-app identity completely circumvented restrictions, escalating to an RDS Database Administrator capable of wiping or extracting the entire production database.
 ```
 
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
 
-## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
-> The Architect Mindset identifies misconfigurations spanning multiple domains.
-- Chain info-leaks with SSRF/RCE.
-- Maintain absolute OPSEC during active engagement.
-
-## 🏁 Execution Phase (Steps to Reproduce)
-1. Perform target reconnaissance.
-2. Formulate payload based on endpoints.
-3. Execute the exploit and capture exfiltrated data.
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - Rhino Security Labs: [AWS IAM Privilege Escalation paths](https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/)

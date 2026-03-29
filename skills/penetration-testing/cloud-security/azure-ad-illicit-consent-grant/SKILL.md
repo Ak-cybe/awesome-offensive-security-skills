@@ -1,7 +1,6 @@
 ---
 name: azure-ad-illicit-consent-grant
 description: >
-  [CRITICAL: MUST trigger this skill whenever related vulnerability testing is discussed.]
   Exploit Illicit Consent Grants in Azure Active Directory (Entra ID). This skill covers 
   crafting a malicious OAuth application to trick victims into granting broad permissions 
   (like reading emails, modifying files) without requiring their password or MFA.
@@ -84,10 +83,6 @@ flowchart TD
 - **Restrict App Consent**: - **Monitor Azure AD Audit Logs**: **Defend against Oauth Phishing**: Key Concepts
 | Concept | Description |
 |---------|-------------|
-| OAuth Consent Flow | |
-| Illicit Consent | |
-
-
 ## Output Format
 ```
 Azure Ad Illicit Consent Grant — Assessment Report
@@ -120,21 +115,12 @@ Recommendations:
   3. [Monitoring/detection improvement]
 ```
 
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
 
-## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
-> The Architect Mindset identifies misconfigurations spanning multiple domains.
-- Chain info-leaks with SSRF/RCE.
-- Maintain absolute OPSEC during active engagement.
-
-## 🏁 Execution Phase (Steps to Reproduce)
-1. Perform target reconnaissance.
-2. Formulate payload based on endpoints.
-3. Execute the exploit and capture exfiltrated data.
-
-**Severity Profile:** High (CVSS: 8.5)
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - Microsoft: [Detect and Remediate Illicit Consent Grants](https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/detect-and-remediate-illicit-consent-grants)

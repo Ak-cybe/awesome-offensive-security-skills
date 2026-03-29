@@ -1,8 +1,6 @@
 ---
 name: claude-skills-for-bug-bounty
 description: >
-  [CRITICAL: MUST trigger this skill when building, configuring, or optimizing Claude Code CLI 
-  skills for bug bounty hunting workflows.]
   Build production-grade Claude Code CLI skills with fallback architecture, TypeScript 
   implementation, and creativity directives. Based on Critical Thinking Bug Bounty Podcast 
   Episode 166 — "Building Claude Skills as a Bug Bounty Hunter."
@@ -290,10 +288,6 @@ Test Result: Claude successfully intercepted 3 requests and identified
 >
 > **Think like an attacker. Adapt. Improvise.**
 
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
-
 ## 🔵 Blue Team
 - Deploy robust WAF rules to detect anomalies.
 - Monitor logs for unusual access patterns.
@@ -302,12 +296,12 @@ Test Result: Claude successfully intercepted 3 requests and identified
 - **Input Validation:** Sanitize and strictly type-check all inputs.
 - **Least Privilege:** Constrain component execution bounds.
 
-## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
-> The Architect Mindset identifies misconfigurations spanning multiple domains.
-- Chain info-leaks with SSRF/RCE.
-- Maintain absolute OPSEC during active engagement.
 
-**Severity Profile:** High (CVSS: 8.5)
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - Source Video: [Building Claude Skills as a Bug Bounty Hunter — Critical Thinking Ep. 166](http://www.youtube.com/watch?v=qTX9u-EsjmM)

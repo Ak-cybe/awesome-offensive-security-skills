@@ -1,7 +1,6 @@
 ---
 name: business-logic-bypass
 description: >
-  [CRITICAL: MUST trigger this skill whenever related vulnerability testing is discussed.]
   Identify and exploit flaws in the core business rules and logic of web applications. This skill
   focuses on manipulation of application workflows, pricing, inventory limitations, and multi-step
   processes. Use this skill when bug hunting or testing e-commerce, banking, or SaaS platforms
@@ -201,81 +200,11 @@ Impact: Total compromise of store revenue model and massive potential financial 
 ```
 
 
-### 📝 Elite Report Writing (Top 1% Standard)
-
-> **"The difference between a $500 and $50,000 report is the quality of the writeup."**
-> — Vickie Li, Bug Bounty Bootcamp
-
-**Title Format**: `[VulnType] in [Component] Allows [BusinessImpact]`
-- ❌ "XSS Found" → This tells the triager nothing
-- ✅ "Stored XSS in /admin/comments Allows Session Hijacking of All Moderators"
-
-**Report Structure (HackerOne-Optimized):**
-1. **Summary** (2-4 sentences — triager reads only this first): What broke, how, worst-case.
-2. **CVSS 4.0 Vector** — Must be defensible; wrong CVSS destroys credibility.
-3. **Attack Scenario** — 3-5 sentence narrative from attacker's perspective.
-4. **Impact** — MUST include at least one real number: "Affects 4.2M users" not "affects many users".
-5. **Steps to Reproduce** — Deterministic. A junior dev who has never seen this bug reproduces it exactly.
-6. **PoC** — Copy-paste runnable. No placeholders. Match the exact HTTP method.
-7. **Remediation** — Don't say "sanitize input." Give the exact code fix, before/after.
-8. **CWE + References** — SSRF→CWE-918, IDOR→CWE-639, SQLi→CWE-89, XSS→CWE-79.
-
-**Pre-Report Verification (5 Checks):**
-1. 🔍 **Hallucination Detector** — Verify endpoints, CVEs, and code paths are real
-2. 🤖 **AI Writing Pattern Check** — Remove "Certainly!", "It's worth noting", generic phrasing
-3. 🧪 **PoC Reproducibility** — Payload syntax valid for context? Prerequisites stated?
-4. 📋 **Duplicate Detection** — Is this a scanner-generic finding? Known public disclosure?
-5. 📈 **Impact Plausibility** — Severity matches technical capability? No inflation?
-
-
-
-## 💰 Real-World Disclosed Bounties (Business Logic)
-
-| Company | Bounty | Researcher | Technique | Year |
-|---------|--------|-----------|-----------|------|
-| **Stripe** | $5,000 | (Undisclosed) | Race condition on fee calculation → unlimited discounts | 2024 |
-| **HackerOne** | $2,500 | (Undisclosed) | Business logic flaw: retest confirmation race → duplicate payments | 2025 |
-| **Uber** | $10,000 | (Undisclosed) | Reading Uber's internal emails via business logic flaw | 2023 |
-| **Slack** | $2,500 | (Undisclosed) | Business logic: snooping into private Slack messages | 2023 |
-
-**Key Lesson**: Business logic flaws are the #1 most underreported high-payout category.
-HackerOne's own platform had a logic flaw — proves every company has them. Stripe's fee 
-discount bug shows that payment/billing flows are consistently vulnerable.
-
-**Why these pay more than XSS:**
-- Scanners can't find them → less competition → higher bounties
-- They directly affect revenue → companies fix them immediately
-- They demonstrate deep application understanding → builds program trust
-
-## 💰 Real-World Disclosed Bounties (Race Conditions)
-
-| Company | Bounty | Researcher | Technique | Year |
-|---------|--------|-----------|-----------|------|
-| **Stripe** | $5,000 | (Undisclosed) | Race condition → unlimited fee discounts on payment platform | 2024 |
-| **HackerOne** | $2,500 | (Undisclosed) | Race condition in retest confirmation → multiple payments for single retest | 2025 |
-| **HackerOne** | $250 | (Undisclosed) | Race condition → duplicate bounty payouts ($250 of $1K bounty duplicated) | 2024 |
-
-**Key Lesson**: Stripe's $5K payout proves financial race conditions are high-value targets.
-The HackerOne retest race condition is ironic — the security platform itself had a TOCTOU flaw.
-
-**Turbo Intruder technique that works:**
-```python
-# Burp Turbo Intruder — single-packet attack for sub-millisecond race window
-def queueRequests(target, wordlists):
-    engine = RequestEngine(endpoint=target.endpoint, concurrentConnections=1, engine=Engine.BURP2)
-    for i in range(30):
-        engine.queue(target.req, gate='race')
-    engine.openGate('race')
-```
-
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
-
-## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
-> The Architect Mindset identifies misconfigurations spanning multiple domains.
-- Chain info-leaks with SSRF/RCE.
-- Maintain absolute OPSEC during active engagement.
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - PortSwigger: [Business Logic Vulnerabilities](https://portswigger.net/web-security/logic-flaws)

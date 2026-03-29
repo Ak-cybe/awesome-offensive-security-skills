@@ -1,7 +1,6 @@
 ---
 name: ios-application-hooking-frida
 description: >
-  [CRITICAL: MUST trigger this skill whenever related vulnerability testing is discussed.]
   Execute dynamic instrumentation utilizing Frida to inject custom JavaScript into 
   running iOS applications (IPAs) on jailbroken devices. Hook native functions, bypass 
   SSL Pinning, bypass Jailbreak Detection, and manipulate in-memory data at runtime.
@@ -182,21 +181,12 @@ Impact:
 The application fundamentally accepted the Burp Suite PortSwigger localized Certificate Authority. All application telemetry, including sensitive Personal Health Information (PHI) and authentication tokens, was successfully captured in plaintext over the encrypted SSL tunnel.
 ```
 
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
 
-## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
-> The Architect Mindset identifies misconfigurations spanning multiple domains.
-- Chain info-leaks with SSRF/RCE.
-- Maintain absolute OPSEC during active engagement.
-
-## 🏁 Execution Phase (Steps to Reproduce)
-1. Perform target reconnaissance.
-2. Formulate payload based on endpoints.
-3. Execute the exploit and capture exfiltrated data.
-
-**Severity Profile:** High (CVSS: 8.5)
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - Frida: [Official JavaScript API Reference](https://frida.re/docs/javascript-api/)

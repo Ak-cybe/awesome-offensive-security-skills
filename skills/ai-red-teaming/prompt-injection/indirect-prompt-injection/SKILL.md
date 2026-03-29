@@ -1,7 +1,6 @@
 ---
 name: indirect-prompt-injection
 description: >
-  [CRITICAL: MUST trigger this skill whenever related vulnerability testing is discussed.]
   Execute Indirect Prompt Injection attacks against Large Language Models (LLMs) by subtly embedding 
   malicious instructions within external data sources (e.g., websites, documents, databases) that the 
   LLM autonomously ingests. This forces the model to execute attacker-controlled commands under the 
@@ -154,23 +153,16 @@ A malicious customer filed a standard support ticket containing the exact payloa
 Result :
 When a human support agent clicked the "Summarize AI" button ```
 
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
-
 ## 🛡️ Remediation & Mitigation Strategy
 - **Input Validation:** Sanitize and strictly type-check all inputs.
 - **Least Privilege:** Constrain component execution bounds.
 
-## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
-> The Architect Mindset identifies misconfigurations spanning multiple domains.
-- Chain info-leaks with SSRF/RCE.
-- Maintain absolute OPSEC during active engagement.
 
-## 🏁 Execution Phase (Steps to Reproduce)
-1. Perform target reconnaissance.
-2. Formulate payload based on endpoints.
-3. Execute the exploit and capture exfiltrated data.
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - OWASP Top 10 for LLMs: [LLM01:2023 - Prompt Injection](https://llmtop10.com/llm01/)

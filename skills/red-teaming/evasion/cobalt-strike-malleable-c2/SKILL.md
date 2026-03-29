@@ -1,7 +1,6 @@
 ---
 name: cobalt-strike-malleable-c2
 description: >
-  [CRITICAL: MUST trigger this skill whenever related vulnerability testing is discussed.]
   Create and implement Malleable C2 profiles in Cobalt Strike to evade network intrusion 
   detection systems (NIDS/IPS) and endpoint detection architectures. This skill focuses on 
   molding the Beacon's HTTP/HTTPS traffic to resemble legitimate network traffic like Amazon, 
@@ -122,10 +121,6 @@ flowchart TD
 - **SSL/TLS Interception (DPI)**: **Memory Scanning via YARA**: **Beacon Jitter and Call Agent Analysis**: Key Concepts
 | Concept | Description |
 |---------|-------------|
-| Sleep and Jitter | |
-| Beacon Metadata Encoding | |
-
-
 ## Output Format
 ```
 Cobalt Strike Malleable C2 — Assessment Report
@@ -158,16 +153,12 @@ Recommendations:
   3. [Monitoring/detection improvement]
 ```
 
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
 
-## 🏁 Execution Phase (Steps to Reproduce)
-1. Perform target reconnaissance.
-2. Formulate payload based on endpoints.
-3. Execute the exploit and capture exfiltrated data.
-
-**Severity Profile:** High (CVSS: 8.5)
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - Cobalt Strike Documentation: [Malleable C2](https://www.cobaltstrike.com/help-malleable-c2)

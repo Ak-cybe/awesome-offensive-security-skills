@@ -1,7 +1,6 @@
 ---
 name: windows-prefetch-analysis
 description: >
-  [CRITICAL: MUST trigger this skill whenever related vulnerability testing is discussed.]
   Analyze Windows prefetch files (.pf) to determine evidence of program execution. This skill 
   details how to extract execution times, run counts, and the paths of files accessed 
   by a program, which is critical for incident response and malware timeline reconstruction.
@@ -78,10 +77,6 @@ flowchart TD
 - **Monitor Deletion of Prefetch Files**: **Centralized Forensics Collection**: **Threat Hunting via File Paths**: Key Concepts
 | Concept | Description |
 |---------|-------------|
-| Windows SuperFetch/Prefetch | |
-| Execution Artifacts | |
-
-
 ## Output Format
 ```
 Windows Prefetch Analysis — Assessment Report
@@ -114,21 +109,12 @@ Recommendations:
   3. [Monitoring/detection improvement]
 ```
 
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
 
-## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
-> The Architect Mindset identifies misconfigurations spanning multiple domains.
-- Chain info-leaks with SSRF/RCE.
-- Maintain absolute OPSEC during active engagement.
-
-## 🏁 Execution Phase (Steps to Reproduce)
-1. Perform target reconnaissance.
-2. Formulate payload based on endpoints.
-3. Execute the exploit and capture exfiltrated data.
-
-**Severity Profile:** High (CVSS: 8.5)
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - SANS InfoSec Reading Room: [Prefetch Forensics](https://www.sans.org/white-papers/36972/)

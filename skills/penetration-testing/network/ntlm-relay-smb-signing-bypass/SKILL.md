@@ -1,7 +1,6 @@
 ---
 name: ntlm-relay-smb-signing-bypass
 description: >
-  [CRITICAL: MUST trigger this skill whenever related vulnerability testing is discussed.]
   Execute advanced Man-in-the-Middle (MITM) NTLM Relay attacks specifically targeting environments 
   where SMB Signing is purportedly enabled but improperly configured (e.g., exclusively required 
   on Domain Controllers but NOT enforced universally on standard Workstations or File Servers). 
@@ -163,19 +162,12 @@ Because the `ITSupport_Helpdesk` account explicitly retained uniform `Local Admi
 NTLMRelayX explicitly established execution context dumping exactly the intrinsic `Administrator` absolute LM:NTLM hash cleanly via the Remote Registry protocol effortlessly. Broad Lateral Movement capabilities achieved bypassing multi-factor identity unconditionally.
 ```
 
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
 
-## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
-> The Architect Mindset identifies misconfigurations spanning multiple domains.
-- Chain info-leaks with SSRF/RCE.
-- Maintain absolute OPSEC during active engagement.
-
-## 🏁 Execution Phase (Steps to Reproduce)
-1. Perform target reconnaissance.
-2. Formulate payload based on endpoints.
-3. Execute the exploit and capture exfiltrated data.
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - SecureAuth Impacket: [NTLMRelayX Tooling](https://github.com/fortra/impacket/blob/master/examples/ntlmrelayx.py)

@@ -1,7 +1,6 @@
 ---
 name: volatility-memory-forensics
 description: >
-  [CRITICAL: MUST trigger this skill whenever related vulnerability testing is discussed.]
   Analyze full RAM captures (memory dumps) to extract forensic artifacts, detect stealthy malware,
   recover injected shellcode, and identify rootkits that bypass traditional disk-based antivirus
   scanning. Use this skill during Incident Response and advanced threat hunting engagements to
@@ -174,25 +173,16 @@ Forensic Action:
 The injected shellcode at address `0x60000` was dumped to file (`pid.3342.dmp`) and submitted to the reverse engineering team for C2 configuration extraction.
 ```
 
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
-
 ## 🛡️ Remediation & Mitigation Strategy
 - **Input Validation:** Sanitize and strictly type-check all inputs.
 - **Least Privilege:** Constrain component execution bounds.
 
-## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
-> The Architect Mindset identifies misconfigurations spanning multiple domains.
-- Chain info-leaks with SSRF/RCE.
-- Maintain absolute OPSEC during active engagement.
 
-## 🏁 Execution Phase (Steps to Reproduce)
-1. Perform target reconnaissance.
-2. Formulate payload based on endpoints.
-3. Execute the exploit and capture exfiltrated data.
-
-**Severity Profile:** High (CVSS: 8.5)
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - Volatility Foundation: [Volatility 3 Documentation](https://github.com/volatilityfoundation/volatility3)

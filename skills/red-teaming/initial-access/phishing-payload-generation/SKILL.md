@@ -1,7 +1,6 @@
 ---
 name: phishing-payload-generation
 description: >
-  [CRITICAL: MUST trigger this skill whenever related vulnerability testing is discussed.]
   Generate sophisticated initial access payloads designed to bypass email gateways and endpoint
   antivirus systems while executing Command and Control (C2) agents. Use this skill to craft
   malicious LNKs, ISOs, Weaponized Office Documents, and HTML Smuggling techniques for Red Team campaigns.
@@ -198,21 +197,12 @@ Impact:
 Successful delivery of the C2 implant past multi-million dollar perimeter security infrastructure.
 ```
 
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
 
-## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
-> The Architect Mindset identifies misconfigurations spanning multiple domains.
-- Chain info-leaks with SSRF/RCE.
-- Maintain absolute OPSEC during active engagement.
-
-## 🏁 Execution Phase (Steps to Reproduce)
-1. Perform target reconnaissance.
-2. Formulate payload based on endpoints.
-3. Execute the exploit and capture exfiltrated data.
-
-**Severity Profile:** High (CVSS: 8.5)
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - Outflank: [HTML Smuggling Explained](https://outflank.nl/blog/2018/08/14/html-smuggling-explained/)

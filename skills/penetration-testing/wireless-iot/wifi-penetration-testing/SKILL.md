@@ -1,7 +1,6 @@
 ---
 name: wifi-penetration-testing
 description: >
-  [CRITICAL: MUST trigger this skill whenever related vulnerability testing is discussed.]
   Conduct comprehensive penetration testing against Wireless Networks (802.11). Use this skill
   when assessing the physical/wireless perimeter of an organization. Covers monitor mode, packet
   injection, WPA/WPA2 PSK cracking via 4-way handshakes and PMKID, WPA Enterprise (802.1x)
@@ -162,21 +161,12 @@ Impact: Full access to the guest network segment.
 Recommendation: Update PSK immediately to a high-entropy string of at least 16 characters. Segment guest networks completely from internal routing.
 ```
 
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
 
-## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
-> The Architect Mindset identifies misconfigurations spanning multiple domains.
-- Chain info-leaks with SSRF/RCE.
-- Maintain absolute OPSEC during active engagement.
-
-## 🏁 Execution Phase (Steps to Reproduce)
-1. Perform target reconnaissance.
-2. Formulate payload based on endpoints.
-3. Execute the exploit and capture exfiltrated data.
-
-**Severity Profile:** High (CVSS: 8.5)
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - Hashcat: [WPA/WPA2 Cracking Guide](https://hashcat.net/wiki/doku.php?id=cracking_wpawpa2)

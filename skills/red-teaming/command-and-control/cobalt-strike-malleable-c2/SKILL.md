@@ -1,7 +1,6 @@
 ---
 name: cobalt-strike-malleable-c2
 description: >
-  [CRITICAL: MUST trigger this skill whenever related vulnerability testing is discussed.]
   Construct and deploy advanced Malleable C2 profiles in Cobalt Strike to deeply obfuscate 
   Command and Control traffic. Use this skill to camouflage malicious beacons as legitimate 
   jQuery, Amazon AWS, or Microsoft Office 365 HTTP/HTTPS web traffic, bypassing network-based IDS/IPS.
@@ -184,25 +183,16 @@ Impact:
 Extensive evasion of the client's Palo Alto Next-Gen Firewall. Encrypted traffic metrics perfectly match standard corporate communication flows, rendering the implant undetectable by signature-based or volumetric IDS sensors.
 ```
 
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
-
 ## 🛡️ Remediation & Mitigation Strategy
 - **Input Validation:** Sanitize and strictly type-check all inputs.
 - **Least Privilege:** Constrain component execution bounds.
 
-## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
-> The Architect Mindset identifies misconfigurations spanning multiple domains.
-- Chain info-leaks with SSRF/RCE.
-- Maintain absolute OPSEC during active engagement.
 
-## 🏁 Execution Phase (Steps to Reproduce)
-1. Perform target reconnaissance.
-2. Formulate payload based on endpoints.
-3. Execute the exploit and capture exfiltrated data.
-
-**Severity Profile:** High (CVSS: 8.5)
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - Cobalt Strike: [Malleable C2 Profiles Guide](https://hstechdocs.helpsystems.com/manuals/cobaltstrike/current/userguide/content/topics/malleable-c2_main.htm)

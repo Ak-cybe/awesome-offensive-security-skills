@@ -1,7 +1,6 @@
 ---
 name: api-rate-limit-bypass-techniques
 description: >
-  [CRITICAL: MUST trigger this skill whenever related vulnerability testing is discussed.]
   Identify and exploit flaws in API rate limiting enforcement. Use this skill when 
   encountering HTTP 429 Too Many Requests errors during password brute-forcing, OTP 
   validation, credential stuffing, or enumeration attacks. These bypasses leverage IP spoofing, 
@@ -131,45 +130,6 @@ flowchart TD
 ```
 
 
-### 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
-
-> **Core Principle**: A single finding is a $500 report. A chained exploit is a $50,000 report.
-> The top 1% of hunters spend 40+ hours on a single target, understanding it better than
-> the developers who built it. They automate discovery, not exploitation.
-
-**Chaining Decision Tree:**
-```mermaid
-graph TD
-    A[Finding Discovered] --> B{Severity?}
-    B -->|Low/Info| C[Can it enable recon?]
-    B -->|Medium| D[Can it escalate access?]
-    B -->|High/Crit| E[Document + PoC immediately]
-    C -->|Yes| F[Chain: InfoLeak → targeted attack]
-    C -->|No| G[Log but deprioritize]
-    D -->|Yes| H[Chain: Medium + Priv Esc = Critical]
-    D -->|No| I[Submit standalone if impact clear]
-    F --> J[Re-evaluate combined severity]
-    H --> J
-    E --> K[Test lateral movement potential]
-    J --> L[Write consolidated report with full attack chain]
-    K --> L
-```
-
-**Common High-Payout Chains:**
-| Chain Pattern | Typical Bounty | Example |
-|--|--|--|
-| SSRF → Cloud Metadata → IAM Keys | $15,000-$50,000 | Webhook URL → AWS creds → S3 data |
-| Open Redirect → OAuth Token Theft | $5,000-$15,000 | Login redirect → steal auth code |
-| IDOR + GraphQL Introspection | $3,000-$10,000 | Enumerate users → access any account |
-| Race Condition → Financial Impact | $10,000-$30,000 | Duplicate gift cards → unlimited funds |
-| XSS → ATO via Cookie Theft | $2,000-$8,000 | Stored XSS on admin page → session hijack |
-| Info Disclosure → API Key Reuse | $5,000-$20,000 | JS file → hardcoded API key → admin access |
-
-**The "Architect" vs "Scanner" Mindset:**
-- ❌ **Scanner Mindset**: Run nuclei on 10,000 subdomains, submit the first hit → duplicates
-- ✅ **Architect Mindset**: Spend 2 weeks mapping ONE application's business logic, RBAC model, 
-  and integration seams → find what no scanner ever will
-
 ## 🔵 Blue Team Detection & Defense
 - **Defense-in-Depth Counting**: Rate limits must track BOTH the IP Address AND the specific requested entity (e.g., tracking the failed attempts strictly against the `user_id` record in a high-speed Redis cache before verifying the database).
 - **Strict Header Validation**: Do not blindly trust `X-Forwarded-For` or `Client-IP` headers supplied by arbitrary internet traffic. Extract the true Client IP exclusively from the trusted Edge Load Balancer TCP socket metadata.
@@ -207,58 +167,11 @@ Critical failure of the MFA perimeter allowing complete bypass via automated bru
 ```
 
 
-### 📝 Elite Report Writing (Top 1% Standard)
-
-> **"The difference between a $500 and $50,000 report is the quality of the writeup."**
-> — Vickie Li, Bug Bounty Bootcamp
-
-**Title Format**: `[VulnType] in [Component] Allows [BusinessImpact]`
-- ❌ "XSS Found" → This tells the triager nothing
-- ✅ "Stored XSS in /admin/comments Allows Session Hijacking of All Moderators"
-
-**Report Structure (HackerOne-Optimized):**
-1. **Summary** (2-4 sentences — triager reads only this first): What broke, how, worst-case.
-2. **CVSS 4.0 Vector** — Must be defensible; wrong CVSS destroys credibility.
-3. **Attack Scenario** — 3-5 sentence narrative from attacker's perspective.
-4. **Impact** — MUST include at least one real number: "Affects 4.2M users" not "affects many users".
-5. **Steps to Reproduce** — Deterministic. A junior dev who has never seen this bug reproduces it exactly.
-6. **PoC** — Copy-paste runnable. No placeholders. Match the exact HTTP method.
-7. **Remediation** — Don't say "sanitize input." Give the exact code fix, before/after.
-8. **CWE + References** — SSRF→CWE-918, IDOR→CWE-639, SQLi→CWE-89, XSS→CWE-79.
-
-**Pre-Report Verification (5 Checks):**
-1. 🔍 **Hallucination Detector** — Verify endpoints, CVEs, and code paths are real
-2. 🤖 **AI Writing Pattern Check** — Remove "Certainly!", "It's worth noting", generic phrasing
-3. 🧪 **PoC Reproducibility** — Payload syntax valid for context? Prerequisites stated?
-4. 📋 **Duplicate Detection** — Is this a scanner-generic finding? Known public disclosure?
-5. 📈 **Impact Plausibility** — Severity matches technical capability? No inflation?
-
-
-
-## 💰 Real-World Disclosed Bounties (Race Conditions)
-
-| Company | Bounty | Researcher | Technique | Year |
-|---------|--------|-----------|-----------|------|
-| **Stripe** | $5,000 | (Undisclosed) | Race condition → unlimited fee discounts on payment platform | 2024 |
-| **HackerOne** | $2,500 | (Undisclosed) | Race condition in retest confirmation → multiple payments for single retest | 2025 |
-| **HackerOne** | $250 | (Undisclosed) | Race condition → duplicate bounty payouts ($250 of $1K bounty duplicated) | 2024 |
-
-**Key Lesson**: Stripe's $5K payout proves financial race conditions are high-value targets.
-The HackerOne retest race condition is ironic — the security platform itself had a TOCTOU flaw.
-
-**Turbo Intruder technique that works:**
-```python
-# Burp Turbo Intruder — single-packet attack for sub-millisecond race window
-def queueRequests(target, wordlists):
-    engine = RequestEngine(endpoint=target.endpoint, concurrentConnections=1, engine=Engine.BURP2)
-    for i in range(30):
-        engine.queue(target.req, gate='race')
-    engine.openGate('race')
-```
-
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - OWASP: [API4:2023 Unrestricted Resource Consumption](https://owasp.org/API-Security/editions/2023/en/0x11-i4-unrestricted-resource-consumption/)

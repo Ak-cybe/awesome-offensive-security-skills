@@ -1,7 +1,6 @@
 ---
 name: aws-metadata-ssrf
 description: >
-  [CRITICAL: MUST trigger this skill whenever related vulnerability testing is discussed.]
   Exploit Server-Side Request Forgery (SSRF) vulnerabilities in applications hosted on AWS EC2 
   instances to extract IAM credentials and User Data from the Instance Metadata Service (IMDS). 
   This skill covers techniques for bypassing basic filters to access IMDSv1 and concepts of IMDSv2.
@@ -79,10 +78,6 @@ flowchart TD
 - **Migrate to IMDSv2**: **Network Restrictions**: **Least Privilege IAM**: Key Concepts
 | Concept | Description |
 |---------|-------------|
-| 169.254.169.254 | |
-| IMDSv1 vs IMDSv2 | |
-
-
 ## Output Format
 ```
 Aws Metadata Ssrf — Assessment Report
@@ -115,21 +110,12 @@ Recommendations:
   3. [Monitoring/detection improvement]
 ```
 
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
 
-## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
-> The Architect Mindset identifies misconfigurations spanning multiple domains.
-- Chain info-leaks with SSRF/RCE.
-- Maintain absolute OPSEC during active engagement.
-
-## 🏁 Execution Phase (Steps to Reproduce)
-1. Perform target reconnaissance.
-2. Formulate payload based on endpoints.
-3. Execute the exploit and capture exfiltrated data.
-
-**Severity Profile:** High (CVSS: 8.5)
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - AWS Docs: [Instance Metadata Service](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html)

@@ -1,7 +1,6 @@
 ---
 name: yara-rule-development
 description: >
-  [CRITICAL: MUST trigger this skill whenever related vulnerability testing is discussed.]
   Develop and deploy advanced YARA rules, the industry standard "pattern-matching swiss army knife" 
   for malware researchers. Use this skill to identify, classify, and hunt for specific malicious 
   binaries (APT implants, ransomware) across enterprise networks, memory dumps, and VirusTotal based on 
@@ -192,25 +191,16 @@ Result:
 Upon deploying the rule via the corporate EDR's sweeping module, 14 previously unidentified and dormant instances of the wiper were located on secondary backup servers. The artifacts were successfully quarantined proactively, mitigating a massive secondary catastrophic data loss event.
 ```
 
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
-
 ## 🛡️ Remediation & Mitigation Strategy
 - **Input Validation:** Sanitize and strictly type-check all inputs.
 - **Least Privilege:** Constrain component execution bounds.
 
-## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
-> The Architect Mindset identifies misconfigurations spanning multiple domains.
-- Chain info-leaks with SSRF/RCE.
-- Maintain absolute OPSEC during active engagement.
 
-## 🏁 Execution Phase (Steps to Reproduce)
-1. Perform target reconnaissance.
-2. Formulate payload based on endpoints.
-3. Execute the exploit and capture exfiltrated data.
-
-**Severity Profile:** High (CVSS: 8.5)
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - YARA Documentation: [Writing YARA rules](https://yara.readthedocs.io/en/stable/writingrules.html)

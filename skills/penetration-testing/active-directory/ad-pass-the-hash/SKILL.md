@@ -1,7 +1,6 @@
 ---
 name: ad-pass-the-hash
 description: >
-  [CRITICAL: MUST trigger this skill whenever related vulnerability testing is discussed.]
   Exploit Active Directory environments using Pass-the-Hash (PtH). This skill details how to 
   authenticate to remote systems using the NTLM hash of a user's password instead of the 
   plaintext password, enabling lateral movement and privilege escalation without cracking hashes.
@@ -83,10 +82,6 @@ flowchart TD
 - **LAPS (Local Administrator Password Solution)**: **Disable NTLM Authentication**: **Windows Defender Credential Guard**: Key Concepts
 | Concept | Description |
 |---------|-------------|
-| NTLM Authentication | |
-| Memory Injection (Mimikatz) | |
-
-
 ## Output Format
 ```
 Ad Pass The Hash — Assessment Report
@@ -119,16 +114,12 @@ Recommendations:
   3. [Monitoring/detection improvement]
 ```
 
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
 
-## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
-> The Architect Mindset identifies misconfigurations spanning multiple domains.
-- Chain info-leaks with SSRF/RCE.
-- Maintain absolute OPSEC during active engagement.
-
-**Severity Profile:** High (CVSS: 8.5)
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - Mitre ATT&CK: [Pass the Hash](https://attack.mitre.org/techniques/T1550/002/)

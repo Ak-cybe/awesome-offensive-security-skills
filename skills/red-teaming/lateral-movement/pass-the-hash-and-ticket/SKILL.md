@@ -1,7 +1,6 @@
 ---
 name: pass-the-hash-and-ticket
 description: >
-  [CRITICAL: MUST trigger this skill whenever related vulnerability testing is discussed.]
   Execute lateral movement within Active Directory environments using credential material (NTLM hashes and Kerberos tickets) instead of plaintext passwords. Use this skill when engaging in red team operations or internal network penetration tests to expand access, bypass authentication portals, and achieve Domain Dominance without relying on crackable passwords.
 domain: cybersecurity
 subdomain: red-teaming
@@ -160,20 +159,16 @@ Action Log:
 OPSEC Status: Moderate. WMIexec creates Event ID 4624 Logon Type 3, but bypasses noisy service creation compared to PsExec.
 ```
 
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
-
 ## 🛡️ Remediation & Mitigation Strategy
 - **Input Validation:** Sanitize and strictly type-check all inputs.
 - **Least Privilege:** Constrain component execution bounds.
 
-## 🏁 Execution Phase (Steps to Reproduce)
-1. Perform target reconnaissance.
-2. Formulate payload based on endpoints.
-3. Execute the exploit and capture exfiltrated data.
 
-**Severity Profile:** High (CVSS: 8.5)
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - MITRE ATT&CK: [Pass the Hash (T1550.002)](https://attack.mitre.org/techniques/T1550/002/)

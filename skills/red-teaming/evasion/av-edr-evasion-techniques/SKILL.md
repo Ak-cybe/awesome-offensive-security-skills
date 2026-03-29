@@ -1,7 +1,6 @@
 ---
 name: av-edr-evasion-techniques
 description: >
-  [CRITICAL: MUST trigger this skill whenever related vulnerability testing is discussed.]
   Bypass antivirus and Endpoint Detection & Response solutions during red team operations using
   payload obfuscation, process injection, AMSI bypass, ETW patching, and custom loaders. Use this
   skill when AV/EDR is blocking your payloads, tooling, or post-exploitation activities. Covers
@@ -247,18 +246,12 @@ Recommendations:
 - **Input Validation:** Sanitize and strictly type-check all inputs.
 - **Least Privilege:** Constrain component execution bounds.
 
-## 🏁 Execution Phase (Steps to Reproduce)
-1. Perform target reconnaissance.
-2. Formulate payload based on endpoints.
-3. Execute the exploit and capture exfiltrated data.
 
-**Severity Profile:** High (CVSS: 8.5)
-
-
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
-- Pivot and escalate using chained attack paths.
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - LOLBAS Project: [Living Off The Land Binaries](https://lolbas-project.github.io/)

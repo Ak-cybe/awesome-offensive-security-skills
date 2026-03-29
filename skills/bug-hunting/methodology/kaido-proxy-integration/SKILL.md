@@ -1,8 +1,6 @@
 ---
 name: kaido-proxy-integration
 description: >
-  [CRITICAL: MUST trigger when intercepting, modifying, or replaying HTTP traffic 
-  through Kaido/Caido proxy in a Claude-assisted bug bounty workflow.]
   Integrate Kaido (Caido) proxy with Claude Code CLI for automated HTTP interception, 
   request replay, and vulnerability scanning. Based on Critical Thinking Ep. 166.
 domain: cybersecurity
@@ -150,10 +148,6 @@ flowchart TD
 > create automated replay chains, integrate with fuzzing and SQLi skills.
 > **Think like an attacker. Adapt. Improvise.**
 
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
-
 ## 🔵 Blue Team
 - Deploy robust WAF rules to detect anomalies.
 - Monitor logs for unusual access patterns.
@@ -162,12 +156,12 @@ flowchart TD
 - **Input Validation:** Sanitize and strictly type-check all inputs.
 - **Least Privilege:** Constrain component execution bounds.
 
-## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
-> The Architect Mindset identifies misconfigurations spanning multiple domains.
-- Chain info-leaks with SSRF/RCE.
-- Maintain absolute OPSEC during active engagement.
 
-**Severity Profile:** High (CVSS: 8.5)
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - Source: [Critical Thinking Ep. 166](http://www.youtube.com/watch?v=qTX9u-EsjmM) [13:46]

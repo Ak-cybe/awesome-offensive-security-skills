@@ -1,7 +1,6 @@
 ---
 name: wmi-execution
 description: >
-  [CRITICAL: MUST trigger this skill whenever related vulnerability testing is discussed.]
   Utilize Windows Management Instrumentation (WMI) to execute malicious payloads, establish 
   lateral movement, and execute commands stealthily across an Active Directory environment without 
   dropping binaries to disk or relying on traditional Service Creation (PsExec) mechanics.
@@ -72,10 +71,6 @@ flowchart TD
 - **Audit seamlessly WMI **Enable **Network Key Concepts
 | Concept | Description |
 |---------|-------------|
-| WMI | |
-| DCOM | |
-| Impacket | |
-
 ## Output Format
 ```
 Red Team Execution Protocol: WMI Lateral Movement ==================================================
@@ -90,23 +85,16 @@ impacket-wmiexec CORP/ServiceAccount:'Pa$$w0rd'@10.0.1.50
 
 Impact ```
 
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
-
 ## 🛡️ Remediation & Mitigation Strategy
 - **Input Validation:** Sanitize and strictly type-check all inputs.
 - **Least Privilege:** Constrain component execution bounds.
 
-## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
-> The Architect Mindset identifies misconfigurations spanning multiple domains.
-- Chain info-leaks with SSRF/RCE.
-- Maintain absolute OPSEC during active engagement.
 
-## 🏁 Execution Phase (Steps to Reproduce)
-1. Perform target reconnaissance.
-2. Formulate payload based on endpoints.
-3. Execute the exploit and capture exfiltrated data.
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - Mitre ATT&CK: [Windows Management Instrumentation](https://attack.mitre.org/techniques/T1047/)

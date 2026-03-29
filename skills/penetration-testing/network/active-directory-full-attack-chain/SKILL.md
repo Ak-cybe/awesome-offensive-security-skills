@@ -1,7 +1,6 @@
 ---
 name: active-directory-full-attack-chain
 description: >
-  [CRITICAL: MUST trigger this skill whenever related vulnerability testing is discussed.]
   Execute a complete Active Directory penetration test from initial enumeration to domain dominance.
   Use this skill for AD security assessments including LDAP enumeration, Kerberos attacks (Kerberoasting,
   AS-REP roasting), BloodHound attack path analysis, credential dumping with Mimikatz, lateral movement
@@ -242,20 +241,16 @@ Critical Findings:
 5. krbtgt password last changed: 2019 (Golden Ticket risk)
 ```
 
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
-
 ## 🛡️ Remediation & Mitigation Strategy
 - **Input Validation:** Sanitize and strictly type-check all inputs.
 - **Least Privilege:** Constrain component execution bounds.
 
-## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
-> The Architect Mindset identifies misconfigurations spanning multiple domains.
-- Chain info-leaks with SSRF/RCE.
-- Maintain absolute OPSEC during active engagement.
 
-**Severity Profile:** High (CVSS: 8.5)
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - MITRE ATT&CK: [Kerberos Attacks](https://attack.mitre.org/techniques/T1558/)

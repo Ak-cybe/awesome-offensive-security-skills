@@ -1,7 +1,6 @@
 ---
 name: certutil-download-execution
 description: >
-  [CRITICAL: MUST trigger this skill whenever related vulnerability testing is discussed.]
   Utilize the native Windows binary `certutil.exe` to download malicious payloads and optionally 
   decode Base64 encoded files as a Living-off-the-Land (LotL) technique. This skill details how 
   attackers bypass application whitelisting and fetch stage-2 implants.
@@ -77,10 +76,6 @@ flowchart TD
 - **Monitor certutil.exe Execution**: **Inspect Command Line Arguments**: **EDR Pattern Matching**: Key Concepts
 | Concept | Description |
 |---------|-------------|
-| Living off the Land (LotL) | |
-| Ingress Tool Transfer | |
-
-
 ## Output Format
 ```
 Certutil Download Execution — Assessment Report
@@ -113,21 +108,12 @@ Recommendations:
   3. [Monitoring/detection improvement]
 ```
 
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
 
-## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
-> The Architect Mindset identifies misconfigurations spanning multiple domains.
-- Chain info-leaks with SSRF/RCE.
-- Maintain absolute OPSEC during active engagement.
-
-## 🏁 Execution Phase (Steps to Reproduce)
-1. Perform target reconnaissance.
-2. Formulate payload based on endpoints.
-3. Execute the exploit and capture exfiltrated data.
-
-**Severity Profile:** High (CVSS: 8.5)
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - LOLBAS Project: [Certutil.exe](https://lolbas-project.github.io/lolbas/Binaries/Certutil/)

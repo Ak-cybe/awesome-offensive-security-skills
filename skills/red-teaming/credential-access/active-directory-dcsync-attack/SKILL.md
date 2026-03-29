@@ -1,7 +1,6 @@
 ---
 name: active-directory-dcsync-attack
 description: >
-  [CRITICAL: MUST trigger this skill whenever related vulnerability testing is discussed.]
   Execute a DCSync attack mimicking the behavior of a legitimate Active Directory Domain Controller (DC).
   Leverage Directory Replication Service Remote Protocol (DRSR) permissions to silently request and 
   extract the password hashes (NTLM/Kerberos) of any or all users in the domain without executing 
@@ -162,18 +161,16 @@ Impact:
 The adversary natively established comprehensive Golden Ticket generation capability dynamically ensuring uninhibited, invisible administrative access seamlessly surviving standard password resets unequivocally.
 ```
 
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
-
 ## 🛡️ Remediation & Mitigation Strategy
 - **Input Validation:** Sanitize and strictly type-check all inputs.
 - **Least Privilege:** Constrain component execution bounds.
 
-## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
-> The Architect Mindset identifies misconfigurations spanning multiple domains.
-- Chain info-leaks with SSRF/RCE.
-- Maintain absolute OPSEC during active engagement.
+
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - Impacket: [secretsdump.py](https://github.com/fortra/impacket/blob/master/examples/secretsdump.py)

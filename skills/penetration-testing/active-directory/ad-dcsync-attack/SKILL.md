@@ -1,7 +1,6 @@
 ---
 name: ad-dcsync-attack
 description: >
-  [CRITICAL: MUST trigger this skill whenever related vulnerability testing is discussed.]
   Exploit Active Directory replication privileges (DS-Replication-Get-Changes) to 
   perform a DCSync attack, allowing an attacker to impersonate a Domain Controller 
   and extract password hashes (like the krbtgt hash for Golden Tickets) without code execution on a DC.
@@ -77,11 +76,6 @@ flowchart TD
 - **Monitor Directory Replication events**: **Review ACLs for Replication Rights (BloodHound / ADAC)**: **Network Segmentation & Monitoring**: Key Concepts
 | Concept | Description |
 |---------|-------------|
-| DCSync Attack | |
-| DS-Replication-Get-Changes | |
-| krbtgt Hash | |
-
-
 ## Output Format
 ```
 Ad Dcsync Attack — Assessment Report
@@ -114,16 +108,12 @@ Recommendations:
   3. [Monitoring/detection improvement]
 ```
 
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
 
-## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
-> The Architect Mindset identifies misconfigurations spanning multiple domains.
-- Chain info-leaks with SSRF/RCE.
-- Maintain absolute OPSEC during active engagement.
-
-**Severity Profile:** High (CVSS: 8.5)
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - AdSecurity: [Mimikatz DCSync Usage, Exploitation, and Detection](https://adsecurity.org/?p=1729)

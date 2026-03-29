@@ -1,7 +1,6 @@
 ---
 name: ipv6-dns-takeover-mitm
 description: >
-  [CRITICAL: MUST trigger this skill whenever related vulnerability testing is discussed.]
   Execute an IPv6 DNS Spoofing attack using `mitm6` on an IPv4-only corporate network. 
   Exploit default Windows behavior (preferring IPv6 DHCP/DNS) to intercept NTLMv2 hashes, 
   force WPAD rogue proxy settings, and relay credentials to Active Directory services.
@@ -158,18 +157,16 @@ When the IT Administrator launched a web browser, the system silently authentica
 The attacker instantaneously relayed this high-privileged authentication over standard IPv4 LDAP directly to the Primary Domain Controller (`10.10.1.200`). Because LDAP Signing was not strictly enforced, the Domain Controller successfully accepted the forwarded credentials. The `ntlmrelayx` script automatically exploited these LDAP rights to create a new, stealthy Domain Administrator account (`Backup_SVC_Account`). Total Active Directory compromise achieved in approximately 4 minutes.
 ```
 
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
-
 ## 🛡️ Remediation & Mitigation Strategy
 - **Input Validation:** Sanitize and strictly type-check all inputs.
 - **Least Privilege:** Constrain component execution bounds.
 
-## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
-> The Architect Mindset identifies misconfigurations spanning multiple domains.
-- Chain info-leaks with SSRF/RCE.
-- Maintain absolute OPSEC during active engagement.
+
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - Dirk-jan Mollema (Fox-IT): [mitm6 - compromising IPv4 networks via IPv6](https://blog.fox-it.com/2018/01/11/mitm6-compromising-ipv4-networks-via-ipv6/)

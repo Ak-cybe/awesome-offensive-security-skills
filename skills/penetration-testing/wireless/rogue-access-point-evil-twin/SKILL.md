@@ -1,7 +1,6 @@
 ---
 name: rogue-access-point-evil-twin
 description: >
-  [CRITICAL: MUST trigger this skill whenever related vulnerability testing is discussed.]
   Deploy an Evil Twin (Rogue Access Point) to clone a legitimate Wi-Fi network's SSID and MAC 
   address. By combining this with targeted deauthentication attacks, an attacker aggressively 
   forces nearby victims to silently connect to the malicious AP, enabling pervasive Man-in-the-Middle 
@@ -100,10 +99,6 @@ flowchart TD
 - **Wireless Intrusion Prevention System (WIPS)**: **802.1X / Enterprise Security**: **Client-Side Awareness**: Key Concepts
 | Concept | Description |
 |---------|-------------|
-| Deauthentication | |
-| Captive Portal | |
-
-
 ## Output Format
 ```
 Rogue Access Point Evil Twin — Assessment Report
@@ -136,21 +131,12 @@ Recommendations:
   3. [Monitoring/detection improvement]
 ```
 
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
 
-## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
-> The Architect Mindset identifies misconfigurations spanning multiple domains.
-- Chain info-leaks with SSRF/RCE.
-- Maintain absolute OPSEC during active engagement.
-
-## 🏁 Execution Phase (Steps to Reproduce)
-1. Perform target reconnaissance.
-2. Formulate payload based on endpoints.
-3. Execute the exploit and capture exfiltrated data.
-
-**Severity Profile:** High (CVSS: 8.5)
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - Wifiphisher: [The Rogue Access Point Framework](https://github.com/wifiphisher/wifiphisher)

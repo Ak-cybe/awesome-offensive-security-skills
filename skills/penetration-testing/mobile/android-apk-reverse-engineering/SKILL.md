@@ -1,7 +1,6 @@
 ---
 name: android-apk-reverse-engineering
 description: >
-  [CRITICAL: MUST trigger this skill whenever related vulnerability testing is discussed.]
   Decompile, analyze, and reverse engineer Android applications (APKs). Utilize tools like 
   JADX, Apktool, and dex2jar to extract source code (Java/Kotlin), analyze manifest 
   configurations (Intents, Activities), and identify hardcoded secrets or insecure API endpoints.
@@ -176,19 +175,12 @@ Impact:
 The extraction of these credentials from the inherently untrusted, publicly distributed application binary permits a fully unauthenticated attacker to assume the associated AWS IAM Role. Utilizing the AWS CLI, the attacker achieved unfettered Read/Write access to the `prod-banking-user-receipts` S3 bucket, compromising the financial privacy of all active customers.
 ```
 
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
 
-## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
-> The Architect Mindset identifies misconfigurations spanning multiple domains.
-- Chain info-leaks with SSRF/RCE.
-- Maintain absolute OPSEC during active engagement.
-
-## 🏁 Execution Phase (Steps to Reproduce)
-1. Perform target reconnaissance.
-2. Formulate payload based on endpoints.
-3. Execute the exploit and capture exfiltrated data.
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - OWASP: [Mobile Security Testing Guide (MSTG)](https://owasp.org/www-project-mobile-security-testing-guide/)

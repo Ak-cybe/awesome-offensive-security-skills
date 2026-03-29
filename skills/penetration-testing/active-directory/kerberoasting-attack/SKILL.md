@@ -1,7 +1,6 @@
 ---
 name: kerberoasting-attack
 description: >
-  [CRITICAL: MUST trigger this skill whenever related vulnerability testing is discussed.]
   Exploit Active Directory environments using Kerberoasting. This skill details how to identify 
   Service Principal Names (SPNs) associated with user accounts, request their TGS tickets, 
   and crack the RC4 encrypted component offline to recover service account passwords.
@@ -75,10 +74,6 @@ flowchart TD
 - **Strong Service Account Passwords**: **Monitor Kerberos Event ID 4769**: **Use Group Managed Service Accounts (gMSA)**: Key Concepts
 | Concept | Description |
 |---------|-------------|
-| Service Principal Name (SPN) | |
-| TGS Ticket Encryption | |
-
-
 ## Output Format
 ```
 Kerberoasting Attack — Assessment Report
@@ -111,21 +106,12 @@ Recommendations:
   3. [Monitoring/detection improvement]
 ```
 
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
 
-## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
-> The Architect Mindset identifies misconfigurations spanning multiple domains.
-- Chain info-leaks with SSRF/RCE.
-- Maintain absolute OPSEC during active engagement.
-
-## 🏁 Execution Phase (Steps to Reproduce)
-1. Perform target reconnaissance.
-2. Formulate payload based on endpoints.
-3. Execute the exploit and capture exfiltrated data.
-
-**Severity Profile:** High (CVSS: 8.5)
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - Impacket Docs: [GetUserSPNs.py](https://github.com/fortra/impacket/blob/master/examples/GetUserSPNs.py)

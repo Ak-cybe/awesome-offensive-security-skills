@@ -1,7 +1,6 @@
 ---
 name: process-hollowing
 description: >
-  [CRITICAL: MUST trigger this skill whenever related vulnerability testing is discussed.]
   Execute advanced evasion by injecting malicious code into the memory space of a legitimate, 
   suspended process (Process Hollowing). This skill details techniques to bypass static and 
   dynamic analysis by masking malicious activity behind trusted processes like svchost.exe or explorer.exe.
@@ -88,11 +87,6 @@ flowchart TD
 - **API Monitoring**: **Memory Scanning**: **EDR Heuristics**: Key Concepts
 | Concept | Description |
 |---------|-------------|
-| Process Hollowing | |
-| Memory Mapping | |
-| Suspended Process | |
-
-
 ## Output Format
 ```
 Process Hollowing — Assessment Report
@@ -125,21 +119,12 @@ Recommendations:
   3. [Monitoring/detection improvement]
 ```
 
-## 🔴 Red Team
-- Extract assets and enumerate endpoints.
-- Execute initial payloads leveraging documented vulnerabilities.
 
-## 🏆 Elite Chaining Strategy (Top 1% Hunter Methodology)
-> The Architect Mindset identifies misconfigurations spanning multiple domains.
-- Chain info-leaks with SSRF/RCE.
-- Maintain absolute OPSEC during active engagement.
-
-## 🏁 Execution Phase (Steps to Reproduce)
-1. Perform target reconnaissance.
-2. Formulate payload based on endpoints.
-3. Execute the exploit and capture exfiltrated data.
-
-**Severity Profile:** High (CVSS: 8.5)
+## 📚 Shared Resources
+> For cross-cutting methodology applicable to all vulnerability classes, see:
+> - [`_shared/references/elite-chaining-strategy.md`](../_shared/references/elite-chaining-strategy.md) — Exploit chaining methodology and high-payout chain patterns
+> - [`_shared/references/elite-report-writing.md`](../_shared/references/elite-report-writing.md) — HackerOne-optimized report writing, CWE quick reference
+> - [`_shared/references/real-world-bounties.md`](../_shared/references/real-world-bounties.md) — Verified disclosed bounties by vulnerability class
 
 ## References
 - MITRE ATT&CK: [Process Injection: Process Hollowing](https://attack.mitre.org/techniques/T1055/012/)
